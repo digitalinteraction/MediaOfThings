@@ -1,0 +1,713 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="OpenLab.Kitchen.StorageRepository.Entities.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="FieldDataTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DataType" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fields">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FieldDataTypeId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Locations">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ThingData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThingDataTypeId" Type="int" Nullable="false" />
+          <Property Name="ThingId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ThingDataFieldValues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThingDataId" Type="int" Nullable="false" />
+          <Property Name="FieldId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ThingDataTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ThingDataTypesToFields">
+          <Key>
+            <PropertyRef Name="ThingDataTypeId" />
+            <PropertyRef Name="FieldId" />
+          </Key>
+          <Property Name="ThingDataTypeId" Type="int" Nullable="false" />
+          <Property Name="FieldId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ThingFieldValues">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThingId" Type="int" Nullable="false" />
+          <Property Name="FieldId" Type="int" Nullable="false" />
+          <Property Name="Value" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Things">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationId" Type="int" Nullable="false" />
+          <Property Name="ThingTypeId" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ThingTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ThingTypesToFields">
+          <Key>
+            <PropertyRef Name="ThingTypeId" />
+            <PropertyRef Name="FieldId" />
+          </Key>
+          <Property Name="ThingTypeId" Type="int" Nullable="false" />
+          <Property Name="FieldId" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Fields_FieldTypes">
+          <End Role="FieldDataTypes" Type="Self.FieldDataTypes" Multiplicity="1" />
+          <End Role="Fields" Type="Self.Fields" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FieldDataTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fields">
+              <PropertyRef Name="FieldDataTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingData_ThingDataTypes">
+          <End Role="ThingDataTypes" Type="Self.ThingDataTypes" Multiplicity="1" />
+          <End Role="ThingData" Type="Self.ThingData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThingDataTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingData">
+              <PropertyRef Name="ThingDataTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingData_Things">
+          <End Role="Things" Type="Self.Things" Multiplicity="1" />
+          <End Role="ThingData" Type="Self.ThingData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Things">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingData">
+              <PropertyRef Name="ThingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingDataFieldValues_Fields">
+          <End Role="Fields" Type="Self.Fields" Multiplicity="1" />
+          <End Role="ThingDataFieldValues" Type="Self.ThingDataFieldValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fields">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingDataFieldValues">
+              <PropertyRef Name="FieldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingDataFieldValues_ThingData">
+          <End Role="ThingData" Type="Self.ThingData" Multiplicity="1" />
+          <End Role="ThingDataFieldValues" Type="Self.ThingDataFieldValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThingData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingDataFieldValues">
+              <PropertyRef Name="ThingDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingDataTypesToFields_Fields">
+          <End Role="Fields" Type="Self.Fields" Multiplicity="1" />
+          <End Role="ThingDataTypesToFields" Type="Self.ThingDataTypesToFields" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fields">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingDataTypesToFields">
+              <PropertyRef Name="FieldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingDataTypesToFields_ThingDataTypes">
+          <End Role="ThingDataTypes" Type="Self.ThingDataTypes" Multiplicity="1" />
+          <End Role="ThingDataTypesToFields" Type="Self.ThingDataTypesToFields" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThingDataTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingDataTypesToFields">
+              <PropertyRef Name="ThingDataTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingFieldValues_Fields">
+          <End Role="Fields" Type="Self.Fields" Multiplicity="1" />
+          <End Role="ThingFieldValues" Type="Self.ThingFieldValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fields">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingFieldValues">
+              <PropertyRef Name="FieldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingFieldValues_Things">
+          <End Role="Things" Type="Self.Things" Multiplicity="1" />
+          <End Role="ThingFieldValues" Type="Self.ThingFieldValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Things">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingFieldValues">
+              <PropertyRef Name="ThingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Things_Location">
+          <End Role="Locations" Type="Self.Locations" Multiplicity="1" />
+          <End Role="Things" Type="Self.Things" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Things">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Things_ThingTypes">
+          <End Role="ThingTypes" Type="Self.ThingTypes" Multiplicity="1" />
+          <End Role="Things" Type="Self.Things" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThingTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Things">
+              <PropertyRef Name="ThingTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingTypesToFields_Fields">
+          <End Role="Fields" Type="Self.Fields" Multiplicity="1" />
+          <End Role="ThingTypesToFields" Type="Self.ThingTypesToFields" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fields">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingTypesToFields">
+              <PropertyRef Name="FieldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingTypesToFields_ThingTypes">
+          <End Role="ThingTypes" Type="Self.ThingTypes" Multiplicity="1" />
+          <End Role="ThingTypesToFields" Type="Self.ThingTypesToFields" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThingTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingTypesToFields">
+              <PropertyRef Name="ThingTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="OpenLabKitchenStorageRepositoryEntitiesStoreContainer">
+          <EntitySet Name="FieldDataTypes" EntityType="Self.FieldDataTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fields" EntityType="Self.Fields" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Locations" EntityType="Self.Locations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThingData" EntityType="Self.ThingData" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThingDataFieldValues" EntityType="Self.ThingDataFieldValues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThingDataTypes" EntityType="Self.ThingDataTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThingDataTypesToFields" EntityType="Self.ThingDataTypesToFields" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThingFieldValues" EntityType="Self.ThingFieldValues" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Things" EntityType="Self.Things" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThingTypes" EntityType="Self.ThingTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThingTypesToFields" EntityType="Self.ThingTypesToFields" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Fields_FieldTypes" Association="Self.FK_Fields_FieldTypes">
+            <End Role="FieldDataTypes" EntitySet="FieldDataTypes" />
+            <End Role="Fields" EntitySet="Fields" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingData_ThingDataTypes" Association="Self.FK_ThingData_ThingDataTypes">
+            <End Role="ThingDataTypes" EntitySet="ThingDataTypes" />
+            <End Role="ThingData" EntitySet="ThingData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingData_Things" Association="Self.FK_ThingData_Things">
+            <End Role="Things" EntitySet="Things" />
+            <End Role="ThingData" EntitySet="ThingData" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingDataFieldValues_Fields" Association="Self.FK_ThingDataFieldValues_Fields">
+            <End Role="Fields" EntitySet="Fields" />
+            <End Role="ThingDataFieldValues" EntitySet="ThingDataFieldValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingDataFieldValues_ThingData" Association="Self.FK_ThingDataFieldValues_ThingData">
+            <End Role="ThingData" EntitySet="ThingData" />
+            <End Role="ThingDataFieldValues" EntitySet="ThingDataFieldValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingDataTypesToFields_Fields" Association="Self.FK_ThingDataTypesToFields_Fields">
+            <End Role="Fields" EntitySet="Fields" />
+            <End Role="ThingDataTypesToFields" EntitySet="ThingDataTypesToFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingDataTypesToFields_ThingDataTypes" Association="Self.FK_ThingDataTypesToFields_ThingDataTypes">
+            <End Role="ThingDataTypes" EntitySet="ThingDataTypes" />
+            <End Role="ThingDataTypesToFields" EntitySet="ThingDataTypesToFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingFieldValues_Fields" Association="Self.FK_ThingFieldValues_Fields">
+            <End Role="Fields" EntitySet="Fields" />
+            <End Role="ThingFieldValues" EntitySet="ThingFieldValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingFieldValues_Things" Association="Self.FK_ThingFieldValues_Things">
+            <End Role="Things" EntitySet="Things" />
+            <End Role="ThingFieldValues" EntitySet="ThingFieldValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Things_Location" Association="Self.FK_Things_Location">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="Things" EntitySet="Things" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Things_ThingTypes" Association="Self.FK_Things_ThingTypes">
+            <End Role="ThingTypes" EntitySet="ThingTypes" />
+            <End Role="Things" EntitySet="Things" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingTypesToFields_Fields" Association="Self.FK_ThingTypesToFields_Fields">
+            <End Role="Fields" EntitySet="Fields" />
+            <End Role="ThingTypesToFields" EntitySet="ThingTypesToFields" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingTypesToFields_ThingTypes" Association="Self.FK_ThingTypesToFields_ThingTypes">
+            <End Role="ThingTypes" EntitySet="ThingTypes" />
+            <End Role="ThingTypesToFields" EntitySet="ThingTypesToFields" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OpenLab.Kitchen.StorageRepository.Entities" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="FieldDataType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DataType" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Fields" Relationship="Self.FK_Fields_FieldTypes" FromRole="FieldDataTypes" ToRole="Fields" />
+        </EntityType>
+        <EntityType Name="Field">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FieldDataTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="FieldDataType" Relationship="Self.FK_Fields_FieldTypes" FromRole="Fields" ToRole="FieldDataTypes" />
+          <NavigationProperty Name="ThingDataFieldValues" Relationship="Self.FK_ThingDataFieldValues_Fields" FromRole="Fields" ToRole="ThingDataFieldValues" />
+          <NavigationProperty Name="ThingFieldValues" Relationship="Self.FK_ThingFieldValues_Fields" FromRole="Fields" ToRole="ThingFieldValues" />
+          <NavigationProperty Name="ThingDataTypes" Relationship="Self.ThingDataTypesToFields" FromRole="Fields" ToRole="ThingDataTypes" />
+          <NavigationProperty Name="ThingTypes" Relationship="Self.ThingTypesToFields" FromRole="Fields" ToRole="ThingTypes" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Things" Relationship="Self.FK_Things_Location" FromRole="Locations" ToRole="Things" />
+        </EntityType>
+        <EntityType Name="ThingData">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThingDataTypeId" Type="Int32" Nullable="false" />
+          <Property Name="ThingId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ThingDataType" Relationship="Self.FK_ThingData_ThingDataTypes" FromRole="ThingData" ToRole="ThingDataTypes" />
+          <NavigationProperty Name="Thing" Relationship="Self.FK_ThingData_Things" FromRole="ThingData" ToRole="Things" />
+          <NavigationProperty Name="ThingDataFieldValues" Relationship="Self.FK_ThingDataFieldValues_ThingData" FromRole="ThingData" ToRole="ThingDataFieldValues" />
+        </EntityType>
+        <EntityType Name="ThingDataFieldValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThingDataId" Type="Int32" Nullable="false" />
+          <Property Name="FieldId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Field" Relationship="Self.FK_ThingDataFieldValues_Fields" FromRole="ThingDataFieldValues" ToRole="Fields" />
+          <NavigationProperty Name="ThingData" Relationship="Self.FK_ThingDataFieldValues_ThingData" FromRole="ThingDataFieldValues" ToRole="ThingData" />
+        </EntityType>
+        <EntityType Name="ThingDataType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ThingData" Relationship="Self.FK_ThingData_ThingDataTypes" FromRole="ThingDataTypes" ToRole="ThingData" />
+          <NavigationProperty Name="Fields" Relationship="Self.ThingDataTypesToFields" FromRole="ThingDataTypes" ToRole="Fields" />
+        </EntityType>
+        <EntityType Name="ThingFieldValue">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThingId" Type="Int32" Nullable="false" />
+          <Property Name="FieldId" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Field" Relationship="Self.FK_ThingFieldValues_Fields" FromRole="ThingFieldValues" ToRole="Fields" />
+          <NavigationProperty Name="Thing" Relationship="Self.FK_ThingFieldValues_Things" FromRole="ThingFieldValues" ToRole="Things" />
+        </EntityType>
+        <EntityType Name="Thing">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationId" Type="Int32" Nullable="false" />
+          <Property Name="ThingTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Things_Location" FromRole="Things" ToRole="Locations" />
+          <NavigationProperty Name="ThingData" Relationship="Self.FK_ThingData_Things" FromRole="Things" ToRole="ThingData" />
+          <NavigationProperty Name="ThingFieldValues" Relationship="Self.FK_ThingFieldValues_Things" FromRole="Things" ToRole="ThingFieldValues" />
+          <NavigationProperty Name="ThingType" Relationship="Self.FK_Things_ThingTypes" FromRole="Things" ToRole="ThingTypes" />
+        </EntityType>
+        <EntityType Name="ThingType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Things" Relationship="Self.FK_Things_ThingTypes" FromRole="ThingTypes" ToRole="Things" />
+          <NavigationProperty Name="Fields" Relationship="Self.ThingTypesToFields" FromRole="ThingTypes" ToRole="Fields" />
+        </EntityType>
+        <Association Name="FK_Fields_FieldTypes">
+          <End Role="FieldDataTypes" Type="Self.FieldDataType" Multiplicity="1" />
+          <End Role="Fields" Type="Self.Field" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FieldDataTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Fields">
+              <PropertyRef Name="FieldDataTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingDataFieldValues_Fields">
+          <End Role="Fields" Type="Self.Field" Multiplicity="1" />
+          <End Role="ThingDataFieldValues" Type="Self.ThingDataFieldValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fields">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingDataFieldValues">
+              <PropertyRef Name="FieldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingFieldValues_Fields">
+          <End Role="Fields" Type="Self.Field" Multiplicity="1" />
+          <End Role="ThingFieldValues" Type="Self.ThingFieldValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fields">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingFieldValues">
+              <PropertyRef Name="FieldId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Things_Location">
+          <End Role="Locations" Type="Self.Location" Multiplicity="1" />
+          <End Role="Things" Type="Self.Thing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Locations">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Things">
+              <PropertyRef Name="LocationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingData_ThingDataTypes">
+          <End Role="ThingDataTypes" Type="Self.ThingDataType" Multiplicity="1" />
+          <End Role="ThingData" Type="Self.ThingData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThingDataTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingData">
+              <PropertyRef Name="ThingDataTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingData_Things">
+          <End Role="Things" Type="Self.Thing" Multiplicity="1" />
+          <End Role="ThingData" Type="Self.ThingData" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Things">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingData">
+              <PropertyRef Name="ThingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingDataFieldValues_ThingData">
+          <End Role="ThingData" Type="Self.ThingData" Multiplicity="1" />
+          <End Role="ThingDataFieldValues" Type="Self.ThingDataFieldValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThingData">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingDataFieldValues">
+              <PropertyRef Name="ThingDataId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ThingFieldValues_Things">
+          <End Role="Things" Type="Self.Thing" Multiplicity="1" />
+          <End Role="ThingFieldValues" Type="Self.ThingFieldValue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Things">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ThingFieldValues">
+              <PropertyRef Name="ThingId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Things_ThingTypes">
+          <End Role="ThingTypes" Type="Self.ThingType" Multiplicity="1" />
+          <End Role="Things" Type="Self.Thing" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ThingTypes">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Things">
+              <PropertyRef Name="ThingTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ThingDataTypesToFields">
+          <End Role="Fields" Type="Self.Field" Multiplicity="*" />
+          <End Role="ThingDataTypes" Type="Self.ThingDataType" Multiplicity="*" />
+        </Association>
+        <Association Name="ThingTypesToFields">
+          <End Role="Fields" Type="Self.Field" Multiplicity="*" />
+          <End Role="ThingTypes" Type="Self.ThingType" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="KitchenStorageRepository" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="FieldDataTypes" EntityType="Self.FieldDataType" />
+          <EntitySet Name="Fields" EntityType="Self.Field" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="ThingDatas" EntityType="Self.ThingData" />
+          <EntitySet Name="ThingDataFieldValues" EntityType="Self.ThingDataFieldValue" />
+          <EntitySet Name="ThingDataTypes" EntityType="Self.ThingDataType" />
+          <EntitySet Name="ThingFieldValues" EntityType="Self.ThingFieldValue" />
+          <EntitySet Name="Things" EntityType="Self.Thing" />
+          <EntitySet Name="ThingTypes" EntityType="Self.ThingType" />
+          <AssociationSet Name="FK_Fields_FieldTypes" Association="Self.FK_Fields_FieldTypes">
+            <End Role="FieldDataTypes" EntitySet="FieldDataTypes" />
+            <End Role="Fields" EntitySet="Fields" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingDataFieldValues_Fields" Association="Self.FK_ThingDataFieldValues_Fields">
+            <End Role="Fields" EntitySet="Fields" />
+            <End Role="ThingDataFieldValues" EntitySet="ThingDataFieldValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingFieldValues_Fields" Association="Self.FK_ThingFieldValues_Fields">
+            <End Role="Fields" EntitySet="Fields" />
+            <End Role="ThingFieldValues" EntitySet="ThingFieldValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Things_Location" Association="Self.FK_Things_Location">
+            <End Role="Locations" EntitySet="Locations" />
+            <End Role="Things" EntitySet="Things" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingData_ThingDataTypes" Association="Self.FK_ThingData_ThingDataTypes">
+            <End Role="ThingDataTypes" EntitySet="ThingDataTypes" />
+            <End Role="ThingData" EntitySet="ThingDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingData_Things" Association="Self.FK_ThingData_Things">
+            <End Role="Things" EntitySet="Things" />
+            <End Role="ThingData" EntitySet="ThingDatas" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingDataFieldValues_ThingData" Association="Self.FK_ThingDataFieldValues_ThingData">
+            <End Role="ThingData" EntitySet="ThingDatas" />
+            <End Role="ThingDataFieldValues" EntitySet="ThingDataFieldValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ThingFieldValues_Things" Association="Self.FK_ThingFieldValues_Things">
+            <End Role="Things" EntitySet="Things" />
+            <End Role="ThingFieldValues" EntitySet="ThingFieldValues" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Things_ThingTypes" Association="Self.FK_Things_ThingTypes">
+            <End Role="ThingTypes" EntitySet="ThingTypes" />
+            <End Role="Things" EntitySet="Things" />
+          </AssociationSet>
+          <AssociationSet Name="ThingDataTypesToFields" Association="Self.ThingDataTypesToFields">
+            <End Role="Fields" EntitySet="Fields" />
+            <End Role="ThingDataTypes" EntitySet="ThingDataTypes" />
+          </AssociationSet>
+          <AssociationSet Name="ThingTypesToFields" Association="Self.ThingTypesToFields">
+            <End Role="Fields" EntitySet="Fields" />
+            <End Role="ThingTypes" EntitySet="ThingTypes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OpenLabKitchenStorageRepositoryEntitiesStoreContainer" CdmEntityContainer="KitchenStorageRepository">
+          <EntitySetMapping Name="FieldDataTypes">
+            <EntityTypeMapping TypeName="OpenLab.Kitchen.StorageRepository.Entities.FieldDataType">
+              <MappingFragment StoreEntitySet="FieldDataTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DataType" ColumnName="DataType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fields">
+            <EntityTypeMapping TypeName="OpenLab.Kitchen.StorageRepository.Entities.Field">
+              <MappingFragment StoreEntitySet="Fields">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FieldDataTypeId" ColumnName="FieldDataTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="OpenLab.Kitchen.StorageRepository.Entities.Location">
+              <MappingFragment StoreEntitySet="Locations">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThingDatas">
+            <EntityTypeMapping TypeName="OpenLab.Kitchen.StorageRepository.Entities.ThingData">
+              <MappingFragment StoreEntitySet="ThingData">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ThingDataTypeId" ColumnName="ThingDataTypeId" />
+                <ScalarProperty Name="ThingId" ColumnName="ThingId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThingDataFieldValues">
+            <EntityTypeMapping TypeName="OpenLab.Kitchen.StorageRepository.Entities.ThingDataFieldValue">
+              <MappingFragment StoreEntitySet="ThingDataFieldValues">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ThingDataId" ColumnName="ThingDataId" />
+                <ScalarProperty Name="FieldId" ColumnName="FieldId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThingDataTypes">
+            <EntityTypeMapping TypeName="OpenLab.Kitchen.StorageRepository.Entities.ThingDataType">
+              <MappingFragment StoreEntitySet="ThingDataTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThingFieldValues">
+            <EntityTypeMapping TypeName="OpenLab.Kitchen.StorageRepository.Entities.ThingFieldValue">
+              <MappingFragment StoreEntitySet="ThingFieldValues">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ThingId" ColumnName="ThingId" />
+                <ScalarProperty Name="FieldId" ColumnName="FieldId" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Things">
+            <EntityTypeMapping TypeName="OpenLab.Kitchen.StorageRepository.Entities.Thing">
+              <MappingFragment StoreEntitySet="Things">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+                <ScalarProperty Name="ThingTypeId" ColumnName="ThingTypeId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThingTypes">
+            <EntityTypeMapping TypeName="OpenLab.Kitchen.StorageRepository.Entities.ThingType">
+              <MappingFragment StoreEntitySet="ThingTypes">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="ThingDataTypesToFields" TypeName="OpenLab.Kitchen.StorageRepository.Entities.ThingDataTypesToFields" StoreEntitySet="ThingDataTypesToFields">
+            <EndProperty Name="Fields">
+              <ScalarProperty Name="Id" ColumnName="FieldId" />
+            </EndProperty>
+            <EndProperty Name="ThingDataTypes">
+              <ScalarProperty Name="Id" ColumnName="ThingDataTypeId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="ThingTypesToFields" TypeName="OpenLab.Kitchen.StorageRepository.Entities.ThingTypesToFields" StoreEntitySet="ThingTypesToFields">
+            <EndProperty Name="Fields">
+              <ScalarProperty Name="Id" ColumnName="FieldId" />
+            </EndProperty>
+            <EndProperty Name="ThingTypes">
+              <ScalarProperty Name="Id" ColumnName="ThingTypeId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

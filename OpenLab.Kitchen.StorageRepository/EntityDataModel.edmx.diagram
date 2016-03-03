@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="918174906b1e4058943d4fc225a55ef8" Name="Diagram1" ZoomLevel="74">
+        <EntityTypeShape EntityType="OpenLab.Kitchen.StorageRepository.Entities.FieldDataType" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpenLab.Kitchen.StorageRepository.Entities.Field" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpenLab.Kitchen.StorageRepository.Entities.Location" Width="1.5" PointX="5.25" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpenLab.Kitchen.StorageRepository.Entities.ThingData" Width="1.5" PointX="7.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpenLab.Kitchen.StorageRepository.Entities.ThingDataFieldValue" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpenLab.Kitchen.StorageRepository.Entities.ThingDataType" Width="1.5" PointX="5.25" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpenLab.Kitchen.StorageRepository.Entities.ThingFieldValue" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpenLab.Kitchen.StorageRepository.Entities.Thing" Width="1.5" PointX="7.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="OpenLab.Kitchen.StorageRepository.Entities.ThingType" Width="1.5" PointX="5.25" PointY="13.375" IsExpanded="true" />
+        <AssociationConnector Association="OpenLab.Kitchen.StorageRepository.Entities.FK_Fields_FieldTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="OpenLab.Kitchen.StorageRepository.Entities.FK_ThingDataFieldValues_Fields" ManuallyRouted="false" />
+        <AssociationConnector Association="OpenLab.Kitchen.StorageRepository.Entities.FK_ThingFieldValues_Fields" ManuallyRouted="false" />
+        <AssociationConnector Association="OpenLab.Kitchen.StorageRepository.Entities.FK_Things_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="OpenLab.Kitchen.StorageRepository.Entities.FK_ThingData_ThingDataTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="OpenLab.Kitchen.StorageRepository.Entities.FK_ThingData_Things" ManuallyRouted="false" />
+        <AssociationConnector Association="OpenLab.Kitchen.StorageRepository.Entities.FK_ThingDataFieldValues_ThingData" ManuallyRouted="false" />
+        <AssociationConnector Association="OpenLab.Kitchen.StorageRepository.Entities.FK_ThingFieldValues_Things" ManuallyRouted="false" />
+        <AssociationConnector Association="OpenLab.Kitchen.StorageRepository.Entities.FK_Things_ThingTypes" ManuallyRouted="false" />
+        <AssociationConnector Association="OpenLab.Kitchen.StorageRepository.Entities.ThingDataTypesToFields" ManuallyRouted="false" />
+        <AssociationConnector Association="OpenLab.Kitchen.StorageRepository.Entities.ThingTypesToFields" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

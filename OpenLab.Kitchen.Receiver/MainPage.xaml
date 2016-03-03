@@ -6,13 +6,10 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-        <Hub Header="Kitchen Reciever">
-            <HubSection Header="Debug Output">
-                <DataTemplate>
-                    <TextBox x:Name="debugOutput" Width="400" Height="400" />
-                </DataTemplate>
-            </HubSection>
-        </Hub>
-    </Grid>
+    <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <CheckBox x:Name="ReceiverConnected" Content="Reciever Connected"/>
+        <CheckBox x:Name="SerialPortOpen" Content="Serial Port Open"/>
+        <CheckBox x:Name="AzureIoTConnected" Content="Azure IoT Hub Connected"/>
+        <ListView ItemsSource="{Binding DevicesConnected}" />
+    </StackPanel>
 </Page>

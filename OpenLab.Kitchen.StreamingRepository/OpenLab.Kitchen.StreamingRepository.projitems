@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>f03bff8a-019e-4954-b2d4-89480108758a</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>OpenLab.Kitchen.StreamingRepository</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)RabbitMQConnection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RfidStreamer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Wax3Streamer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Wax9Streamer.cs" />
+  </ItemGroup>
+</Project>

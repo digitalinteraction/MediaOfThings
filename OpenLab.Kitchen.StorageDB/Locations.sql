@@ -1,0 +1,5 @@
+﻿CREATE TABLE [dbo].[Locations]
+(
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
+    [Name] NVARCHAR(MAX) NOT NULL
+)

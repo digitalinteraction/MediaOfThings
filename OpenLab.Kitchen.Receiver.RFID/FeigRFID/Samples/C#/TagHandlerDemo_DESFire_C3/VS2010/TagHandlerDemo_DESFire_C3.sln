@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TagHandlerDemo_DESFire_C3", "TagHandlerDemo_DESFire_C3.csproj", "{8E626D9A-11FC-418F-A030-E45A6FCE210F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8E626D9A-11FC-418F-A030-E45A6FCE210F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E626D9A-11FC-418F-A030-E45A6FCE210F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E626D9A-11FC-418F-A030-E45A6FCE210F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E626D9A-11FC-418F-A030-E45A6FCE210F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

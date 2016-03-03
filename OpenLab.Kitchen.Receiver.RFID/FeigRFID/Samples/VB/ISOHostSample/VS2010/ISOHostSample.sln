@@ -1,0 +1,52 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ISOHostSample", "ISOHostSample.vbproj", "{E08A62AA-998F-477F-8464-A8A5418CC71A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C2075860-D3F9-4C15-88C6-21144FCF40AE} = {C2075860-D3F9-4C15-88C6-21144FCF40AE}
+		{C3E7DA99-B6A0-4DCD-8B1A-C9D928AE05A9} = {C3E7DA99-B6A0-4DCD-8B1A-C9D928AE05A9}
+		{368DE0C8-BB30-4373-9523-12EA62034B66} = {368DE0C8-BB30-4373-9523-12EA62034B66}
+		{C4F98142-4383-465B-ADD2-6BBBEBA4CB03} = {C4F98142-4383-465B-ADD2-6BBBEBA4CB03}
+	EndProjectSection
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Authent_Mifare", "..\..\Authent_Mifare\VS2010\Authent_Mifare.vbproj", "{C4F98142-4383-465B-ADD2-6BBBEBA4CB03}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Authent_MYD", "..\..\Authent_MYD\VS2010\Authent_MYD.vbproj", "{368DE0C8-BB30-4373-9523-12EA62034B66}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "HexEditor", "..\..\HexEditor\VS2010\HexEditor.vbproj", "{C2075860-D3F9-4C15-88C6-21144FCF40AE}"
+EndProject
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "PortConnection", "..\..\PortConnection\VS2010\PortConnection.vbproj", "{C3E7DA99-B6A0-4DCD-8B1A-C9D928AE05A9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E08A62AA-998F-477F-8464-A8A5418CC71A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E08A62AA-998F-477F-8464-A8A5418CC71A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E08A62AA-998F-477F-8464-A8A5418CC71A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E08A62AA-998F-477F-8464-A8A5418CC71A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C4F98142-4383-465B-ADD2-6BBBEBA4CB03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C4F98142-4383-465B-ADD2-6BBBEBA4CB03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C4F98142-4383-465B-ADD2-6BBBEBA4CB03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C4F98142-4383-465B-ADD2-6BBBEBA4CB03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{368DE0C8-BB30-4373-9523-12EA62034B66}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{368DE0C8-BB30-4373-9523-12EA62034B66}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{368DE0C8-BB30-4373-9523-12EA62034B66}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{368DE0C8-BB30-4373-9523-12EA62034B66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2075860-D3F9-4C15-88C6-21144FCF40AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2075860-D3F9-4C15-88C6-21144FCF40AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2075860-D3F9-4C15-88C6-21144FCF40AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2075860-D3F9-4C15-88C6-21144FCF40AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3E7DA99-B6A0-4DCD-8B1A-C9D928AE05A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3E7DA99-B6A0-4DCD-8B1A-C9D928AE05A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3E7DA99-B6A0-4DCD-8B1A-C9D928AE05A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3E7DA99-B6A0-4DCD-8B1A-C9D928AE05A9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
+	EndGlobalSection
+EndGlobal

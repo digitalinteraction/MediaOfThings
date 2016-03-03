@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "NotificationSample", "NotificationSample.vbproj", "{56FD4156-737F-40E4-8272-FA4695C8847D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{56FD4156-737F-40E4-8272-FA4695C8847D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56FD4156-737F-40E4-8272-FA4695C8847D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56FD4156-737F-40E4-8272-FA4695C8847D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56FD4156-737F-40E4-8272-FA4695C8847D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(DPCodeReviewSolutionGUID) = preSolution
+		DPCodeReviewSolutionGUID = {00000000-0000-0000-0000-000000000000}
+	EndGlobalSection
+EndGlobal
