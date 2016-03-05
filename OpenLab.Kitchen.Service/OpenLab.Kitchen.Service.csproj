@@ -47,8 +47,10 @@
     <Compile Include="Models\Model.cs" />
     <Compile Include="Models\Rfid.cs" />
     <Compile Include="Models\RfidData.cs" />
+    <Compile Include="Models\Streaming\Marker.cs" />
     <Compile Include="Models\Streaming\RfidData.cs" />
     <Compile Include="Models\Streaming\StreamingModel.cs" />
+    <Compile Include="Models\Streaming\WaterFlow.cs" />
     <Compile Include="Models\Streaming\Wax3Data.cs" />
     <Compile Include="Models\Streaming\Wax9Data.cs" />
     <Compile Include="Models\Wax3Data.cs" />

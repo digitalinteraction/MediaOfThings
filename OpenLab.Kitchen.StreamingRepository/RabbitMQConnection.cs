@@ -1,41 +1,57 @@
-﻿using System.Text;
+﻿using System;
+using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using OpenLab.Kitchen.Service.Models.Streaming;
 using RabbitMQ.Client;
+using RabbitMQ.Client.Events;
 
 namespace OpenLab.Kitchen.StreamingRepository
 {
-    class RabbitMQConnection
+    class RabbitMqConnection
     {
-        private readonly IConnectionFactory _factory;
-        private readonly IConnection _connection;
         private readonly IModel _channel;
 
-        string Queue { get; }
+        string Exchange { get; }
+        string RoutingKey { get; }
+        string Consumer { get; set; }
 
-        public RabbitMQConnection(string queue)
+        public RabbitMqConnection(string exchange, string routingKey)
         {
-            _factory = new ConnectionFactory {HostName = "ol-kitchen-mq.di-test.com",UserName = "admin", Password = "BlahBlah123"};
-            _connection = _factory.CreateConnection();
-            _channel = _connection.CreateModel();
+            var factory = new ConnectionFactory {HostName = "ol-kitchen-mq.di-test.com",UserName = "admin", Password = "BlahBlah123"};
+            factory.AutomaticRecoveryEnabled = true;
+            var connection = factory.CreateConnection();
+            _channel = connection.CreateModel();
 
-            _channel.ExchangeDeclare(queue, "topic");
+            _channel.ExchangeDeclare(exchange, "topic");
 
-            Queue = queue;
+            Exchange = exchange;
+            RoutingKey = routingKey;
         }
 
-        public async Task SendMessage(StreamingModel model)
+        public async Task SendMessage(string model, string id = null)
         {
+            var routingKey = id == null ? RoutingKey : RoutingKey + $".{id}";
+
             await new Task(
                 () =>
-                    _channel.BasicPublish(Queue, model.DeviceId.ToString(), null,
-                        Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(model))));
+                    _channel.BasicPublish(Exchange, routingKey, null,
+                        Encoding.UTF8.GetBytes(model)));
         }
 
-        public void Subscribe(int id)
+        public void Subscribe(EventHandler<BasicDeliverEventArgs> handler)
         {
-            //_channel.QueueBind(Queue, );
+            var queue = _channel.QueueDeclare().QueueName;
+            _channel.QueueBind(queue, Exchange, RoutingKey);
+
+            var consumer = new EventingBasicConsumer(_channel);
+            consumer.Received += handler;
+            Consumer = _channel.BasicConsume(queue, true, consumer);
+        }
+
+        public void UnSubscribe()
+        {
+            _channel.BasicCancel(Consumer);
         }
     }
 }

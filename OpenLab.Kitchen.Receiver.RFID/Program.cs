@@ -1,6 +1,6 @@
 ﻿using System.Threading;
 
-namespace OpenLab.Kitchen.Receiver.RFID
+namespace OpenLab.Kitchen.Receiver.Wax3.Wax3.Rfid
 {
     class Program
     {

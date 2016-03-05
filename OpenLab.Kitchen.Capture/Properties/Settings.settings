@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="OpenLab.Kitchen.Capture.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="EndPointUrl" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://ol-kitchen-document.documents.azure.com:443/</Value>
+    </Setting>
+    <Setting Name="AuthorizationKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)">c3FCn0/d50L+YlDkIMWQJIaLvbcV5VNePlfjmGROj7c96UklxUGjHex80v+2IxTyJv34NKVpwx+VjUHLdkHvFw==</Value>
+    </Setting>
+    <Setting Name="DatabaseId" Type="System.String" Scope="User">
+      <Value Profile="(Default)">OL-Kitchen-CaptureDB</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

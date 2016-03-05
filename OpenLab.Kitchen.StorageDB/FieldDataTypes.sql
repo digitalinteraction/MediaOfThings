@@ -1,5 +1,0 @@
-﻿CREATE TABLE [dbo].[FieldDataTypes]
-(
-	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
-    [DataType] NVARCHAR(MAX) NOT NULL
-)

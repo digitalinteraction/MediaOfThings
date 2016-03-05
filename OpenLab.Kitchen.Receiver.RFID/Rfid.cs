@@ -8,7 +8,7 @@ using OBID;
 using OpenLab.Kitchen.Service.Interfaces;
 using OpenLab.Kitchen.StreamingRepository;
 
-namespace OpenLab.Kitchen.Receiver.RFID
+namespace OpenLab.Kitchen.Receiver.Wax3.Wax3.Rfid
 {
     class Rfid : FeUsbListener
     {
