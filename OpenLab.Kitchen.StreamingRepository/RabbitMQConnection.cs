@@ -18,10 +18,11 @@ namespace OpenLab.Kitchen.StreamingRepository
 
         public RabbitMqConnection(string exchange, string routingKey)
         {
-            var factory = new ConnectionFactory {HostName = "ol-kitchen-mq.di-test.com",UserName = "admin", Password = "BlahBlah123"};
+            var factory = new ConnectionFactory {HostName = "OL-Kitchen-MQ", UserName = "kitchen", Password = "BlahBlah123"};
             factory.AutomaticRecoveryEnabled = true;
             var connection = factory.CreateConnection();
             _channel = connection.CreateModel();
+            _channel.ContinuationTimeout = TimeSpan.FromMilliseconds(100);
 
             _channel.ExchangeDeclare(exchange, "topic");
 
@@ -29,14 +30,11 @@ namespace OpenLab.Kitchen.StreamingRepository
             RoutingKey = routingKey;
         }
 
-        public async Task SendMessage(string model, string id = null)
+        public void SendMessage(string model, string id = null)
         {
             var routingKey = id == null ? RoutingKey : RoutingKey + $".{id}";
 
-            await new Task(
-                () =>
-                    _channel.BasicPublish(Exchange, routingKey, null,
-                        Encoding.UTF8.GetBytes(model)));
+            _channel.BasicPublish(Exchange, routingKey, null, Encoding.UTF8.GetBytes(model));
         }
 
         public void Subscribe(EventHandler<BasicDeliverEventArgs> handler)

@@ -20,14 +20,14 @@ using OpenLab.Kitchen.StreamingRepository;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
-namespace OpenLab.Kitchen.Reciever.FlowMeter
+namespace OpenLab.Kitchen.Receiver.FlowMeter
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private WaterFlowStreamer _flowStreamer;
+        private readonly WaterFlowStreamer _flowStreamer;
         private GpioPin Pin { get; set; }
         private int CurrentCount { get; set; }
         private DispatcherTimer Timeout { get; }
@@ -42,13 +42,13 @@ namespace OpenLab.Kitchen.Reciever.FlowMeter
             CurrentCount = 0;
 
             Timeout = new DispatcherTimer();
-            Timeout.Tick += async (sender, o) =>
+            Timeout.Tick += (sender, o) =>
             {
-                await _flowStreamer.Send(new WaterFlow
+                _flowStreamer.Send(new WaterFlow
                 {
                     LocationId = 1,
                     DataTimeStamp = DateTime.Now,
-                    DeviceId = 1,
+                    DeviceId = 1.ToString(),
                     WaterUsed = CurrentCount * 2.25f,
                     Time = StartTime.TimeOfDay
                 });

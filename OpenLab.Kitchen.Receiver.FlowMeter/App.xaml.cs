@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace OpenLab.Kitchen.Reciever.Bluetooth
+namespace OpenLab.Kitchen.Receiver.FlowMeter
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.

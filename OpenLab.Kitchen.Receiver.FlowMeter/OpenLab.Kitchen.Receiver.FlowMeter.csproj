@@ -7,8 +7,8 @@
     <ProjectGuid>{1382DE0F-3488-46AA-855F-A9C32ED25192}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OpenLab.Kitchen.Reciever.FlowMeter</RootNamespace>
-    <AssemblyName>OpenLab.Kitchen.Reciever.FlowMeter</AssemblyName>
+    <RootNamespace>OpenLab.Kitchen.Receiver.FlowMeter</RootNamespace>
+    <AssemblyName>OpenLab.Kitchen.Receiver.FlowMeter</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
     <TargetPlatformVersion>10.0.10586.0</TargetPlatformVersion>
@@ -133,7 +133,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\OpenLab.Kitchen.Service\OpenLab.Kitchen.Service.csproj">
-      <Project>{9a649a2c-dee9-4d6c-a6ee-f89666efeab5}</Project>
+      <Project>{949a1e19-0042-446d-be75-831be506fe68}</Project>
       <Name>OpenLab.Kitchen.Service</Name>
     </ProjectReference>
   </ItemGroup>

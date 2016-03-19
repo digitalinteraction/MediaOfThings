@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-namespace OpenLab.Kitchen.Reciever.FlowMeter
+namespace OpenLab.Kitchen.Receiver.Wax9
 {
     /// <summary>
     /// Provides application-specific behavior to supplement the default Application class.

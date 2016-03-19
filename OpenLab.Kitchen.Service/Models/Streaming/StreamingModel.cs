@@ -10,7 +10,7 @@ namespace OpenLab.Kitchen.Service.Models.Streaming
     {
         public int LocationId { get; set; }
 
-        public int DeviceId { get; set; }
+        public string DeviceId { get; set; }
 
         public DateTime DataTimeStamp { get; set; }
     }

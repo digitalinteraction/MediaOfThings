@@ -16,9 +16,9 @@ namespace OpenLab.Kitchen.StreamingRepository
             _mqConnection = new RabbitMqConnection("bbckitchen", "rfid");
         }
 
-        public async Task Send(RfidData model)
+        public void Send(RfidData model)
         {
-            await _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.DeviceId.ToString());
+            _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.DeviceId.ToString());
         }
 
         public void Subscribe(Action<RfidData> handler)

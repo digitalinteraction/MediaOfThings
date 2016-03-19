@@ -8,6 +8,8 @@ namespace OpenLab.Kitchen.Service.Models.Streaming
 {
     public class Wax9Data : StreamingModel
     {
+        public int SampleNumber { get; set; }
+
         public float AccX { get; set; }
 
         public float AccY { get; set; }

@@ -9,7 +9,7 @@
     <StackPanel Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <CheckBox x:Name="ReceiverConnected" Content="Reciever Connected"/>
         <CheckBox x:Name="SerialPortOpen" Content="Serial Port Open"/>
-        <CheckBox x:Name="AzureIoTConnected" Content="Azure IoT Hub Connected"/>
-        <ListView ItemsSource="{Binding DevicesConnected}" />
+        <CheckBox x:Name="MQConnected" Content="Message Queue Connected"/>
+        <ListView x:Name="DevicesConnected"/>
     </StackPanel>
 </Page>

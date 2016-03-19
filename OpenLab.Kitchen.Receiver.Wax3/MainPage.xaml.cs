@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using Windows.Devices.Enumeration;
@@ -20,14 +21,19 @@ namespace OpenLab.Kitchen.Receiver.Wax3
         private readonly ISendRepository<Wax3Data> _waxSendRepository; 
 
         private List<byte> Bytes { get; }
+        private ObservableCollection<string> Devices { get; }
 
         public MainPage()
         {
             InitializeComponent();
             Bytes = new List<byte>();
+            Devices = new ObservableCollection<string>();
             
             ConnectToSerialPort();
             _waxSendRepository = new Wax3Streamer();
+            MQConnected.IsChecked = true;
+
+            DevicesConnected.ItemsSource = Devices;
         }
 
         private async void ConnectToSerialPort()
@@ -77,11 +83,15 @@ namespace OpenLab.Kitchen.Receiver.Wax3
                             var waxPacket = WaxPacketConverter.FromBinary(slipPacket, DateTime.Now);
                             if (waxPacket != null)
                             {
+                                if (!Devices.Contains(waxPacket.DeviceId.ToString()))
+                                {
+                                    Devices.Add(waxPacket.DeviceId.ToString());
+                                }
                                 foreach (var sample in waxPacket.Samples)
                                 {
-                                    await _waxSendRepository.Send(new Wax3Data
+                                    _waxSendRepository.Send(new Wax3Data
                                     {
-                                        DeviceId = waxPacket.DeviceId,
+                                        DeviceId = waxPacket.DeviceId.ToString(),
                                         LocationId = 1,
                                         DataTimeStamp = sample.Timestamp,
                                         Battery = waxPacket.Battery,

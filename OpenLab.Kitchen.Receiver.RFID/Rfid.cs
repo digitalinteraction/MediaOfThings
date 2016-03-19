@@ -8,7 +8,7 @@ using OBID;
 using OpenLab.Kitchen.Service.Interfaces;
 using OpenLab.Kitchen.StreamingRepository;
 
-namespace OpenLab.Kitchen.Receiver.Wax3.Wax3.Rfid
+namespace OpenLab.Kitchen.Receiver.Rfid
 {
     class Rfid : FeUsbListener
     {
@@ -101,7 +101,7 @@ namespace OpenLab.Kitchen.Receiver.Wax3.Wax3.Rfid
                     }
                 }
 
-                _rfidSendRepository.Send(new Service.Models.Streaming.RfidData { DeviceId = deviceId, LocationId = 1, DataTimeStamp = DateTime.Now, Transponders = transponders });
+                _rfidSendRepository.Send(new Service.Models.Streaming.RfidData { DeviceId = deviceId.ToString(), LocationId = 1, DataTimeStamp = DateTime.Now, Transponders = transponders });
                 Console.WriteLine($"Device {deviceId} read tags: {string.Join(",", transponders)}");
             }
             catch (Exception e)

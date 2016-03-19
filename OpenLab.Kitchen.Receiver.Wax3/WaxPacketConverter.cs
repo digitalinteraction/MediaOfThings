@@ -111,7 +111,7 @@ namespace OpenLab.Kitchen.Receiver.Wax3
                 }
                 else
                 {
-                    Debug.Fail("[?]");
+                    Debug.WriteLine("Invalid packet.");
                 }
 
             }

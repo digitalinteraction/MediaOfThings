@@ -16,9 +16,9 @@ namespace OpenLab.Kitchen.StreamingRepository
             _mqConnection = new RabbitMqConnection("bbckitchen", "wax9");
         }
 
-        public async Task Send(Wax9Data model)
+        public void Send(Wax9Data model)
         {
-            await _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.DeviceId.ToString());
+            _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.DeviceId.ToString());
         }
 
         public void Subscribe(Action<Wax9Data> handler)

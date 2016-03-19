@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="3fa7f467-f8c3-43d6-8b61-5bfd880509dc" Publisher="CN=Gerard" Version="1.0.0.0" />
-  <mp:PhoneIdentity PhoneProductId="3fa7f467-f8c3-43d6-8b61-5bfd880509dc" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
+  <Identity Name="ce53eac6-fe57-4a39-a9f5-63f2d52a1ecd" Publisher="CN=Gerard" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="ce53eac6-fe57-4a39-a9f5-63f2d52a1ecd" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
-    <DisplayName>OpenLab.Kitchen.Receiver.Wax3</DisplayName>
+    <DisplayName>OpenLab.Kitchen.Receiver.Wax9</DisplayName>
     <PublisherDisplayName>Gerard</PublisherDisplayName>
     <Logo>Assets\StoreLogo.png</Logo>
   </Properties>
@@ -14,8 +14,8 @@
     <Resource Language="x-generate" />
   </Resources>
   <Applications>
-    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="OpenLab.Kitchen.Receiver.Wax3.App">
-      <uap:VisualElements DisplayName="OpenLab.Kitchen.Receiver.Wax3" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="OpenLab.Kitchen.Receiver.Wax3" BackgroundColor="transparent">
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="OpenLab.Kitchen.Receiver.Wax9.App">
+      <uap:VisualElements DisplayName="OpenLab.Kitchen.Receiver.Wax9" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="OpenLab.Kitchen.Receiver.Wax9" BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />
@@ -25,10 +25,6 @@
   <Capabilities>
     <Capability Name="internetClient" />
     <Capability Name="privateNetworkClientServer" />
-    <DeviceCapability Name="serialcommunication">
-      <Device Id="any">
-        <Function Type="name:serialPort" />
-      </Device>
-    </DeviceCapability>
+    <DeviceCapability Name="bluetooth" />
   </Capabilities>
 </Package>

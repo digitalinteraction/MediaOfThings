@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace OpenLab.Kitchen.Service.Models.Streaming
 {
-    public class Marker : StreamingModel
+    public class ScalesData : StreamingModel
     {
-
+        public float Weight { get; set; }
     }
 }

@@ -9,6 +9,6 @@ namespace OpenLab.Kitchen.Service.Interfaces
 {
     public interface ISendRepository<T> where T : StreamingModel
     {
-        Task Send(T model);
+        void Send(T model);
     }
 }

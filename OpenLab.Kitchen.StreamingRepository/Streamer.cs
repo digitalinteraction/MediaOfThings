@@ -1,34 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using OpenLab.Kitchen.Service.Interfaces;
-using OpenLab.Kitchen.Service.Models.Streaming;
 
 namespace OpenLab.Kitchen.StreamingRepository
 {
-    public class MarkerStreamer : ISendRepository<Marker>, IRecieveRepository<Marker>
+    public class Streamer
     {
         private readonly RabbitMqConnection _mqConnection;
 
-        public MarkerStreamer()
+        public Streamer()
         {
-            _mqConnection = new RabbitMqConnection("bbckitchen", "marker");
+            _mqConnection = new RabbitMqConnection("bbckitchen", "#");
         }
 
-        public async Task Send(Marker model)
-        {
-            await _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.DeviceId.ToString());
-        }
-
-        public void Subscribe(Action<Marker> handler)
+        public void Subscribe(Action<string> handler)
         {
             _mqConnection.Subscribe((model, ea) =>
             {
                 var body = ea.Body;
                 var message = Encoding.UTF8.GetString(body);
-                handler(JsonConvert.DeserializeObject<Marker>(message));
+                handler(message);
             });
         }
 

@@ -99,12 +99,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpenLab.Kitchen.Service\OpenLab.Kitchen.Service.csproj">
-      <Project>{9a649a2c-dee9-4d6c-a6ee-f89666efeab5}</Project>
-      <Name>OpenLab.Kitchen.Service</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
       <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
@@ -115,6 +109,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OpenLab.Kitchen.Service\OpenLab.Kitchen.Service.csproj">
+      <Project>{949a1e19-0042-446d-be75-831be506fe68}</Project>
+      <Name>OpenLab.Kitchen.Service</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="..\OpenLab.Kitchen.StreamingRepository\OpenLab.Kitchen.StreamingRepository.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

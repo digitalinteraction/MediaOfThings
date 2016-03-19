@@ -17,9 +17,9 @@ namespace OpenLab.Kitchen.StreamingRepository
             _mqConnection = new RabbitMqConnection("bbckitchen", "water");
         }
 
-        public async Task Send(WaterFlow model)
+        public void Send(WaterFlow model)
         {
-            await _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.DeviceId.ToString());
+            _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.DeviceId.ToString());
         }
 
         public void Subscribe(Action<WaterFlow> handler)
