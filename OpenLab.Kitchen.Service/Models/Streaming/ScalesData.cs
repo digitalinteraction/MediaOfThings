@@ -8,6 +8,6 @@ namespace OpenLab.Kitchen.Service.Models.Streaming
 {
     public class ScalesData : StreamingModel
     {
-        public float Weight { get; set; }
+        public byte[] Weight { get; set; }
     }
 }

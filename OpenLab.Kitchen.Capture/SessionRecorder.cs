@@ -30,6 +30,8 @@ namespace OpenLab.Kitchen.Capture
 
             _streamer.Subscribe(async (data) =>
             {
+                Console.WriteLine(data);
+
                 Documents.Add(BsonDocument.Parse(data));
 
                 if (Documents.Count > 100)
