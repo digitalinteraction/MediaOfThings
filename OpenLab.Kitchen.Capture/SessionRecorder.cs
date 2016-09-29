@@ -21,24 +21,20 @@ namespace OpenLab.Kitchen.Capture
 
         private ConcurrentBag<BsonDocument> Documents { get; set; } 
 
-        public SessionRecorder()
+        public SessionRecorder(string sessionName)
         {
-            _mongoClient = new MongoClient("mongodb://OL-Kitchen-Capture:27017");
+            _repository = new GenericRepository("bbckitchen", sessionName);
             _streamer = new Streamer();
 
             Documents = new ConcurrentBag<BsonDocument>();
 
-            _mongoClient.GetDatabase("bbckitchen").RunCommandAsync((Command<BsonDocument>)"{ping:1}").Wait();
+            
 
             Console.WriteLine("RabbitMQ and Mongo connections open.");
         }
 
         public void StartCapture()
         {
-            var database = _mongoClient.GetDatabase("bbckitchen");
-            Console.Write("Enter a name for capture session: ");
-            var sessionCollection = database.GetCollection<BsonDocument>(Console.ReadLine());
-
             _streamer.Subscribe((data) =>
             {
                 Documents.Add(BsonSerializer.Deserialize<BsonDocument>(data));

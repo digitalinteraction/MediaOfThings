@@ -10,7 +10,8 @@ namespace OpenLab.Kitchen.Capture
     {
         static void Main(string[] args)
         {
-            var recorder = new SessionRecorder();
+            Console.Write("Enter a name for capture session: ");
+            var recorder = new SessionRecorder(Console.ReadLine());
             recorder.StartCapture();
 
             Console.ReadLine();
