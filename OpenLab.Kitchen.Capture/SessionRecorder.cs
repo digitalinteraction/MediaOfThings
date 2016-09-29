@@ -8,6 +8,7 @@ using System.Threading;
 using CsvHelper;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using OpenLab.Kitchen.Repository;
 using OpenLab.Kitchen.StreamingRepository;
 using MongoDB.Bson.Serialization;
 
@@ -15,14 +16,14 @@ namespace OpenLab.Kitchen.Capture
 {
     class SessionRecorder
     {
-        private readonly IMongoClient _mongoClient;
+        private readonly GenericRepository _repository;
         private readonly Streamer _streamer;
 
         private ConcurrentBag<BsonDocument> Documents { get; set; } 
 
         public SessionRecorder()
         {
-            _mongoClient = new MongoClient("mongodb://192.168.1.101:27017");
+            _mongoClient = new MongoClient("mongodb://OL-Kitchen-Capture:27017");
             _streamer = new Streamer();
 
             Documents = new ConcurrentBag<BsonDocument>();

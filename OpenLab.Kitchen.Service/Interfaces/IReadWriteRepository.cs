@@ -2,7 +2,7 @@
 
 namespace OpenLab.Kitchen.Service.Interfaces
 {
-    public interface IReadWriteRepository<T> : IReadOnlyRepository<T> where T : Model
+    public interface IReadWriteRepository<T> : IReadOnlyRepository<T>
     {
         void Insert(T model);
         void Update(T model);

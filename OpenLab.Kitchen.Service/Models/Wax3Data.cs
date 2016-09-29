@@ -1,12 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace OpenLab.Kitchen.Service.Models
 {
     public class Wax3Data : Model
     {
-        public DateTime DataTimeStamp { get; set; }
-
-        public float BatteryLevel { get; set; }
+        public float Battery { get; set; }
 
         public float AccX { get; set; }
 

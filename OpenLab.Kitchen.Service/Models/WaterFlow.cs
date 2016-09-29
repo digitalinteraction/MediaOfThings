@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpenLab.Kitchen.Service.Models.Streaming
+namespace OpenLab.Kitchen.Service.Models
 {
-    public class WaterFlow : StreamingModel
+    public class WaterFlow : Model
     {
         public float WaterUsed { get; set; }
 

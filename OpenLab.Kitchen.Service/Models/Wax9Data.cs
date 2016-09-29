@@ -1,27 +1,31 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace OpenLab.Kitchen.Service.Models
 {
     public class Wax9Data : Model
     {
-        public DateTime DataTimeStamp { get; set; }
+        public int SampleNumber { get; set; }
 
-        float AccX { get; set; }
+        public float AccX { get; set; }
 
-        float AccY { get; set; }
+        public float AccY { get; set; }
 
-        float AccZ { get; set; }
+        public float AccZ { get; set; }
 
-        float GyroX { get; set; }
+        public float GyroX { get; set; }
 
-        float GyroY { get; set; }
+        public float GyroY { get; set; }
 
-        float GyroZ { get; set; }
+        public float GyroZ { get; set; }
 
-        float MagX { get; set; }
+        public float MagX { get; set; }
 
-        float MagY { get; set; }
+        public float MagY { get; set; }
 
-        float MagZ { get; set; }
+        public float MagZ { get; set; }
     }
 }
