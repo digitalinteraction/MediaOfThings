@@ -15,7 +15,7 @@
   </Resources>
   <Applications>
     <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="OpenLab.Kitchen.Receiver.Wax3.App">
-      <uap:VisualElements DisplayName="OpenLab.Kitchen.Receiver.Wax3" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="OpenLab.Kitchen.Receiver.Wax3" BackgroundColor="transparent">
+      <uap:VisualElements DisplayName="Kitchen WAX3 Streamer" Square150x150Logo="Assets\Square150x150Logo.png" Square44x44Logo="Assets\Square44x44Logo.png" Description="OpenLab.Kitchen.Receiver.Wax3" BackgroundColor="transparent">
         <uap:DefaultTile Wide310x150Logo="Assets\Wide310x150Logo.png">
         </uap:DefaultTile>
         <uap:SplashScreen Image="Assets\SplashScreen.png" />

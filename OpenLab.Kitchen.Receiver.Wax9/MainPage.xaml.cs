@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -30,9 +31,9 @@ namespace OpenLab.Kitchen.Receiver.Wax9
         private readonly Guid _streamGuid = new Guid("00000001-0008-A8BA-E311-F48C90364D99");
         private readonly Guid _notifyGuid = new Guid("00000002-0008-A8BA-E311-F48C90364D99");
         private readonly Guid _sampleRateGuid = new Guid("0000000A-0008-A8BA-E311-F48C90364D99");
-        private readonly string[] _devices = { "WAX9-0883", "WAX9-08C9", "WAX9-0A27", "WAX9-0983", "WAX9-095B" };
+        private readonly string[] _devices = { "WAX9-0A27", "WAX9-0983" };
 
-        private ICollection<string> ConnectedDevices { get; }
+        private ObservableCollection<string> ConnectedDevices { get; }
 
         private readonly Wax9Streamer _wax9Streamer;
         
@@ -45,7 +46,9 @@ namespace OpenLab.Kitchen.Receiver.Wax9
 
             _wax9Streamer = new Wax9Streamer();
 
-            ConnectedDevices = new List<string>();
+            ConnectedDevices = new ObservableCollection<string>();
+
+            ConnectedDevicesView.ItemsSource = ConnectedDevices;
 
             Watcher = new BluetoothLEAdvertisementWatcher { ScanningMode = BluetoothLEScanningMode.Active };
             Watcher.Received += DeviceFound;
@@ -73,11 +76,17 @@ namespace OpenLab.Kitchen.Receiver.Wax9
                     if (device.GattServices.Any())
                     {
                         ConnectedDevices.Add(device.Name);
-                        device.ConnectionStatusChanged += (sender, args) =>
+                        device.ConnectionStatusChanged += async (sender, args) =>
                         {
                             if (sender.ConnectionStatus == BluetoothConnectionStatus.Disconnected)
                             {
-                                ConnectedDevices.Remove(sender.Name);
+                                await Dispatcher.RunAsync(CoreDispatcherPriority.Low, () =>
+                                {
+                                    ConnectedDevices
+                                        .Remove(
+                                            sender
+                                                .Name);
+                                });
                             }
                         };
                         SetupWaxStream(device);
@@ -156,7 +165,7 @@ namespace OpenLab.Kitchen.Receiver.Wax9
 
         private Wax9Data ProcessWaxData(string device, byte[] data)
         {
-            var sampleNumber = (data[1] << 8 + data[0]);
+            ushort sampleNumber = (ushort) (data[1] << 8 + data[0]);
 
             var ax = (data[3] << 8 + data[2]) * AccNorm;
             var ay = (data[5] << 8 + data[4]) * AccNorm;

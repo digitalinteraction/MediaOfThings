@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
@@ -17,6 +18,7 @@ using Windows.UI.Xaml.Navigation;
 using Windows.Devices.Gpio;
 using OpenLab.Kitchen.Service.Models.Streaming;
 using OpenLab.Kitchen.StreamingRepository;
+using Windows.UI.Core;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -29,33 +31,14 @@ namespace OpenLab.Kitchen.Receiver.FlowMeter
     {
         private readonly WaterFlowStreamer _flowStreamer;
         private GpioPin Pin { get; set; }
-        private int CurrentCount { get; set; }
-        private DispatcherTimer Timeout { get; }
-        private DateTime StartTime { get; set; }
+        private int Count { get; set; }
 
         public MainPage()
         {
             this.InitializeComponent();
 
             _flowStreamer = new WaterFlowStreamer();
-
-            CurrentCount = 0;
-
-            Timeout = new DispatcherTimer();
-            Timeout.Tick += (sender, o) =>
-            {
-                _flowStreamer.Send(new WaterFlow
-                {
-                    LocationId = 1,
-                    DataTimeStamp = DateTime.Now,
-                    DeviceId = 1.ToString(),
-                    WaterUsed = CurrentCount * 2.25f,
-                    Time = StartTime.TimeOfDay
-                });
-
-                CurrentCount = 0;
-            };
-
+            Count = 0;
             SetupGpio();
         }
 
@@ -68,23 +51,26 @@ namespace OpenLab.Kitchen.Receiver.FlowMeter
                 return;
             }
 
-            Pin = gpio.OpenPin(22);
+            Pin = gpio.OpenPin(4);
             Pin.SetDriveMode(GpioPinDriveMode.InputPullUp);
-            Pin.ValueChanged += (sender, args) =>
+            new Timer(state => { Debug.WriteLine(Pin.Read()); }, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(1));
+
+            /*Pin.ValueChanged += (sender, args) =>
             {
                 if (args.Edge == GpioPinEdge.RisingEdge)
                 {
-                    if (CurrentCount < 1)
+                    Count++;
+                    Debug.WriteLine(Count * 2 + "ml");
+                    _flowStreamer.Send(new WaterFlow
                     {
-                        StartTime = DateTime.Now;
-                    }
-
-                    Timeout.Stop();
-                    Timeout.Start();
-
-                    CurrentCount++;
+                        LocationId = 1,
+                        DataTimeStamp = DateTime.Now,
+                        DeviceId = 1.ToString(),
+                        WaterUsed = 2f,
+                        Time = DateTime.Now
+                    });
                 }
-            };
+            };*/
         }
     }
 }

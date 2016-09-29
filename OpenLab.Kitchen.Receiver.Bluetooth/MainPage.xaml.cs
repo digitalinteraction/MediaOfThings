@@ -65,6 +65,7 @@ namespace OpenLab.Kitchen.Receiver.Bluetooth
 
         private async void ScaleFound(BluetoothLEAdvertisementWatcher watcher, BluetoothLEAdvertisementReceivedEventArgs btAdv)
         {
+            Debug.WriteLine(btAdv.Advertisement.LocalName);
             if (!ScalesConnected && btAdv.Advertisement.LocalName == ScaleName)
             {
                 await Dispatcher.RunAsync(CoreDispatcherPriority.Low, async () =>
@@ -134,12 +135,16 @@ namespace OpenLab.Kitchen.Receiver.Bluetooth
                     GattClientCharacteristicConfigurationDescriptorValue.Notify);
                 weightCharac.ValueChanged += (sender, args) =>
                 {
+                    Debug.WriteLine(args.CharacteristicValue);
+                    
+                    double weight = (BitConverter.ToInt32(args.CharacteristicValue.ToArray().Reverse().ToArray(), 0)/10.0) -
+                                   500;
                     _scalesStreamer.Send(new ScalesData
                     {
                         LocationId = 1,
                         DeviceId = "1",
                         DataTimeStamp = DateTime.Now,
-                        Weight = args.CharacteristicValue.ToArray()
+                        Weight = weight
                     });
                 };
             }

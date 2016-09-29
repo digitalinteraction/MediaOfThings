@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Timers;
 using OBID;
 using OpenLab.Kitchen.Service.Interfaces;
 using OpenLab.Kitchen.StreamingRepository;
@@ -15,6 +14,7 @@ namespace OpenLab.Kitchen.Receiver.Rfid
         private readonly ISendRepository<Service.Models.Streaming.RfidData> _rfidSendRepository; 
         private FeUsb UsbPort { get; set; }
         private IDictionary<int,FedmIscReader> Devices { get; }
+        private Timer Interval { get; set; }
 
         public Rfid()
         {
@@ -43,7 +43,12 @@ namespace OpenLab.Kitchen.Receiver.Rfid
                 AddDevice(FeHexConvert.HexStringToInteger(UsbPort.GetScanListPara(i, "Device-ID")));
             }
 
-            new Timer((e) => { ReadDevices(); }, null, TimeSpan.Zero, TimeSpan.FromMilliseconds(1000));
+            Interval = new Timer();
+            Interval.Interval = 1000;
+            Interval.Elapsed += (s,e) => { ReadDevices(); };
+            Interval.AutoReset = false;
+
+            ReadDevices();
         }
 
         void AddDevice(int deviceId)
@@ -64,12 +69,20 @@ namespace OpenLab.Kitchen.Receiver.Rfid
             }
         }
 
+        void RemoveDevice(int deviceId)
+        {
+            Devices.Remove(deviceId);
+        }
+
         void ReadDevices()
         {
-            foreach (var d in Devices)
+            var devices = new Dictionary<int, FedmIscReader>(Devices);
+            foreach (var d in devices)
             {
                 ReadDevice(d.Key, d.Value);
             }
+
+            Interval.Start();
         }
 
         void ReadDevice(int deviceId, FedmIscReader device)
@@ -112,12 +125,12 @@ namespace OpenLab.Kitchen.Receiver.Rfid
 
         public void OnConnectReader(int deviceHandle, long deviceId)
         {
-            Console.WriteLine($"Device {deviceId} connected.");
+            AddDevice((int) deviceId);
         }
 
         public void OnDisConnectReader(int deviceHandle, long deviceId)
         {
-            Console.WriteLine($"Device {deviceId} disconnected.");
+            RemoveDevice((int) deviceId);
         }
     }
 }

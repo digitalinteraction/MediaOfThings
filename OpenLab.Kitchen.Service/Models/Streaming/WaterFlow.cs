@@ -10,6 +10,6 @@ namespace OpenLab.Kitchen.Service.Models.Streaming
     {
         public float WaterUsed { get; set; }
 
-        public TimeSpan Time { get; set; }
+        public DateTime Time { get; set; }
     }
 }

@@ -18,7 +18,7 @@ namespace OpenLab.Kitchen.StreamingRepository
 
         public RabbitMqConnection(string exchange, string routingKey)
         {
-            var factory = new ConnectionFactory {HostName = "OL-Kitchen-MQ", UserName = "kitchen", Password = "BlahBlah123"};
+            var factory = new ConnectionFactory {HostName = "192.168.1.102", UserName = "kitchen", Password = "BlahBlah123"};
             factory.AutomaticRecoveryEnabled = true;
             var connection = factory.CreateConnection();
             _channel = connection.CreateModel();
