@@ -2,20 +2,21 @@
 using System.Collections.Generic;
 using MongoDB.Bson;
 using MongoDB.Driver;
+using OpenLab.Kitchen.Repository;
 using OpenLab.Kitchen.StreamingRepository;
 
 namespace OpenLab.Kitchen.Capture
 {
     class SessionRecorder
     {
-        private readonly IMongoClient _mongoClient;
+        private readonly GenericRepository _repository;
         private readonly Streamer _streamer;
 
         private ICollection<BsonDocument> Documents { get; set; } 
 
         public SessionRecorder()
         {
-            _mongoClient = new MongoClient("mongodb://OL-Kitchen-Capture:27017");
+            _repository = new GenericRepository();
             _streamer = new Streamer();
 
             Documents = new List<BsonDocument>();

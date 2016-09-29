@@ -4,10 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpenLab.Kitchen.Service.Models
+namespace OpenLab.Kitchen.Reciever.Mono.Bluetooth
 {
-    public class Location : Model
+    class Program
     {
-        public string Name { get; set; }
+        static void Main(string[] args)
+        {
+        }
     }
 }

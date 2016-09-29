@@ -6,12 +6,8 @@ using System.Threading.Tasks;
 
 namespace OpenLab.Kitchen.Service.Models
 {
-    public class Wax3
+    public class ScalesData : Model
     {
-        int DeviceId { get; set; }
-
-        int Channel { get; set; }
-
-        IQueryable<Wax3Data> SensorData { get; set; }
+        public byte[] Weight { get; set; }
     }
 }

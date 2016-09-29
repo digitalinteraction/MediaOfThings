@@ -156,19 +156,19 @@ namespace OpenLab.Kitchen.Receiver.Wax9
 
         private Wax9Data ProcessWaxData(string device, byte[] data)
         {
-            var sampleNumber = (data[1] << 8 + data[0]);
+            var sampleNumber = (ushort)((data[1] << 8) + data[0]);
 
-            var ax = (data[3] << 8 + data[2]) * AccNorm;
-            var ay = (data[5] << 8 + data[4]) * AccNorm;
-            var az = (data[7] << 8 + data[6]) * AccNorm;
+            var ax = (short)((data[3] << 8) + data[2]) * AccNorm;
+            var ay = (short)((data[5] << 8) + data[4]) * AccNorm;
+            var az = (short)((data[7] << 8) + data[6]) * AccNorm;
 
-            var gx = (data[9] << 8 + data[8]) * GyroNorm;
-            var gy = (data[11] << 8 + data[10]) * GyroNorm;
-            var gz = (data[13] << 8 + data[12]) * GyroNorm;
+            var gx = (short)((data[9] << 8) + data[8]) * GyroNorm;
+            var gy = (short)((data[11] << 8) + data[10]) * GyroNorm;
+            var gz = (short)((data[13] << 8) + data[12]) * GyroNorm;
 
-            var mx = (data[15] << 8 + data[14]) * MagNorm;
-            var my = (data[17] << 8 + data[16]) * MagNorm;
-            var mz = (data[19] << 8 + data[18]) * MagNorm;
+            var mx = (short)((data[15] << 8) + data[14]) * MagNorm;
+            var my = (short)((data[17] << 8) + data[16]) * MagNorm;
+            var mz = (short)((data[19] << 8) + data[18]) * MagNorm;
 
             return new Wax9Data
             {

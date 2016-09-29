@@ -1,17 +1,17 @@
-﻿namespace OpenLab.Kitchen.Service.Models
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OpenLab.Kitchen.Service.Models
 {
     public abstract class Model
     {
-        public int Id { get; set; }
+        public int LocationId { get; set; }
 
-        public override int GetHashCode()
-        {
-            return Id;
-        }
+        public string DeviceId { get; set; }
 
-        public override bool Equals(object obj)
-        {
-            return GetHashCode() == obj.GetHashCode();
-        }
+        public DateTime DataTimeStamp { get; set; }
     }
 }
