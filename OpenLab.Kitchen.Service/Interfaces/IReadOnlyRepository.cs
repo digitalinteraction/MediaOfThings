@@ -5,10 +5,9 @@ using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.Service.Interfaces
 {
-    public interface IReadOnlyRepository<T>
+    public interface IReadOnlyRepository<T, I>
     {
-        T GetById(int id);
-        IQueryable<T> Search(Expression<Func<T, bool>> predicate);
+        T GetById(I id);
         IQueryable<T> GetAll();
     }
 }

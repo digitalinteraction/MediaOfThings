@@ -14,7 +14,7 @@ using System.Threading;
 
 namespace OpenLab.Kitchen.Repository
 {
-    public class GenericRepository : IReadWriteRepository<BsonDocument>
+    public class GenericRepository : IReadWriteRepository<BsonDocument, ObjectId>
     {
         private readonly IMongoClient _mongoClient;
         private readonly IMongoCollection<BsonDocument> _mongoCollection;
@@ -28,6 +28,8 @@ namespace OpenLab.Kitchen.Repository
             _mongoClient.GetDatabase("bbckitchen").RunCommandAsync((Command<BsonDocument>)"{ping:1}").Wait();
 
             _mongoCollection = _mongoClient.GetDatabase(dbName).GetCollection<BsonDocument>(collectionName);
+
+            InsertThread();
         }
 
         private void InsertThread()
@@ -80,12 +82,12 @@ namespace OpenLab.Kitchen.Repository
 
         public BsonDocument GetById(ObjectId id)
         {
-            return _mongoCollection.FindSync(Builders<BsonDocument>.Filter.Eq("_id", id)).Single();
+            return GetAll().Single(d => d["_id"] == id);
         }
 
         public IQueryable<BsonDocument> GetAll()
         {
-            _mongoCollection.
+            return _mongoCollection.FindSync(null).ToEnumerable().AsQueryable();
         }
     }
 }
