@@ -13,30 +13,21 @@ namespace OpenLab.Kitchen.Repository
 {
     public class ScalesRepository : IReadOnlyRepository<ScalesData, Guid>
     {
-        private readonly IMongoClient _mongoClient;
-        private readonly IMongoCollection<BsonDocument> _mongoCollection;
+        private readonly MongoConnection _mongoConnection;
 
-        public ScalesRepository(string dbName, string collectionName)
+        public ScalesRepository()
         {
-            _mongoClient = new MongoClient("mongodb://OL-Kitchen-Capture:27017");
-
-            _mongoClient.GetDatabase("bbckitchen").RunCommandAsync((Command<BsonDocument>)"{ping:1}").Wait();
-
-            _mongoCollection = _mongoClient.GetDatabase(dbName).GetCollection<BsonDocument>(collectionName);
-        }
-
-        public IQueryable<ScalesData> GetAll()
-        {
-            return
-                _mongoCollection.FindSync(null)
-                    .ToEnumerable()
-                    .Select(d => JsonConvert.DeserializeObject<ScalesData>(d))
-                    .AsQueryable();
+            _mongoConnection = new MongoConnection();
         }
 
         public ScalesData GetById(Guid id)
         {
             return GetAll().Single(s => s.Id == id);
+        }
+
+        public IQueryable<ScalesData> GetAll()
+        {
+            return _mongoConnection.GetCollection<ScalesData>("Scales").AsQueryable();
         }
     }
 }

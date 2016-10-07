@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "exports": {
+    "OpenLab.Kitchen.Service/1.0.0": {
+      "type": "project",
+      "framework": ".NETFramework,Version=v4.5",
+      "compile": {
+        "bin/Debug/OpenLab.Kitchen.Service.dll": {}
+      },
+      "runtime": {
+        "bin/Debug/OpenLab.Kitchen.Service.dll": {}
+      },
+      "contentFiles": {
+        "bin/Debug/OpenLab.Kitchen.Service.pdb": {
+          "buildAction": "None",
+          "codeLanguage": "any",
+          "copyToOutput": true
+        }
+      }
+    }
+  }
+}

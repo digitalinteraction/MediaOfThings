@@ -41,6 +41,7 @@
     <Compile Include="Interfaces\IReadWriteRepository.cs" />
     <Compile Include="Interfaces\IRecieveRepository.cs" />
     <Compile Include="Interfaces\ISendRepository.cs" />
+    <Compile Include="Models\Dataset.cs" />
     <Compile Include="Models\RfidData.cs" />
     <Compile Include="Models\ScalesData.cs" />
     <Compile Include="Models\Model.cs" />

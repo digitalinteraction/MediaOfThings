@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 using OpenLab.Kitchen.Service.Interfaces;
-using OpenLab.Kitchen.Service.Models.Streaming;
+using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.StreamingRepository
 {
@@ -13,7 +13,7 @@ namespace OpenLab.Kitchen.StreamingRepository
 
         public ScalesStreamer()
         {
-            _mqConnection = new RabbitMqConnection("bbckitchen", "scales");
+            _mqConnection = new RabbitMqConnection("kitchen", "scales");
         }
 
         public void Send(ScalesData model)

@@ -11,26 +11,21 @@ namespace OpenLab.Kitchen.Repository
 {
     public class WaterFlowRepository : IReadOnlyRepository<WaterFlow, Guid>
     {
-        private readonly IMongoClient _mongoClient;
-        private readonly IMongoCollection<BsonDocument> _mongoCollection;
+        private readonly MongoConnection _mongoConnection;
 
-        public WaterFlowRepository(string dbName, string collectionName)
+        public WaterFlowRepository()
         {
-            _mongoClient = new MongoClient("mongodb://OL-Kitchen-Capture:27017");
-
-            _mongoClient.GetDatabase("bbckitchen").RunCommandAsync((Command<BsonDocument>)"{ping:1}").Wait();
-
-            _mongoCollection = _mongoClient.GetDatabase(dbName).GetCollection<BsonDocument>(collectionName);
+            _mongoConnection = new MongoConnection();
         }
 
         public WaterFlow GetById(Guid id)
         {
-            throw new NotImplementedException();
+            return GetAll().Single(w => w.Id == id);
         }
 
         public IQueryable<WaterFlow> GetAll()
         {
-            return _mongoCollection.FindSync(null)
+            return _mongoConnection.GetCollection<WaterFlow>("WaterFlow").AsQueryable();
         }
     }
 }

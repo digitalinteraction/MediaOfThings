@@ -1,46 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Newtonsoft.Json;
+using OpenLab.Kitchen.Service.Interfaces;
+using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.WebApi.Controllers
 {
     [Route("api/[controller]")]
     public class RfidController : Controller
     {
-        private readonly 
+        private readonly IReadOnlyRepository<RfidData, Guid> _rfidRepository;
 
-        // GET api/values
-        [HttpGet]
-        public IEnumerable<string> Get()
+        public RfidController(IReadOnlyRepository<RfidData, Guid> rfidRepository)
         {
-            return new string[] { "value1", "value2" };
+            _rfidRepository = rfidRepository;
         }
 
-        // GET api/values/5
+        // GET api/rfid?starttime=1000?endtime=2000
+        [HttpGet("{starttime:datetime}/{endtime:datetime}")]
+        public IEnumerable<RfidData> Get(DateTime starttime, DateTime endtime)
+        {
+            return _rfidRepository.GetAll().Where(r => r.TimeStamp >= starttime && r.TimeStamp <= endtime);
+        }
+
+        // GET api/rfid/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public RfidData Get(Guid id)
         {
-            return "value";
-        }
-
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody]string value)
-        {
-        }
-
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
-        {
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            return _rfidRepository.GetById(id);
         }
     }
 }

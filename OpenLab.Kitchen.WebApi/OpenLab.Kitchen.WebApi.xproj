@@ -6,7 +6,7 @@
   </PropertyGroup>
   <Import Project="$(VSToolsPath)\DotNet\Microsoft.DotNet.Props" Condition="'$(VSToolsPath)' != ''" />
   <PropertyGroup Label="Globals">
-    <ProjectGuid>e8c1e639-e346-418e-935a-8c1e679a27e1</ProjectGuid>
+    <ProjectGuid>bc924c5e-fedd-4fc8-a7ab-1f0fb32d8255</ProjectGuid>
     <RootNamespace>OpenLab.Kitchen.WebApi</RootNamespace>
     <BaseIntermediateOutputPath Condition="'$(BaseIntermediateOutputPath)'=='' ">.\obj</BaseIntermediateOutputPath>
     <OutputPath Condition="'$(OutputPath)'=='' ">.\bin\</OutputPath>
@@ -16,7 +16,7 @@
     <SchemaVersion>2.0</SchemaVersion>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpenLab.Kitchen.Repository\OpenLab.Kitchen.Repository.csproj" />
+    <ProjectReference Include="..\OpenLab.Kitchen.Service\OpenLab.Kitchen.Service.csproj" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\DotNet.Web\Microsoft.DotNet.Web.targets" Condition="'$(VSToolsPath)' != ''" />
 </Project>

@@ -1,11 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Runtime.Remoting.Channels;
-using System.Text;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
@@ -25,7 +21,7 @@ namespace OpenLab.Kitchen.Repository
         {
             _mongoClient = new MongoClient("mongodb://OL-Kitchen-Capture:27017");
 
-            _mongoClient.GetDatabase("bbckitchen").RunCommandAsync((Command<BsonDocument>)"{ping:1}").Wait();
+            _mongoClient.GetDatabase(dbName).RunCommandAsync((Command<BsonDocument>)"{ping:1}").Wait();
 
             _mongoCollection = _mongoClient.GetDatabase(dbName).GetCollection<BsonDocument>(collectionName);
 
@@ -34,7 +30,7 @@ namespace OpenLab.Kitchen.Repository
 
         private void InsertThread()
         {
-            new Timer(async state =>
+            /*new Timer(async state =>
             {
                 if (Cache.Any())
                 {
@@ -62,7 +58,7 @@ namespace OpenLab.Kitchen.Repository
                         }
                     }
                 }
-            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));
+            }, null, TimeSpan.Zero, TimeSpan.FromSeconds(5));*/
         }
 
         public void Insert(BsonDocument model)

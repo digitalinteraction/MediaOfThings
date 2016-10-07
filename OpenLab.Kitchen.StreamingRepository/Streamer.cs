@@ -12,7 +12,7 @@ namespace OpenLab.Kitchen.StreamingRepository
 
         public Streamer()
         {
-            _mqConnection = new RabbitMqConnection("bbckitchen", "#");
+            _mqConnection = new RabbitMqConnection("kitchen", "#");
         }
 
         public void Subscribe(Action<string> handler)

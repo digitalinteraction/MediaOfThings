@@ -21,7 +21,7 @@ namespace OpenLab.Kitchen.Capture
 
         public SessionRecorder(string sessionName)
         {
-            _repository = new GenericRepository("bbckitchen", sessionName);
+            _repository = new GenericRepository("kitchen", sessionName);
             _streamer = new Streamer();
 
             Console.WriteLine("RabbitMQ and Mongo connections open.");

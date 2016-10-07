@@ -9,6 +9,13 @@
     <Import_RootNamespace>OpenLab.Kitchen.Repository</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)DatasetRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GenericRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)MongoConnection.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RfidRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ScalesRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)WaterFlowRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Wax9Repository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Wax3Repository.cs" />
   </ItemGroup>
 </Project>

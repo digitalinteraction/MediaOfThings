@@ -11,7 +11,7 @@ namespace OpenLab.Kitchen.Receiver.Rfid
 {
     class Rfid : FeUsbListener
     {
-        private readonly ISendRepository<Service.Models.Streaming.RfidData> _rfidSendRepository; 
+        private readonly ISendRepository<Service.Models.RfidData> _rfidSendRepository; 
         private FeUsb UsbPort { get; set; }
         private IDictionary<int,FedmIscReader> Devices { get; }
         private Timer Interval { get; set; }
@@ -114,7 +114,7 @@ namespace OpenLab.Kitchen.Receiver.Rfid
                     }
                 }
 
-                _rfidSendRepository.Send(new Service.Models.Streaming.RfidData { DeviceId = deviceId.ToString(), LocationId = 1, DataTimeStamp = DateTime.Now, Transponders = transponders });
+                _rfidSendRepository.Send(new Service.Models.RfidData { DeviceId = deviceId.ToString(), TimeStamp = DateTime.Now, Transponders = transponders });
                 Console.WriteLine($"Device {deviceId} read tags: {string.Join(",", transponders)}");
             }
             catch (Exception e)

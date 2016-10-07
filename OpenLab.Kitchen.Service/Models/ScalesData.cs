@@ -8,6 +8,6 @@ namespace OpenLab.Kitchen.Service.Models
 {
     public class ScalesData : Model
     {
-        public byte[] Weight { get; set; }
+        public float Weight { get; set; }
     }
 }

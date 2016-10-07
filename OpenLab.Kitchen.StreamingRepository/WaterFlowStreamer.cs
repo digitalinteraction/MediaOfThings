@@ -4,7 +4,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using OpenLab.Kitchen.Service.Interfaces;
-using OpenLab.Kitchen.Service.Models.Streaming;
+using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.StreamingRepository
 {
@@ -14,12 +14,12 @@ namespace OpenLab.Kitchen.StreamingRepository
 
         public WaterFlowStreamer()
         {
-            _mqConnection = new RabbitMqConnection("bbckitchen", "water");
+            _mqConnection = new RabbitMqConnection("kitchen", "water");
         }
 
         public void Send(WaterFlow model)
         {
-            _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.DeviceId.ToString());
+            _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.DeviceId);
         }
 
         public void Subscribe(Action<WaterFlow> handler)

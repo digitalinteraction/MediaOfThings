@@ -2,7 +2,6 @@
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using OpenLab.Kitchen.Service.Models.Streaming;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 

@@ -3,7 +3,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using OpenLab.Kitchen.Service.Interfaces;
-using OpenLab.Kitchen.Service.Models.Streaming;
+using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.StreamingRepository
 {
@@ -13,12 +13,12 @@ namespace OpenLab.Kitchen.StreamingRepository
 
         public Wax3Streamer()
         {
-            _mqConnection = new RabbitMqConnection("bbckitchen", "wax3");
+            _mqConnection = new RabbitMqConnection("kitchen", "wax3");
         }
 
         public void Send(Wax3Data model)
         {
-            _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.DeviceId.ToString());
+            _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.DeviceId);
         }
 
         public void Subscribe(Action<Wax3Data> handler)
