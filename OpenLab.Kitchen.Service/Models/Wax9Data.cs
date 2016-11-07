@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace OpenLab.Kitchen.Service.Models
 {
-    public class Wax9Data : Model
+    public class Wax9Data : DataModel
     {
+        public string DeviceId { get; set; }
+
         public int SampleNumber { get; set; }
 
         public float AccX { get; set; }

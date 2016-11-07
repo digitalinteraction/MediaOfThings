@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 
-namespace OpenLab.Kitchen.MongoCleaner
+namespace OpenLab.Kitchen.Configure
 {
     public class Wax9Data : Model
     {

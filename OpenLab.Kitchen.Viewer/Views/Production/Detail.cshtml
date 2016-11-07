@@ -1,0 +1,102 @@
+﻿@model OpenLab.Kitchen.Service.Models.Production
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<div>
+    <h4>@Html.DisplayFor(model => model.Name)</h4>
+    <hr/>
+    <div class="row">
+        <div class="col-md-6">
+            <h5>Takes</h5>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Name</th><th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    @{ var takes = Model.Takes.ToArray(); }
+                    @for (var i = 0; i < takes.Length; i++)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => takes[i].Name)</td>
+                            <td><a asp-action="Player" asp-route-productionId="@Model.Id" asp-route-take="@i">Open Player</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="col-md-6">
+            <h5>Configuration</h5>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.RfidConfig)
+                </dt>
+                <dd>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Transponder</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var rfid in Model.RfidConfig)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => rfid.Value)</td>
+                                <td>@Html.DisplayFor(modelItem => rfid.Key)</td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Wax3Config)
+                </dt>
+                <dd>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Wax Id</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var wax3 in Model.Wax3Config)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => wax3.Value)</td>
+                                <td>@Html.DisplayFor(modelItem => wax3.Key)</td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.SmappeeConfig)
+                </dt>
+                <dd>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Smappee Id</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var smap in Model.SmappeeConfig)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => smap.Value)</td>
+                                <td>@Html.DisplayFor(modelItem => smap.Key)</td>
+                            </tr>
+                        }
+                        </tbody>
+                    </table>
+                </dd>
+            </dl>
+        </div>
+    </div>
+</div>

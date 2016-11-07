@@ -12,9 +12,9 @@ namespace OpenLab.Kitchen.WebApi.Controllers
     [Route("api/[controller]")]
     public class Wax3Controller : Controller
     {
-        private readonly IReadOnlyRepository<Wax3Data, Guid> _wax3Repository;
+        private readonly IReadOnlyRepository<Wax3Data> _wax3Repository;
 
-        public Wax3Controller(IReadOnlyRepository<Wax3Data, Guid> wax3Repository)
+        public Wax3Controller(IReadOnlyRepository<Wax3Data> wax3Repository)
         {
             _wax3Repository = wax3Repository;
         }

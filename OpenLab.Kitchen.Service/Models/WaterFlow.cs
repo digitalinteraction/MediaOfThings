@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace OpenLab.Kitchen.Service.Models
 {
-    public class WaterFlow : Model
+    public class WaterFlow : DataModel
     {
+        public int DeviceId { get; set; }
+
         public float WaterUsed { get; set; }
 
         public DateTime Time { get; set; }

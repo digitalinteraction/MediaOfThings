@@ -12,9 +12,9 @@ namespace OpenLab.Kitchen.WebApi.Controllers
     [Route("api/[controller]")]
     public class RfidController : Controller
     {
-        private readonly IReadOnlyRepository<RfidData, Guid> _rfidRepository;
+        private readonly IReadOnlyRepository<RfidData> _rfidRepository;
 
-        public RfidController(IReadOnlyRepository<RfidData, Guid> rfidRepository)
+        public RfidController(IReadOnlyRepository<RfidData> rfidRepository)
         {
             _rfidRepository = rfidRepository;
         }

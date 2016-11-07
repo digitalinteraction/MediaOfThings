@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using MongoDB.Driver;
 using OpenLab.Kitchen.Service.Interfaces;
 using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.Repository
 {
-    public class Wax3Repository : IReadOnlyRepository<Wax3Data, Guid>
+    public class Wax3Repository : IReadOnlyRepository<Wax3Data>
     {
         private readonly MongoConnection _mongoConnection;
 

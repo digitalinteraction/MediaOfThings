@@ -5,9 +5,9 @@ using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.Service.Interfaces
 {
-    public interface IReadOnlyRepository<T, I>
+    public interface IReadOnlyRepository<T> where T : Model
     {
-        T GetById(I id);
+        T GetById(Guid id);
         IQueryable<T> GetAll();
     }
 }

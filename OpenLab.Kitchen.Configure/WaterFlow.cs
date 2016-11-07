@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OpenLab.Kitchen.MongoCleaner
+namespace OpenLab.Kitchen.Configure
 {
     public class WaterFlow : Model
     {

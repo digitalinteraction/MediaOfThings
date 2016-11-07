@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace OpenLab.Kitchen.Service.Models
 {
-    public class ScalesData : DataModel
+    public class ApplianceEvent : DataModel
     {
-        public int DeviceId { get; set; }
+        public int ApplianceId { get; set; }
 
-        public float Weight { get; set; }
+        public int WattChange { get; set; }
     }
 }

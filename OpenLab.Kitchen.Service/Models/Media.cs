@@ -6,14 +6,10 @@ using System.Threading.Tasks;
 
 namespace OpenLab.Kitchen.Service.Models
 {
-    public class Dataset
+    public class Media
     {
-        public Guid Id { get; set; }
-
         public string Name { get; set; }
 
-        public DateTime StartTime { get; set; }
-
-        public DateTime EndTime { get; set; }
+        public Uri Url { get; set; }
     }
 }

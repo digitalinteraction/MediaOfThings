@@ -18,7 +18,7 @@ namespace OpenLab.Kitchen.StreamingRepository
 
         public void Send(ScalesData model)
         {
-            _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.DeviceId);
+            _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.DeviceId.ToString());
         }
     }
 }

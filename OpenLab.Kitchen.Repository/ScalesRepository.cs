@@ -1,17 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using MongoDB.Bson;
 using MongoDB.Driver;
-using Newtonsoft.Json;
 using OpenLab.Kitchen.Service.Interfaces;
 using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.Repository
 {
-    public class ScalesRepository : IReadOnlyRepository<ScalesData, Guid>
+    public class ScalesRepository : IReadOnlyRepository<ScalesData>
     {
         private readonly MongoConnection _mongoConnection;
 

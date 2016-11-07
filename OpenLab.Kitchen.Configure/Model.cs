@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MongoDB.Bson;
 
-namespace OpenLab.Kitchen.MongoCleaner
+namespace OpenLab.Kitchen.Configure
 {
     public abstract class Model
     {

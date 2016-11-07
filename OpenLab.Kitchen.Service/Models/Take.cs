@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace OpenLab.Kitchen.Service.Models
 {
-    public class ScalesData : DataModel
+    public class Take
     {
-        public int DeviceId { get; set; }
+        public string Name { get; set; }
 
-        public float Weight { get; set; }
+        public IEnumerable<Media> Media { get; set; }
     }
 }

@@ -6,7 +6,7 @@ using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.Repository
 {
-    public class RfidRepository : IReadOnlyRepository<RfidData, Guid>
+    public class RfidRepository : IReadOnlyRepository<RfidData>
     {
         private readonly MongoConnection _mongoConnection;
 

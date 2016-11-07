@@ -12,9 +12,9 @@ namespace OpenLab.Kitchen.WebApi.Controllers
     [Route("api/[controller]")]
     public class WaterFlowController : Controller
     {
-        private readonly IReadOnlyRepository<WaterFlow, Guid> _waterFlowRepository;
+        private readonly IReadOnlyRepository<WaterFlow> _waterFlowRepository;
 
-        public WaterFlowController(IReadOnlyRepository<WaterFlow, Guid> waterFlowRepository)
+        public WaterFlowController(IReadOnlyRepository<WaterFlow> waterFlowRepository)
         {
             _waterFlowRepository = waterFlowRepository;
         }

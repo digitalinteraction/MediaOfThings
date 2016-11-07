@@ -30,13 +30,14 @@ namespace OpenLab.Kitchen.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IReadOnlyRepository<Dataset, Guid>, DatasetRepository>();
-            services.AddTransient<IReadOnlyRepository<RfidData, Guid>, RfidRepository>();
-            services.AddTransient<IReadOnlyRepository<Wax3Data, Guid>, Wax3Repository>();
-            services.AddTransient<IReadOnlyRepository<Wax9Data, Guid>, Wax9Repository>();
-            services.AddTransient<IReadOnlyRepository<WaterFlow, Guid>, WaterFlowRepository>();
+            services.AddTransient<IReadOnlyRepository<Production>, ProductionRepository>();
+            services.AddTransient<IReadOnlyRepository<RfidData>, RfidRepository>();
+            services.AddTransient<IReadOnlyRepository<Wax3Data>, Wax3Repository>();
+            services.AddTransient<IReadOnlyRepository<Wax9Data>, Wax9Repository>();
+            services.AddTransient<IReadOnlyRepository<WaterFlow>, WaterFlowRepository>();
 
             // Add framework services.
+            services.AddCors();
             services.AddMvc();
         }
 
@@ -46,6 +47,7 @@ namespace OpenLab.Kitchen.WebApi
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
+            app.UseCors(builder => builder.AllowAnyOrigin());
             app.UseMvc();
         }
     }

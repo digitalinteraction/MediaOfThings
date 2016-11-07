@@ -5,13 +5,13 @@
       "type": "project",
       "framework": ".NETFramework,Version=v4.5",
       "compile": {
-        "bin/Release/OpenLab.Kitchen.Service.dll": {}
+        "bin/Debug/OpenLab.Kitchen.Service.dll": {}
       },
       "runtime": {
-        "bin/Release/OpenLab.Kitchen.Service.dll": {}
+        "bin/Debug/OpenLab.Kitchen.Service.dll": {}
       },
       "contentFiles": {
-        "bin/Release/OpenLab.Kitchen.Service.pdb": {
+        "bin/Debug/OpenLab.Kitchen.Service.pdb": {
           "buildAction": "None",
           "codeLanguage": "any",
           "copyToOutput": true

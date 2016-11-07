@@ -10,10 +10,6 @@ namespace OpenLab.Kitchen.Service.Models
     {
         public Guid Id { get; set; }
 
-        public string DeviceId { get; set; }
-
-        public DateTime TimeStamp { get; set; }
-
         public override int GetHashCode()
         {
             return Id.GetHashCode();

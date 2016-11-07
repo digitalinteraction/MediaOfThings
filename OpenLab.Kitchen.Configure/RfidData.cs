@@ -1,4 +1,4 @@
-﻿namespace OpenLab.Kitchen.MongoCleaner
+﻿namespace OpenLab.Kitchen.Configure
 {
     public class RfidData : Model
     {

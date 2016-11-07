@@ -1,0 +1,20 @@
+﻿@model OpenLab.Kitchen.Service.Models.Production
+@{
+    var take = Model.Takes.ToArray()[ViewBag.Take];
+    ViewData["Title"] = take.Name;
+}
+
+<style>
+    video {
+        width: 640px;
+        height: 360px;
+    }
+</style>
+
+@foreach (var video in take.Media)
+{
+    <h4>@Html.DisplayFor(modelItem => video.Name)</h4>
+    
+}
+
+<script src="http://cdn.dashjs.org/latest/dash.all.min.js"></script>

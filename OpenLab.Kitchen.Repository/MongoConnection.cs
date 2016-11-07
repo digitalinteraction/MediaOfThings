@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
+using MongoDB.Bson.Serialization.Options;
+using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using OpenLab.Kitchen.Service.Models;
 
@@ -25,12 +28,23 @@ namespace OpenLab.Kitchen.Repository
 
         public static void RegisterTypes()
         {
+            if (BsonClassMap.IsClassMapRegistered(typeof(Wax3Data))) return;
+
             BsonClassMap.RegisterClassMap<Wax3Data>();
             BsonClassMap.RegisterClassMap<Wax9Data>();
             BsonClassMap.RegisterClassMap<RfidData>();
             BsonClassMap.RegisterClassMap<ScalesData>();
             BsonClassMap.RegisterClassMap<WaterFlow>();
-            BsonClassMap.RegisterClassMap<Dataset>();
+            BsonClassMap.RegisterClassMap<Media>();
+            BsonClassMap.RegisterClassMap<Production>(cm =>
+            {
+                cm.AutoMap();
+                var stringStringSerial = new DictionaryInterfaceImplementerSerializer<Dictionary<string, string>>(DictionaryRepresentation.ArrayOfArrays);
+                var intStringSerial = new DictionaryInterfaceImplementerSerializer<Dictionary<int, string>>(DictionaryRepresentation.ArrayOfArrays);
+                cm.GetMemberMap(c => c.RfidConfig).SetSerializer(stringStringSerial);
+                cm.GetMemberMap(c => c.SmappeeConfig).SetSerializer(intStringSerial);
+                cm.GetMemberMap(c => c.Wax3Config).SetSerializer(intStringSerial);
+            });
         }
 
         public IMongoDatabase GetDatabase()

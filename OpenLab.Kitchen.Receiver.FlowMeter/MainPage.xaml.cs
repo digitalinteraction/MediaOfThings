@@ -16,7 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.Devices.Gpio;
-using OpenLab.Kitchen.Service.Models.Streaming;
+using OpenLab.Kitchen.Service.Models;
 using OpenLab.Kitchen.StreamingRepository;
 using Windows.UI.Core;
 

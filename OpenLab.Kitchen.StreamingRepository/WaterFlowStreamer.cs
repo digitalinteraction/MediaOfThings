@@ -19,7 +19,7 @@ namespace OpenLab.Kitchen.StreamingRepository
 
         public void Send(WaterFlow model)
         {
-            _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.DeviceId);
+            _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.DeviceId.ToString());
         }
 
         public void Subscribe(Action<WaterFlow> handler)

@@ -41,10 +41,15 @@
     <Compile Include="Interfaces\IReadWriteRepository.cs" />
     <Compile Include="Interfaces\IRecieveRepository.cs" />
     <Compile Include="Interfaces\ISendRepository.cs" />
-    <Compile Include="Models\Dataset.cs" />
+    <Compile Include="Models\ApplianceEvent.cs" />
+    <Compile Include="Models\DataModel.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Media.cs" />
+    <Compile Include="Models\Production.cs" />
     <Compile Include="Models\RfidData.cs" />
     <Compile Include="Models\ScalesData.cs" />
     <Compile Include="Models\Model.cs" />
+    <Compile Include="Models\Take.cs" />
     <Compile Include="Models\WaterFlow.cs" />
     <Compile Include="Models\Wax3Data.cs" />
     <Compile Include="Models\Wax9Data.cs" />

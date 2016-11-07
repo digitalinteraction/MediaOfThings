@@ -10,7 +10,7 @@ using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Devices.Enumeration;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
-using OpenLab.Kitchen.Service.Models.Streaming;
+using OpenLab.Kitchen.Service.Models;
 using OpenLab.Kitchen.StreamingRepository;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -181,9 +181,8 @@ namespace OpenLab.Kitchen.Receiver.Wax9
 
             return new Wax9Data
             {
-                LocationId = 1,
                 DeviceId = device,
-                DataTimeStamp = DateTime.Now,
+                TimeStamp = DateTime.Now,
                 SampleNumber = sampleNumber,
                 AccX = ax,
                 AccY = ay,
