@@ -30,11 +30,11 @@ namespace OpenLab.Kitchen.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IReadOnlyRepository<Production>, ProductionRepository>();
-            services.AddTransient<IReadOnlyRepository<RfidData>, RfidRepository>();
-            services.AddTransient<IReadOnlyRepository<Wax3Data>, Wax3Repository>();
-            services.AddTransient<IReadOnlyRepository<Wax9Data>, Wax9Repository>();
-            services.AddTransient<IReadOnlyRepository<WaterFlow>, WaterFlowRepository>();
+            services.AddTransient<IReadOnlyRepository<Production>>(s => new MongoRepository<Production>(Configuration.GetConnectionString("MongoConnection"), "Productions"));
+            services.AddTransient<IReadOnlyRepository<Wax3Data>>(s => new MongoRepository<Wax3Data>(Configuration.GetConnectionString("MongoConnection"), "Wax3"));
+            services.AddTransient<IReadOnlyRepository<Wax9Data>>(s => new MongoRepository<Wax9Data>(Configuration.GetConnectionString("MongoConnection"), "Wax9"));
+            services.AddTransient<IReadOnlyRepository<WaterFlow>>(s => new MongoRepository<WaterFlow>(Configuration.GetConnectionString("MongoConnection"), "WaterFlow"));
+            services.AddTransient<IReadOnlyRepository<RfidData>>(s => new MongoRepository<RfidData>(Configuration.GetConnectionString("MongoConnection"), "Rfid"));
 
             // Add framework services.
             services.AddCors();

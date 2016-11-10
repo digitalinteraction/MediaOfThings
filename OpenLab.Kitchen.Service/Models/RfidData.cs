@@ -5,5 +5,10 @@
         public string DeviceId { get; set; }
 
         public string[] Transponders { get; set; }
+
+        public override string GetDeviceIdString()
+        {
+            return DeviceId;
+        }
     }
 }

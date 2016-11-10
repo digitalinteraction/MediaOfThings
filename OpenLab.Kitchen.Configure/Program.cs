@@ -97,14 +97,14 @@ namespace OpenLab.Kitchen.Configure
                 var newRfidData = rfidData.Select(d => new Service.Models.RfidData
                 {
                     DeviceId = d.DeviceId,
-                    TimeStamp = d.DataTimeStamp,
+                    Timestamp = d.DataTimeStamp,
                     Transponders = d.Transponders
                 });
 
                 var newWax3Data = wax3Data.Select(d => new Service.Models.Wax3Data
                 {
                     DeviceId = d.DeviceId,
-                    TimeStamp = d.DataTimeStamp,
+                    Timestamp = d.DataTimeStamp,
                     AccX = d.AccX,
                     AccY = d.AccY,
                     AccZ = d.AccZ
@@ -113,7 +113,7 @@ namespace OpenLab.Kitchen.Configure
                 var newWax9Data = wax9Data.Select(d => new Service.Models.Wax9Data
                 {
                     DeviceId = d.DeviceId,
-                    TimeStamp = d.DataTimeStamp,
+                    Timestamp = d.DataTimeStamp,
                     AccX = d.AccX,
                     AccY = d.AccY,
                     AccZ = d.AccZ,
@@ -127,7 +127,7 @@ namespace OpenLab.Kitchen.Configure
 
                 var newScalesData = scalesData.Select(d => new Service.Models.ScalesData
                 {
-                    TimeStamp = d.DataTimeStamp,
+                    Timestamp = d.DataTimeStamp,
                     Weight = d.Weight
                 });
 

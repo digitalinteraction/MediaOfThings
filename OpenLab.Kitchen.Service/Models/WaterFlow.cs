@@ -13,5 +13,10 @@ namespace OpenLab.Kitchen.Service.Models
         public float WaterUsed { get; set; }
 
         public DateTime Time { get; set; }
+
+        public override string GetDeviceIdString()
+        {
+            return DeviceId.ToString();
+        }
     }
 }

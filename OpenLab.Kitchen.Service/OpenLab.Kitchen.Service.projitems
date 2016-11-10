@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>618a9607-6581-4b2c-8b9f-0f3a50280b4b</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>OpenLab.Kitchen.Service</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IReadOnlyRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IReadWriteRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRecieveRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISendRepository.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ApplianceEvent.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\DataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Media.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Model.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Production.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\RfidData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\RfidState.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ScalesData.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Take.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\WaterFlow.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Wax3Data.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Wax3Event.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Wax3State.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Wax9Data.cs" />
+  </ItemGroup>
+</Project>

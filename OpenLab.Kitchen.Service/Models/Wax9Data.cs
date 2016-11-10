@@ -29,5 +29,10 @@ namespace OpenLab.Kitchen.Service.Models
         public float MagY { get; set; }
 
         public float MagZ { get; set; }
+
+        public override string GetDeviceIdString()
+        {
+            return DeviceId;
+        }
     }
 }

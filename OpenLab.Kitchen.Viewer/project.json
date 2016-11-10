@@ -1,5 +1,9 @@
 {
   "dependencies": {
+    "Microsoft.NETCore.App": {
+      "version": "1.0.1",
+      "type": "platform"
+    },
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
     "Microsoft.AspNetCore.Mvc": "1.0.1",
     "Microsoft.AspNetCore.Razor.Tools": {
@@ -17,8 +21,9 @@
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
     "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0",
-    "MongoDB.Driver": "2.3.0",
-    "React.AspNet": "2.5.0"
+    "BundlerMinifier.Core": "2.2.301",
+    "React.AspNet": "3.0.0",
+    "MongoDB.Driver": "2.3.0"
   },
 
   "tools": {
@@ -28,12 +33,11 @@
   },
 
   "frameworks": {
-    "net452": {
-      "dependencies": {
-        "OpenLab.Kitchen.Service": {
-          "target": "project"
-        }
-      }
+    "netcoreapp1.0": {
+      "imports": [
+        "dotnet5.6",
+        "portable-net45+win8"
+      ]
     }
   },
 
@@ -42,22 +46,29 @@
     "preserveCompilationContext": true,
     "compile": {
       "include": [
-        "../OpenLab.Kitchen.Repository/*.cs"
+        "../OpenLab.Kitchen.Repository/*.cs",
+        "../OpenLab.Kitchen.Service/**/*.cs"
       ]
     }
   },
 
-    "publishOptions": {
-      "include": [
-        "wwwroot",
-        "**/*.cshtml",
-        "appsettings.json",
-        "web.config"
-      ]
-    },
-
-    "scripts": {
-      "prepublish": [ "bower install", "dotnet bundle" ],
-      "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
+  "runtimeOptions": {
+    "configProperties": {
+      "System.GC.Server": true
     }
+  },
+
+  "publishOptions": {
+    "include": [
+      "wwwroot",
+      "**/*.cshtml",
+      "appsettings.json",
+      "web.config"
+    ]
+  },
+
+  "scripts": {
+    "prepublish": [ "bower install", "dotnet bundle" ],
+    "postpublish": [ "dotnet publish-iis --publish-folder %publish:OutputPath% --framework %publish:FullTargetFramework%" ]
   }
+}

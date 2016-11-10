@@ -182,7 +182,7 @@ namespace OpenLab.Kitchen.Receiver.Wax9
             return new Wax9Data
             {
                 DeviceId = device,
-                TimeStamp = DateTime.Now,
+                Timestamp = DateTime.Now,
                 SampleNumber = sampleNumber,
                 AccX = ax,
                 AccY = ay,

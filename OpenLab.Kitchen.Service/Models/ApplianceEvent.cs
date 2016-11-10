@@ -11,5 +11,10 @@ namespace OpenLab.Kitchen.Service.Models
         public int ApplianceId { get; set; }
 
         public int WattChange { get; set; }
+
+        public override string GetDeviceIdString()
+        {
+            return ApplianceId.ToString();
+        }
     }
 }

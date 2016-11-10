@@ -23,7 +23,7 @@ namespace OpenLab.Kitchen.WebApi.Controllers
         [HttpGet("{starttime:datetime}/{endtime:datetime}")]
         public IEnumerable<Wax3Data> Get(DateTime starttime, DateTime endTime)
         {
-            return _wax3Repository.GetAll().Where(w => w.TimeStamp >= starttime && w.TimeStamp <= endTime);
+            return _wax3Repository.GetAll().Where(w => w.Timestamp >= starttime && w.Timestamp <= endTime);
         }
 
         // GET api/wax3/5

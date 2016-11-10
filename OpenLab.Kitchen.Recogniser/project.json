@@ -1,0 +1,28 @@
+{
+  "version": "1.0.0-*",
+  "buildOptions": {
+    "emitEntryPoint": true,
+    "compile": {
+      "include": [
+        "../OpenLab.Kitchen.StreamingRepository/*.cs",
+        "../OpenLab.Kitchen.Service/**/*.cs",
+        "../OpenLab.Kitchen.Recogniser.Library/**/*.cs"
+      ]
+    }
+  },
+
+  "dependencies": {
+    "Microsoft.NETCore.App": {
+      "type": "platform",
+      "version": "1.0.1"
+    },
+    "Newtonsoft.Json": "9.0.1",
+    "RabbitMQ.Client": "4.1.1"
+  },
+
+  "frameworks": {
+    "netcoreapp1.0": {
+      "imports": "dnxcore50"
+    }
+  }
+}

@@ -114,7 +114,7 @@ namespace OpenLab.Kitchen.Receiver.Rfid
                     }
                 }
 
-                _rfidSendRepository.Send(new Service.Models.RfidData { DeviceId = deviceId.ToString(), TimeStamp = DateTime.Now, Transponders = transponders });
+                _rfidSendRepository.Send(new Service.Models.RfidData { DeviceId = deviceId.ToString(), Timestamp = DateTime.Now, Transponders = transponders });
                 Console.WriteLine($"Device {deviceId} read tags: {string.Join(",", transponders)}");
             }
             catch (Exception e)

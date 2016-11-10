@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace OpenLab.Kitchen.Service.Models
 {
-    public class DataModel : Model
+    public abstract class DataModel : Model
     {
-        public DateTime TimeStamp { get; set; }
+        public DateTime Timestamp { get; set; }
+
+        public abstract string GetDeviceIdString();
     }
 }

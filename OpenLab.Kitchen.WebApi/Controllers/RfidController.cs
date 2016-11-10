@@ -23,7 +23,7 @@ namespace OpenLab.Kitchen.WebApi.Controllers
         [HttpGet("{starttime:datetime}/{endtime:datetime}")]
         public IEnumerable<RfidData> Get(DateTime starttime, DateTime endtime)
         {
-            return _rfidRepository.GetAll().Where(r => r.TimeStamp >= starttime && r.TimeStamp <= endtime);
+            return _rfidRepository.GetAll().Where(r => r.Timestamp >= starttime && r.Timestamp <= endtime);
         }
 
         // GET api/rfid/5

@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>OpenLab.Kitchen.Receiver.RFID</RootNamespace>
     <AssemblyName>OpenLab.Kitchen.Receiver.RFID</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <TargetFrameworkProfile />
@@ -127,13 +127,8 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\OpenLab.Kitchen.Service\OpenLab.Kitchen.Service.csproj">
-      <Project>{949a1e19-0042-446d-be75-831be506fe68}</Project>
-      <Name>OpenLab.Kitchen.Service</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="..\OpenLab.Kitchen.StreamingRepository\OpenLab.Kitchen.StreamingRepository.projitems" Label="Shared" />
+  <Import Project="..\OpenLab.Kitchen.Service\OpenLab.Kitchen.Service.projitems" Label="Shared" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

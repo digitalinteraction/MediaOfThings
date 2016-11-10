@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10" xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest" xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" IgnorableNamespaces="uap mp">
-  <Identity Name="08ec3ce5-13b3-438b-addd-fbc85792a642" Publisher="CN=Gerard" Version="1.0.0.0" />
+  <Identity Name="08ec3ce5-13b3-438b-addd-fbc85792a642" Publisher="CN=Test" Version="1.0.0.0" />
   <mp:PhoneIdentity PhoneProductId="08ec3ce5-13b3-438b-addd-fbc85792a642" PhonePublisherId="00000000-0000-0000-0000-000000000000" />
   <Properties>
     <DisplayName>OpenLab.Kitchen.Reciever.Wax9</DisplayName>

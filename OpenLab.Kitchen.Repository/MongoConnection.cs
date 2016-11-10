@@ -15,11 +15,11 @@ namespace OpenLab.Kitchen.Repository
         private readonly IMongoClient _mongoClient;
         private readonly IMongoDatabase _database;
 
-        public MongoConnection()
+        public MongoConnection(string connectionString)
         {
             RegisterTypes();
 
-            var url = MongoUrl.Create("mongodb://192.168.1.101:27017/kitchen");
+            var url = MongoUrl.Create(connectionString);
 
             _mongoClient = new MongoClient(url);
 

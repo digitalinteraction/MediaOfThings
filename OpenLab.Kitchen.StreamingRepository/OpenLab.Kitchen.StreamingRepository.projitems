@@ -10,11 +10,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)RabbitMQConnection.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)RfidStreamer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ScalesStreamer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Streamer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)WaterFlowStreamer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Wax3Streamer.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Wax9Streamer.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)RabbitStreamer.cs" />
   </ItemGroup>
 </Project>

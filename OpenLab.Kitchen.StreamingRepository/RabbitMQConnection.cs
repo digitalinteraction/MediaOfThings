@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -15,9 +13,9 @@ namespace OpenLab.Kitchen.StreamingRepository
         string RoutingKey { get; }
         string Consumer { get; set; }
 
-        public RabbitMqConnection(string exchange, string routingKey)
+        public RabbitMqConnection(string connectionString, string exchange, string routingKey)
         {
-            var factory = new ConnectionFactory {HostName = "192.168.1.102", UserName = "kitchen", Password = "BlahBlah123"};
+            var factory = new ConnectionFactory { Uri = connectionString };
             factory.AutomaticRecoveryEnabled = true;
             var connection = factory.CreateConnection();
             _channel = connection.CreateModel();

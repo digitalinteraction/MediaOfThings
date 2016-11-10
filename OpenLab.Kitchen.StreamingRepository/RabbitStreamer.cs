@@ -1,34 +1,33 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Threading.Tasks;
 using Newtonsoft.Json;
 using OpenLab.Kitchen.Service.Interfaces;
 using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.StreamingRepository
 {
-    public class WaterFlowStreamer : ISendRepository<WaterFlow>, IRecieveRepository<WaterFlow>
+    public class RabbitStreamer<T> : ISendRepository<T>, IRecieveRepository<T> where T : DataModel
     {
         private readonly RabbitMqConnection _mqConnection;
 
-        public WaterFlowStreamer()
+        public RabbitStreamer(string connectionString, string exchange, string routingKey)
         {
-            _mqConnection = new RabbitMqConnection("kitchen", "water");
+            _mqConnection = new RabbitMqConnection(connectionString, exchange, routingKey);
         }
 
-        public void Send(WaterFlow model)
+        public void Send(T model)
         {
-            _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.DeviceId.ToString());
+            _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.GetDeviceIdString());
         }
 
-        public void Subscribe(Action<WaterFlow> handler)
+        public void Subscribe(Action<T> handler)
         {
             _mqConnection.Subscribe((model, ea) =>
             {
                 var body = ea.Body;
                 var message = Encoding.UTF8.GetString(body);
-                handler(JsonConvert.DeserializeObject<WaterFlow>(message));
+                handler(JsonConvert.DeserializeObject<T>(message));
             });
         }
 

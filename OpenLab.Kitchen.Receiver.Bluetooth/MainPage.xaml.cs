@@ -18,7 +18,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using OpenLab.Kitchen.Service.Models.Streaming;
+using OpenLab.Kitchen.Service.Models;
 using OpenLab.Kitchen.StreamingRepository;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
@@ -141,10 +141,9 @@ namespace OpenLab.Kitchen.Receiver.Bluetooth
                                    500;
                     _scalesStreamer.Send(new ScalesData
                     {
-                        LocationId = 1,
-                        DeviceId = "1",
-                        DataTimeStamp = DateTime.Now,
-                        Weight = weight
+                        DeviceId = 1,
+                        Timestamp = DateTime.Now,
+                        Weight = (float) weight
                     });
                 };
             }

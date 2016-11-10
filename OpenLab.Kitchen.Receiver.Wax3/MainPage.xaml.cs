@@ -8,7 +8,7 @@ using Windows.Devices.SerialCommunication;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls;
 using OpenLab.Kitchen.Service.Interfaces;
-using OpenLab.Kitchen.Service.Models.Streaming;
+using OpenLab.Kitchen.Service.Models;
 using OpenLab.Kitchen.StreamingRepository;
 
 namespace OpenLab.Kitchen.Receiver.Wax3
@@ -92,9 +92,7 @@ namespace OpenLab.Kitchen.Receiver.Wax3
                                     _waxSendRepository.Send(new Wax3Data
                                     {
                                         DeviceId = waxPacket.DeviceId.ToString(),
-                                        LocationId = 1,
-                                        DataTimeStamp = sample.Timestamp,
-                                        Battery = waxPacket.Battery,
+                                        Timestamp = sample.Timestamp,
                                         AccX = sample.X,
                                         AccY = sample.Y,
                                         AccZ = sample.Z

@@ -23,7 +23,7 @@ namespace OpenLab.Kitchen.WebApi.Controllers
         [HttpGet("{starttime:datetime}/{endtime:datetime}")]
         public IEnumerable<WaterFlow> Get(DateTime starttime, DateTime endTime)
         {
-            return _waterFlowRepository.GetAll().Where(w => w.TimeStamp >= starttime && w.TimeStamp <= endTime);
+            return _waterFlowRepository.GetAll().Where(w => w.Timestamp >= starttime && w.Timestamp <= endTime);
         }
 
         // GET api/waterflow/5
