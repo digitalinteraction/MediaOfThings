@@ -19,6 +19,7 @@ using Windows.Devices.Gpio;
 using OpenLab.Kitchen.Service.Models;
 using OpenLab.Kitchen.StreamingRepository;
 using Windows.UI.Core;
+using OpenLab.Kitchen.Service.Interfaces;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -29,7 +30,7 @@ namespace OpenLab.Kitchen.Receiver.FlowMeter
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        private readonly WaterFlowStreamer _flowStreamer;
+        private readonly ISendRepository<WaterFlow> _flowStreamer;
         private GpioPin Pin { get; set; }
         private int Count { get; set; }
 
@@ -37,7 +38,7 @@ namespace OpenLab.Kitchen.Receiver.FlowMeter
         {
             this.InitializeComponent();
 
-            _flowStreamer = new WaterFlowStreamer();
+            _flowStreamer = new RabbitMqStreamer<WaterFlow>("amqp://streamer@192.168.1.102", "kitchen", "waterflow");
             Count = 0;
             SetupGpio();
         }

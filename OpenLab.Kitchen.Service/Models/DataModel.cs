@@ -10,6 +10,6 @@ namespace OpenLab.Kitchen.Service.Models
     {
         public DateTime Timestamp { get; set; }
 
-        public abstract string GetDeviceIdString();
+        public abstract string DeviceIdString();
     }
 }

@@ -4,7 +4,8 @@
     "emitEntryPoint": true,
     "compile": {
       "include": [
-        "../OpenLab.Kitchen.StreamingRepository/*.cs",
+        "../OpenLab.Kitchen.StreamingRepository/**/*.cs",
+        "../OpenLab.Kitchen.Repository/**/*.cs",
         "../OpenLab.Kitchen.Service/**/*.cs",
         "../OpenLab.Kitchen.Recogniser.Library/**/*.cs"
       ]
@@ -16,6 +17,7 @@
       "type": "platform",
       "version": "1.0.1"
     },
+    "MongoDB.Driver": "2.3.0",
     "Newtonsoft.Json": "9.0.1",
     "RabbitMQ.Client": "4.1.1"
   },

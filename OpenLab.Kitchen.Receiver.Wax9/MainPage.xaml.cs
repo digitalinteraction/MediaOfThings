@@ -10,6 +10,7 @@ using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Devices.Enumeration;
 using Windows.UI.Core;
 using Windows.UI.Xaml.Controls;
+using OpenLab.Kitchen.Service.Interfaces;
 using OpenLab.Kitchen.Service.Models;
 using OpenLab.Kitchen.StreamingRepository;
 
@@ -35,7 +36,7 @@ namespace OpenLab.Kitchen.Receiver.Wax9
 
         private ObservableCollection<string> ConnectedDevices { get; }
 
-        private readonly Wax9Streamer _wax9Streamer;
+        private readonly ISendRepository<Wax9Data> _wax9Streamer;
         
         private BluetoothLEAdvertisementWatcher Watcher { get; }
         private DeviceWatcher DeviceWatcher { get; }
@@ -44,7 +45,7 @@ namespace OpenLab.Kitchen.Receiver.Wax9
         {
             this.InitializeComponent();
 
-            _wax9Streamer = new Wax9Streamer();
+            _wax9Streamer = new RabbitMqStreamer<Wax9Data>("amqp://streamer@192.168.1.102", "kitchen", "wax9");
 
             ConnectedDevices = new ObservableCollection<string>();
 

@@ -1,55 +1,115 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
-using System.Text;
+using System.Security.Cryptography;
 using OpenLab.Kitchen.Service.Models;
-using OpenLab.Kitchen.Recogniser.Library.AnalysisModels;
 
 namespace OpenLab.Kitchen.Recogniser.Library
 {
-    public class RfidRecogniser : Recogniser<RfidData, string, RfidState>
+    public class RfidRecogniser : Recogniser<RfidData, RfidState>
     {
         private const double TRANSPONDERTIMEOUT = 5000;
 
-        public override RfidState Update(RfidData data)
+        public RfidRecogniser(DateTime startTime) : base(startTime) {}
+
+        public override void Update(RfidData data)
         {
-            if (!States.ContainsKey(data.DeviceId))
+            base.Update(data);
+
+            RfidState oldState;
+            States.TryGetValue(data.DeviceIdString(), out oldState);
+            var newState = new RfidState
             {
-                var newState = new RfidState();
+                Timestamp = data.Timestamp,
+                DeviceId = data.DeviceId
+            };
+
+            if (oldState == null)
+            {
+                newState.Transponders = new List<TransponderState>();
 
                 foreach (var transponder in data.Transponders)
                 {
-                    newState.Transponders.Add(transponder, data.Timestamp);
+                    newState.Transponders.Add(new TransponderState
+                    {
+                        Id = transponder,
+                        LastSeen = data.Timestamp,
+                        Active = true
+                    });
                 }
 
-                States.Add(data.DeviceId, newState);
+                States.Add(data.DeviceIdString(), newState);
             }
-
-            var state = States[data.DeviceId];
-
-            // Add all new transponders and update last seen for old ones
-            foreach (var transponder in data.Transponders)
+            else
             {
-                if (!state.Transponders.ContainsKey(transponder))
+                newState.Transponders = oldState.Transponders;
+
+                // Add all new transponders and update last seen for old ones
+                foreach (var transponder in data.Transponders)
                 {
-                    state.Transponders.Add(transponder, data.Timestamp);
+                    var transponderState = newState.Transponders.SingleOrDefault(t => t.Id == transponder);
+
+                    if (transponderState == default(TransponderState))
+                    {
+                        newState.Transponders.Add(new TransponderState
+                        {
+                            Id = transponder,
+                            LastSeen = data.Timestamp,
+                            Active = true
+                        });
+                    }
+                    else
+                    {
+                        transponderState.LastSeen = data.Timestamp;
+                        transponderState.Active = true;
+                    }
                 }
-                else
-                {
-                    state.Transponders[transponder] = data.Timestamp;
-                }
+
+                States[data.DeviceIdString()] = newState;
             }
 
-            // Remove expired Transponders
-            foreach (var transponder in state.Transponders)
+            OnStateChanged(this, newState);
+        }
+
+        public override void UpdateClock(DateTime newClock)
+        {
+            base.UpdateClock(newClock);
+
+            foreach (var key in States.Keys.ToArray())
             {
-                var millisecondsSinceLast = (transponder.Value - data.Timestamp).TotalMilliseconds;
-                if (millisecondsSinceLast > TRANSPONDERTIMEOUT)
+                var changed = false;
+                DateTime lastestUpdate = new DateTime();
+
+                var newState = new RfidState
                 {
-                    state.Transponders.Remove(transponder.Key);
+                    DeviceId = States[key].DeviceId,
+                    Transponders = States[key].Transponders
+                };
+
+                // Remove expired Transponders
+                foreach (var transponder in newState.Transponders.Where(t => t.Active))
+                {
+                    var millisecondsSinceLast = (Clock - transponder.LastSeen).TotalMilliseconds;
+                    if (millisecondsSinceLast > TRANSPONDERTIMEOUT)
+                    {
+                        transponder.Active = false;
+                        changed = true;
+
+                        var timeoutTime = transponder.LastSeen.AddMilliseconds(TRANSPONDERTIMEOUT);
+                        if (lastestUpdate < timeoutTime)
+                        {
+                            lastestUpdate = timeoutTime;
+                        }
+                    }
+                }
+
+                if (changed)
+                {
+                    newState.Timestamp = lastestUpdate;
+                    States[key] = newState;
+                    OnStateChanged(this, newState);
                 }
             }
-
-            return state;
         }
     }
 }

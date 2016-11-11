@@ -1,49 +1,83 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Numerics;
 using OpenLab.Kitchen.Service.Models;
-using OpenLab.Kitchen.Recogniser.Library.AnalysisModels;
+using System.Linq;
 
 namespace OpenLab.Kitchen.Recogniser.Library
 {
-    public class Wax3Recogniser : Recogniser<Wax3Data, int, Wax3State>
+    public class Wax3Recogniser : Recogniser<Wax3Data, Wax3State>
     {
         private const double ALIVETHRESHOLD = 5000;
 
-        public override Wax3State Update(Wax3Data data)
+        public Wax3Recogniser(DateTime startTime) : base(startTime) {}
+
+        public override void Update(Wax3Data data)
         {
+            base.Update(data);
+
             var vector = new Vector3(data.AccX, data.AccY, data.AccZ);
 
-            if (!States.ContainsKey(data.DeviceId))
+            Wax3State oldState;
+            States.TryGetValue(data.DeviceIdString(), out oldState);
+            var newState = new Wax3State
             {
-                States.Add(data.DeviceId, new Wax3State
-                {
-                    LastAlive = data.Timestamp,
-                    TimeAlive = 0,
-                    Noise = vector.Length()
-                });
-            }
+                Timestamp = data.Timestamp,
+                DeviceId = data.DeviceId,
+                Active = true,
+                LastAlive = data.Timestamp
+            };
 
-            var state = States[data.DeviceId];
-
-            // Update Time Alive if considered to be continous
-            var millisecondsSinceLast = (state.LastAlive - data.Timestamp).TotalMilliseconds;
-            if (millisecondsSinceLast < ALIVETHRESHOLD)
+            if (oldState == null)
             {
-                state.TimeAlive += millisecondsSinceLast;
+                newState.TimeAlive = 0;
+                newState.Noise = vector.Length();
+
+                States.Add(data.DeviceIdString(), newState);
             }
             else
             {
-                state.TimeAlive = 0;
-                state.Noise = vector.Length();
+                // Update Time Alive if considered to be continous
+                var millisecondsSinceLast = (oldState.LastAlive - data.Timestamp).TotalMilliseconds;
+                if (millisecondsSinceLast < ALIVETHRESHOLD)
+                {
+                    newState.TimeAlive = oldState.TimeAlive + millisecondsSinceLast;
+                }
+                else
+                {
+                    newState.TimeAlive = 0;
+                    newState.Noise = vector.Length();
+                }
+
+                newState.Noise = (oldState.Noise + vector.Length()) / 2f;
+
+                States[data.DeviceIdString()] = newState;
             }
 
-            state.LastAlive = data.Timestamp;
+            OnStateChanged(this, newState);
+        }
 
-            state.Noise = (state.Noise + vector.Length()) / 2f;
+        public override void UpdateClock(DateTime newClock)
+        {
+            base.UpdateClock(newClock);
 
-            return state;
+            foreach (var key in States.Keys.ToArray().Where(k => States[k].Active))
+            {
+                var millisecondsSinceLast = (Clock - States[key].LastAlive).TotalMilliseconds;
+                if (millisecondsSinceLast > ALIVETHRESHOLD)
+                {
+                    var newState = new Wax3State
+                    {
+                        Timestamp = States[key].LastAlive.AddMilliseconds(ALIVETHRESHOLD),
+                        DeviceId = States[key].DeviceId,
+                        Active = false,
+                        LastAlive = States[key].LastAlive.AddMilliseconds(ALIVETHRESHOLD),
+                        TimeAlive = States[key].TimeAlive + ALIVETHRESHOLD,
+                    };
+
+                    States[key] = newState;
+                    OnStateChanged(this, newState);
+                }
+            }
         }
     }
 }

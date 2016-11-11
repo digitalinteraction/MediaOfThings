@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.Service.Models
 {
@@ -8,7 +9,7 @@ namespace OpenLab.Kitchen.Service.Models
     {
         public int DeviceId { get; set; }
 
-        public bool Alive { get; set; }
+        public bool Active { get; set; }
 
         public DateTime LastAlive { get; set; }
 
@@ -16,7 +17,7 @@ namespace OpenLab.Kitchen.Service.Models
 
         public float Noise { get; set; }
 
-        public override string GetDeviceIdString()
+        public override string DeviceIdString()
         {
             return DeviceId.ToString();
         }

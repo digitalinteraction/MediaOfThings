@@ -8,11 +8,20 @@ namespace OpenLab.Kitchen.Service.Models
     {
         public string DeviceId { get; set; }
 
-        public string[] Transponders { get; set; }
+        public ICollection<TransponderState> Transponders { get; set; }
 
-        public override string GetDeviceIdString()
+        public override string DeviceIdString()
         {
             return DeviceId;
         }
+    }
+
+    public class TransponderState
+    {
+        public string Id { get; set; }
+
+        public bool Active { get; set; }
+
+        public DateTime LastSeen { get; set; }
     }
 }

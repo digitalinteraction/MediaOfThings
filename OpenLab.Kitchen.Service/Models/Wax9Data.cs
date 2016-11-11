@@ -30,7 +30,7 @@ namespace OpenLab.Kitchen.Service.Models
 
         public float MagZ { get; set; }
 
-        public override string GetDeviceIdString()
+        public override string DeviceIdString()
         {
             return DeviceId;
         }

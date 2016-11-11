@@ -10,12 +10,13 @@ using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.Repository
 {
-    public class MongoConnection
+    public class MongoConnection<T> where T : Model
     {
         private readonly IMongoClient _mongoClient;
         private readonly IMongoDatabase _database;
+        private readonly string _collectionName;
 
-        public MongoConnection(string connectionString)
+        public MongoConnection(string connectionString, string collectionName)
         {
             RegisterTypes();
 
@@ -24,6 +25,7 @@ namespace OpenLab.Kitchen.Repository
             _mongoClient = new MongoClient(url);
 
             _database = _mongoClient.GetDatabase(url.DatabaseName);
+            _collectionName = collectionName;
         }
 
         public static void RegisterTypes()
@@ -31,8 +33,10 @@ namespace OpenLab.Kitchen.Repository
             if (BsonClassMap.IsClassMapRegistered(typeof(Wax3Data))) return;
 
             BsonClassMap.RegisterClassMap<Wax3Data>();
+            BsonClassMap.RegisterClassMap<Wax3State>();
             BsonClassMap.RegisterClassMap<Wax9Data>();
             BsonClassMap.RegisterClassMap<RfidData>();
+            BsonClassMap.RegisterClassMap<RfidState>();
             BsonClassMap.RegisterClassMap<ScalesData>();
             BsonClassMap.RegisterClassMap<WaterFlow>();
             BsonClassMap.RegisterClassMap<Media>();
@@ -52,15 +56,31 @@ namespace OpenLab.Kitchen.Repository
             return _database;
         }
 
-        public async Task<IEnumerable<string>>  GetCollectionNames()
+        public IEnumerable<string>  GetCollectionNames()
         {
-            var collections = await _database.ListCollectionsAsync();
-            return collections.Current.Select(c => c["name"].AsString);
+            var collections = _database.ListCollectionsAsync();
+            collections.Wait();
+            return collections.Result.Current.Select(c => c["name"].AsString);
         }
 
-        public IMongoCollection<T> GetCollection<T>(string collection)
+        public IMongoCollection<T> GetCollection()
         {
-            return _database.GetCollection<T>(collection);
+            return _database.GetCollection<T>(_collectionName);
+        }
+
+        public void Insert(T model)
+        {
+            GetCollection().InsertOne(model);
+        }
+
+        public void Update(T model)
+        {
+            GetCollection().ReplaceOneAsync(d => d.Id == model.Id, model).Wait();
+        }
+
+        public void Delete(T model)
+        {
+            GetCollection().DeleteOne(d => d.Id == model.Id);
         }
     }
 }

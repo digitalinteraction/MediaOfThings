@@ -17,8 +17,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenLab.Kitchen.Receiver.Wa
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "OpenLab.Kitchen.Repository", "OpenLab.Kitchen.Repository\OpenLab.Kitchen.Repository.shproj", "{52158D1F-49FC-4162-8890-05CC763D99F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenLab.Kitchen.Configure", "OpenLab.Kitchen.Configure\OpenLab.Kitchen.Configure.csproj", "{8DC80356-C884-4385-8D4E-D35877B8A0EB}"
-EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenLab.Kitchen.WebApi", "OpenLab.Kitchen.WebApi\OpenLab.Kitchen.WebApi.xproj", "{A891307D-8797-4E3D-9096-AE60FCC003B3}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "OpenLab.Kitchen.Service", "OpenLab.Kitchen.Service\OpenLab.Kitchen.Service.shproj", "{618A9607-6581-4B2C-8B9F-0F3A50280B4B}"
@@ -39,8 +37,6 @@ Global
 		OpenLab.Kitchen.Service\OpenLab.Kitchen.Service.projitems*{618a9607-6581-4b2c-8b9f-0f3a50280b4b}*SharedItemsImports = 13
 		OpenLab.Kitchen.Service\OpenLab.Kitchen.Service.projitems*{7bf473f1-5467-41ed-aa40-897aaba68be5}*SharedItemsImports = 4
 		OpenLab.Kitchen.StreamingRepository\OpenLab.Kitchen.StreamingRepository.projitems*{7bf473f1-5467-41ed-aa40-897aaba68be5}*SharedItemsImports = 4
-		OpenLab.Kitchen.Repository\OpenLab.Kitchen.Repository.projitems*{8dc80356-c884-4385-8d4e-d35877b8a0eb}*SharedItemsImports = 4
-		OpenLab.Kitchen.Service\OpenLab.Kitchen.Service.projitems*{8dc80356-c884-4385-8d4e-d35877b8a0eb}*SharedItemsImports = 4
 		OpenLab.Kitchen.Service\OpenLab.Kitchen.Service.projitems*{cc34b642-ab65-4bdd-a596-1c095fed4568}*SharedItemsImports = 4
 		OpenLab.Kitchen.StreamingRepository\OpenLab.Kitchen.StreamingRepository.projitems*{cc34b642-ab65-4bdd-a596-1c095fed4568}*SharedItemsImports = 4
 		OpenLab.Kitchen.Service\OpenLab.Kitchen.Service.projitems*{d8625d45-ce4c-45b0-a6b7-550d6dfaeecd}*SharedItemsImports = 4
@@ -155,22 +151,6 @@ Global
 		{D8625D45-CE4C-45B0-A6B7-550D6DFAEECD}.Release|x86.ActiveCfg = Release|x86
 		{D8625D45-CE4C-45B0-A6B7-550D6DFAEECD}.Release|x86.Build.0 = Release|x86
 		{D8625D45-CE4C-45B0-A6B7-550D6DFAEECD}.Release|x86.Deploy.0 = Release|x86
-		{8DC80356-C884-4385-8D4E-D35877B8A0EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8DC80356-C884-4385-8D4E-D35877B8A0EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8DC80356-C884-4385-8D4E-D35877B8A0EB}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{8DC80356-C884-4385-8D4E-D35877B8A0EB}.Debug|ARM.Build.0 = Debug|Any CPU
-		{8DC80356-C884-4385-8D4E-D35877B8A0EB}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{8DC80356-C884-4385-8D4E-D35877B8A0EB}.Debug|x64.Build.0 = Debug|Any CPU
-		{8DC80356-C884-4385-8D4E-D35877B8A0EB}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{8DC80356-C884-4385-8D4E-D35877B8A0EB}.Debug|x86.Build.0 = Debug|Any CPU
-		{8DC80356-C884-4385-8D4E-D35877B8A0EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8DC80356-C884-4385-8D4E-D35877B8A0EB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8DC80356-C884-4385-8D4E-D35877B8A0EB}.Release|ARM.ActiveCfg = Release|Any CPU
-		{8DC80356-C884-4385-8D4E-D35877B8A0EB}.Release|ARM.Build.0 = Release|Any CPU
-		{8DC80356-C884-4385-8D4E-D35877B8A0EB}.Release|x64.ActiveCfg = Release|Any CPU
-		{8DC80356-C884-4385-8D4E-D35877B8A0EB}.Release|x64.Build.0 = Release|Any CPU
-		{8DC80356-C884-4385-8D4E-D35877B8A0EB}.Release|x86.ActiveCfg = Release|Any CPU
-		{8DC80356-C884-4385-8D4E-D35877B8A0EB}.Release|x86.Build.0 = Release|Any CPU
 		{A891307D-8797-4E3D-9096-AE60FCC003B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A891307D-8797-4E3D-9096-AE60FCC003B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A891307D-8797-4E3D-9096-AE60FCC003B3}.Debug|ARM.ActiveCfg = Debug|Any CPU

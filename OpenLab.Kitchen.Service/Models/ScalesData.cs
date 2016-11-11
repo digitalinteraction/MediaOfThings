@@ -12,7 +12,7 @@ namespace OpenLab.Kitchen.Service.Models
 
         public float Weight { get; set; }
 
-        public override string GetDeviceIdString()
+        public override string DeviceIdString()
         {
             return DeviceId.ToString();
         }

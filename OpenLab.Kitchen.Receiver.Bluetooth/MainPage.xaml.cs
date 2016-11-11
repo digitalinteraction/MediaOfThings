@@ -18,6 +18,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using OpenLab.Kitchen.Service.Interfaces;
 using OpenLab.Kitchen.Service.Models;
 using OpenLab.Kitchen.StreamingRepository;
 
@@ -35,7 +36,7 @@ namespace OpenLab.Kitchen.Receiver.Bluetooth
         private readonly Guid _scalesServiceGuid = GattDeviceService.ConvertShortIdToUuid(0xADA3);
         private readonly Guid _weightGuid = GattDeviceService.ConvertShortIdToUuid(0xFF03);
 
-        private readonly ScalesStreamer _scalesStreamer;
+        private readonly ISendRepository<ScalesData> _scalesStreamer;
 
         private BluetoothLEAdvertisementWatcher ScalesWatcher { get; }
         private DeviceWatcher ScalesDeviceWatcher { get; }
@@ -45,7 +46,7 @@ namespace OpenLab.Kitchen.Receiver.Bluetooth
         {
             this.InitializeComponent();
 
-            _scalesStreamer = new ScalesStreamer();
+            _scalesStreamer = new RabbitMqStreamer<ScalesData>("amqp://streamer@192.68.1.102", "kitchen", "scales");
 
             ScalesWatcher = new BluetoothLEAdvertisementWatcher { ScanningMode = BluetoothLEScanningMode.Active };
             ScalesWatcher.Received += ScaleFound;

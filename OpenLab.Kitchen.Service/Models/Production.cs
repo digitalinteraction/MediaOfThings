@@ -18,4 +18,18 @@ namespace OpenLab.Kitchen.Service.Models
 
         public Dictionary<int, string> Wax3Config { get; set; }
     }
+
+    public class Take
+    {
+        public string Name { get; set; }
+
+        public IEnumerable<Media> Media { get; set; }
+    }
+
+    public class Media
+    {
+        public string Name { get; set; }
+
+        public Uri Url { get; set; }
+    }
 }

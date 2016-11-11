@@ -5,20 +5,21 @@ using System.Text;
 using System.Timers;
 using OBID;
 using OpenLab.Kitchen.Service.Interfaces;
+using OpenLab.Kitchen.Service.Models;
 using OpenLab.Kitchen.StreamingRepository;
 
 namespace OpenLab.Kitchen.Receiver.Rfid
 {
     class Rfid : FeUsbListener
     {
-        private readonly ISendRepository<Service.Models.RfidData> _rfidSendRepository; 
+        private readonly ISendRepository<RfidData> _rfidSendRepository; 
         private FeUsb UsbPort { get; set; }
         private IDictionary<int,FedmIscReader> Devices { get; }
         private Timer Interval { get; set; }
 
         public Rfid()
         {
-            _rfidSendRepository = new RfidStreamer();
+            _rfidSendRepository = new RabbitMqStreamer<RfidData>("amqp://streamer@192.168.1.102", "kitchen", "rfid");
             Devices = new Dictionary<int, FedmIscReader>();
         }
 

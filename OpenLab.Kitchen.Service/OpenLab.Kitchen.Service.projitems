@@ -15,16 +15,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISendRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ApplianceEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DataModel.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Media.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Model.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Production.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\RfidData.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\RfidState.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ScalesData.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Take.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\WaterFlow.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Wax3Data.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Models\Wax3Event.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Wax3State.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Wax9Data.cs" />
   </ItemGroup>

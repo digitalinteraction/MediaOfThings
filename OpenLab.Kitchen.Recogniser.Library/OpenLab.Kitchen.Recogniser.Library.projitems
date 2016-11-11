@@ -9,14 +9,13 @@
     <Import_RootNamespace>OpenLab.Kitchen.Recogniser.Library</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)AnalysisModels\RfidState.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)AnalysisModels\Wax3State.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IReplayManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IStreamManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRecogniser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Recogniser.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ReplayManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RfidRecogniser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StreamManager.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Wax3EventRecogniser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Wax3Recogniser.cs" />
   </ItemGroup>
 </Project>

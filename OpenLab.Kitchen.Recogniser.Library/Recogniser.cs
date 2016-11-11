@@ -7,19 +7,35 @@ using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.Recogniser.Library
 {
-    public abstract class Recogniser<T, I, S> : IRecogniser<T, I, S> where T : DataModel
+    public abstract class Recogniser<T, S> : IRecogniser<T, S> where T : DataModel where S : DataModel
     {
-        public IDictionary<I, S> _states;
+        protected DateTime Clock { get; set; }
+        protected IDictionary<string, S> States { get; }
 
-        public Recogniser()
+        public event StateChangedEventHandler<S> StateChanged;
+
+        public Recogniser(DateTime startTime)
         {
-            _states = new Dictionary<I, S>();
+            Clock = startTime;
+            States = new Dictionary<string, S>();
         }
 
-        public IDictionary<I, S> GetAllStates()
+        public virtual void UpdateClock(DateTime newClock)
         {
-            return _states;
+            Clock = newClock;
         }
-        public abstract S Update(T data);
+
+        public virtual void Update(T data)
+        {
+            if (Clock < data.Timestamp)
+            {
+                Clock = data.Timestamp;
+            }
+        }
+
+        protected void OnStateChanged(object sender, S updatedState)
+        {
+            StateChanged?.Invoke(sender, updatedState);
+        }
     }
 }
