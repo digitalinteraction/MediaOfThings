@@ -27,6 +27,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "OpenLab.Kitchen.Recogniser.
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenLab.Kitchen.Recogniser", "OpenLab.Kitchen.Recogniser\OpenLab.Kitchen.Recogniser.xproj", "{F7B5DF98-D927-4F3F-A815-3C31A72051B8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenLab.Kitchen.CV.Position", "OpenLab.Kitchen.CV.Position\OpenLab.Kitchen.CV.Position.csproj", "{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		OpenLab.Kitchen.Service\OpenLab.Kitchen.Service.projitems*{04aee5ce-10b1-4d76-9602-7127e1c84caf}*SharedItemsImports = 4
@@ -199,6 +201,22 @@ Global
 		{F7B5DF98-D927-4F3F-A815-3C31A72051B8}.Release|x64.Build.0 = Release|Any CPU
 		{F7B5DF98-D927-4F3F-A815-3C31A72051B8}.Release|x86.ActiveCfg = Release|Any CPU
 		{F7B5DF98-D927-4F3F-A815-3C31A72051B8}.Release|x86.Build.0 = Release|Any CPU
+		{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}.Debug|ARM.Build.0 = Debug|Any CPU
+		{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}.Debug|x64.Build.0 = Debug|Any CPU
+		{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}.Debug|x86.Build.0 = Debug|Any CPU
+		{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}.Release|ARM.ActiveCfg = Release|Any CPU
+		{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}.Release|ARM.Build.0 = Release|Any CPU
+		{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}.Release|x64.ActiveCfg = Release|Any CPU
+		{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}.Release|x64.Build.0 = Release|Any CPU
+		{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}.Release|x86.ActiveCfg = Release|Any CPU
+		{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

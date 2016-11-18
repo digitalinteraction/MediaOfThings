@@ -4,17 +4,59 @@
     ViewData["Title"] = take.Name;
 }
 
-<style>
-    video {
-        width: 640px;
-        height: 360px;
+<p>
+    <br/>
+    <div class="btn-group">
+        <button id="play" class="btn btn-success">Play</button>
+        <button id="pause" class="btn btn-warning">Pause</button>
+        <input id="seekhead" type="range" value="0"/>
+    </div>
+</p>
+
+<div class="row">
+    <h3>Media</h3>
+    @foreach (var video in take.Media)
+    {
+        <div class="col-md-4 col-sm-6">
+            <h4>@Html.DisplayFor(modelItem => video.Name)</h4>
+            <video data-dashjs-player src="@(video.Url + "/playback.mpd")"></video>
+        </div>
     }
-</style>
+</div>
 
-@foreach (var video in take.Media)
-{
-    <h4>@Html.DisplayFor(modelItem => video.Name)</h4>
-    
-}
+<div class="row">
+    <h3>Wax3 Sensors</h3>
+    @foreach (var wax3 in Model.Wax3Config)
+    {
+        <div class="col-md-4 col-sm-6">
+            <h4>@Html.DisplayFor(modelItem => wax3.Value)</h4>
+            <canvas id="@("wax3-" + wax3.Key)" class="chart wax3"></canvas>
+        </div>
+    }
+</div>
 
-<script src="http://cdn.dashjs.org/latest/dash.all.min.js"></script>
+<div class="row">
+    <h3>RFID Transponders</h3>
+    @foreach (var rfid in Model.RfidConfig)
+    {
+        <div class="col-md-4 col-sm-6">
+            <h4>@Html.DisplayFor(modelItem => rfid.Value)</h4>
+            <canvas id="@("rfid-" + rfid.Key)" class="chart rfid"></canvas>
+        </div>
+    }
+</div>
+
+<div class="row">
+    <h3>Appliance Usage</h3>
+    @foreach (var app in Model.SmappeeConfig)
+    {
+        <div class="col-md-4 col-sm-6">
+            <h4>@Html.DisplayFor(modelItem => app.Value)</h4>
+            <canvas id="@("app-" + app.Key)" class="chart app"></canvas>
+        </div>
+    }
+</div>
+
+<script src="http://cdn.dashjs.org/latest/dash.all.min.js" integrity="sha384-BFOlHrL/RkHrA1qpZi1o5IYPBSweNZQUhULLt66Z7CSxbNC+UoAfio8xfktsd1uH" crossorigin="anonymous"></script>
+<script src="http://webtiming.github.io/timingsrc/lib/timingsrc.js" integrity="sha384-JHaqay/ANBtxYFIGsN5uj0192auvNR87OrixI8oVBa/fnBN2ImreCUimFoKwXGy1" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js" integrity="sha256-RASNMNlmRtIreeznffYMDUxBXcMRjijEaaGF/gxT6vw=" crossorigin="anonymous"></script>
