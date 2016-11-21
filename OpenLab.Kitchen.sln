@@ -35,6 +35,8 @@ Global
 		OpenLab.Kitchen.StreamingRepository\OpenLab.Kitchen.StreamingRepository.projitems*{04aee5ce-10b1-4d76-9602-7127e1c84caf}*SharedItemsImports = 4
 		OpenLab.Kitchen.Service\OpenLab.Kitchen.Service.projitems*{1382de0f-3488-46aa-855f-a9c32ed25192}*SharedItemsImports = 4
 		OpenLab.Kitchen.StreamingRepository\OpenLab.Kitchen.StreamingRepository.projitems*{1382de0f-3488-46aa-855f-a9c32ed25192}*SharedItemsImports = 4
+		OpenLab.Kitchen.Repository\OpenLab.Kitchen.Repository.projitems*{4cb6c593-c1fb-4203-a9eb-3e364fc43a9c}*SharedItemsImports = 4
+		OpenLab.Kitchen.Service\OpenLab.Kitchen.Service.projitems*{4cb6c593-c1fb-4203-a9eb-3e364fc43a9c}*SharedItemsImports = 4
 		OpenLab.Kitchen.Repository\OpenLab.Kitchen.Repository.projitems*{52158d1f-49fc-4162-8890-05cc763d99f7}*SharedItemsImports = 13
 		OpenLab.Kitchen.Service\OpenLab.Kitchen.Service.projitems*{618a9607-6581-4b2c-8b9f-0f3a50280b4b}*SharedItemsImports = 13
 		OpenLab.Kitchen.Service\OpenLab.Kitchen.Service.projitems*{7bf473f1-5467-41ed-aa40-897aaba68be5}*SharedItemsImports = 4

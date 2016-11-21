@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\ISendRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ApplianceEvent.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\DataModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\GTLocation.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Model.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Production.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\RfidData.cs" />
