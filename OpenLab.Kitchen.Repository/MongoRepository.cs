@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MongoDB.Driver;
 using OpenLab.Kitchen.Service.Interfaces;
@@ -28,6 +29,11 @@ namespace OpenLab.Kitchen.Repository
         public void Insert(T model)
         {
             _mongoConnection.Insert(model);
+        }
+
+        public void InsertMany(IEnumerable<T> models)
+        {
+            _mongoConnection.InsertMany(models);
         }
 
         public void Update(T model)

@@ -73,6 +73,11 @@ namespace OpenLab.Kitchen.Repository
             GetCollection().InsertOne(model);
         }
 
+        public void InsertMany(IEnumerable<T> models)
+        {
+            GetCollection().InsertMany(models);
+        }
+
         public void Update(T model)
         {
             GetCollection().ReplaceOneAsync(d => d.Id == model.Id, model).Wait();

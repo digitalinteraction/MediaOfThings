@@ -30,6 +30,8 @@ namespace OpenLab.Kitchen.Service.Models
     {
         public string Name { get; set; }
 
+        public DateTime StartTime { get; set; }
+
         public Uri Url { get; set; }
     }
 }

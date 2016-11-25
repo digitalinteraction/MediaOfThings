@@ -29,6 +29,8 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenLab.Kitchen.Recogniser"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenLab.Kitchen.CV.Position", "OpenLab.Kitchen.CV.Position\OpenLab.Kitchen.CV.Position.csproj", "{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}"
 EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "OpenLab.Kitchen.Configure", "OpenLab.Kitchen.Configure\OpenLab.Kitchen.Configure.xproj", "{CF3DC7F7-952D-4D83-BCA4-5E056DB4FB15}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		OpenLab.Kitchen.Service\OpenLab.Kitchen.Service.projitems*{04aee5ce-10b1-4d76-9602-7127e1c84caf}*SharedItemsImports = 4
@@ -219,6 +221,22 @@ Global
 		{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}.Release|x64.Build.0 = Release|Any CPU
 		{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}.Release|x86.ActiveCfg = Release|Any CPU
 		{4CB6C593-C1FB-4203-A9EB-3E364FC43A9C}.Release|x86.Build.0 = Release|Any CPU
+		{CF3DC7F7-952D-4D83-BCA4-5E056DB4FB15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF3DC7F7-952D-4D83-BCA4-5E056DB4FB15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF3DC7F7-952D-4D83-BCA4-5E056DB4FB15}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{CF3DC7F7-952D-4D83-BCA4-5E056DB4FB15}.Debug|ARM.Build.0 = Debug|Any CPU
+		{CF3DC7F7-952D-4D83-BCA4-5E056DB4FB15}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{CF3DC7F7-952D-4D83-BCA4-5E056DB4FB15}.Debug|x64.Build.0 = Debug|Any CPU
+		{CF3DC7F7-952D-4D83-BCA4-5E056DB4FB15}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{CF3DC7F7-952D-4D83-BCA4-5E056DB4FB15}.Debug|x86.Build.0 = Debug|Any CPU
+		{CF3DC7F7-952D-4D83-BCA4-5E056DB4FB15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF3DC7F7-952D-4D83-BCA4-5E056DB4FB15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF3DC7F7-952D-4D83-BCA4-5E056DB4FB15}.Release|ARM.ActiveCfg = Release|Any CPU
+		{CF3DC7F7-952D-4D83-BCA4-5E056DB4FB15}.Release|ARM.Build.0 = Release|Any CPU
+		{CF3DC7F7-952D-4D83-BCA4-5E056DB4FB15}.Release|x64.ActiveCfg = Release|Any CPU
+		{CF3DC7F7-952D-4D83-BCA4-5E056DB4FB15}.Release|x64.Build.0 = Release|Any CPU
+		{CF3DC7F7-952D-4D83-BCA4-5E056DB4FB15}.Release|x86.ActiveCfg = Release|Any CPU
+		{CF3DC7F7-952D-4D83-BCA4-5E056DB4FB15}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

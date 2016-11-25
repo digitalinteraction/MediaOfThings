@@ -32,7 +32,7 @@ namespace OpenLab.Kitchen.Viewer
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IReadOnlyRepository<Production>>(s => new MongoRepository<Production>(Configuration.GetConnectionString("MongoConnection"), "Productions"));
+            services.AddTransient<IReadOnlyRepository<Production>>(s => new MongoRepository<Production>(Configuration.GetConnectionString("MongoConnection"), "Production"));
 
             // Add framework services.
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

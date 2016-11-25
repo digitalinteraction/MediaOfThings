@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "OpenLab.Kitchen.Configure": {
+      "commandName": "Project",
+      "commandLineArgs": "\"BBC R&D Shoot: Bella Wright - Day 2\" \"2016-04-07\" \"bbc_apr16\" \"C:\\Users\\gerar\\Desktop\\Smappee Data BBC Shoot\\Smappee Data BBC Shoot\\Location Info.json\" \"C:\\Users\\gerar\\Desktop\\Smappee Data BBC Shoot\\Smappee Data BBC Shoot\\RFID Config.json\" \"C:\\Users\\gerar\\Desktop\\Smappee Data BBC Shoot\\Smappee Data BBC Shoot\\Wax3 Day 2 Config.json\""
+    }
+  }
+}

@@ -1,0 +1,137 @@
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Threading.Tasks;
+using System.Xml;
+using MongoDB.Bson;
+using MongoDB.Driver;
+using Newtonsoft.Json;
+using OpenLab.Kitchen.Repository;
+using OpenLab.Kitchen.Service.Models;
+
+namespace OpenLab.Kitchen.Configure
+{
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            InsertProductionDataset(args[0], DateTime.Parse(args[1]), args[2], args[3], args[4], args[5]);
+            Console.ReadLine();
+        }
+
+        private static async void InsertProductionDataset(string productionName, DateTime productionDate, string webMediaPrefix, string smappeePath, string rfidPath, string wax3Path)
+        {
+            Console.WriteLine("Creating Production Dataset...");
+
+            MongoConnection<Production>.RegisterTypes();
+            var mongoClient = new MongoClient("mongodb://192.168.1.101:27017");
+            var database = mongoClient.GetDatabase("kitchen");
+            var primerDatabase = mongoClient.GetDatabase("prismdb");
+            database.RunCommandAsync((Command<BsonDocument>)"{ping:1}").Wait();
+
+            Console.WriteLine($"Production name: {productionName}");
+            var production = new Production { Name = productionName };
+
+            Console.WriteLine($"Web Media Prefix: {webMediaPrefix}");
+            var takes = new List<Take>();
+            var sessions = primerDatabase.GetCollection<BsonDocument>("sessions").AsQueryable();
+            var cameras = new Dictionary<string, Uri>();
+            foreach (var session in sessions)
+            {
+                var take = new Take
+                {
+                    Name = session["sessionName"].AsString,
+                    Media = (await Task.WhenAll(session["recordings"].AsBsonArray.Select(async m =>
+                    {
+                        var name = m["name"].AsString;
+                        var mpd = m["mpd"].AsString;
+
+                        if (!cameras.ContainsKey(name))
+                        {
+                            Console.WriteLine($"Url for camera ({name}, {mpd}): ");
+                            cameras[name] = new Uri(Console.ReadLine());
+                        }
+
+                        var url = new Uri(mpd);
+                        url = new Uri(cameras[name],
+                            webMediaPrefix.TrimEnd('/') + "/" +
+                            string.Join("", url.Segments.Take(url.Segments.Length - 1))
+                                .TrimStart(Path.AltDirectorySeparatorChar));
+
+                        var request = WebRequest.Create(url + "playback.mpd");
+                        try
+                        {
+                            var response = (HttpWebResponse) await request.GetResponseAsync();
+                            using (var stream = new StreamReader(response.GetResponseStream()))
+                            {
+                                var manifest = new XmlDocument();
+                                manifest.LoadXml(stream.ReadToEnd());
+                                var nodes = manifest.GetElementsByTagName("MPD");
+
+                                var startTime = DateTime.Parse(nodes[0].Attributes["availabilityStartTime"].Value);
+
+                                return new Media
+                                {
+                                    Name = name,
+                                    StartTime = startTime,
+                                    Url = url
+                                };
+                            }
+                        }
+                        catch (WebException e)
+                        {
+                            Console.WriteLine($"Failed to Retrieve Manifest: {name} - {url}");
+                            return null;
+                        }
+                    }).ToList())).Where(m => m != null)
+                };
+
+                if (!take.Media.Any()) continue;
+
+                if (productionDate.Date == take.Media.First().StartTime.Date)
+                {
+                    takes.Add(take);
+                }
+                else
+                {
+                    Console.WriteLine($"Ignoring take: {take.Name} - {take.Media.First().StartTime.Date}");
+                }
+            }
+            production.Takes = takes;
+
+            Console.WriteLine($"Path to Smappee Appliance Config: {smappeePath}");
+            production.SmappeeConfig = new Dictionary<int, string>();
+            var applianceJson = File.ReadAllText(smappeePath);
+            dynamic appliances = JsonConvert.DeserializeObject(applianceJson);
+            foreach (var item in appliances.appliances)
+            {
+                production.SmappeeConfig.Add(int.Parse(item.id.ToString()), item.name.ToString());
+            }
+
+            Console.WriteLine($"Path to Rfid Config: {rfidPath}");
+            production.RfidConfig = new Dictionary<string, string>();
+            var rfidJson = File.ReadAllText(rfidPath);
+            dynamic rfid = JsonConvert.DeserializeObject(rfidJson);
+            foreach (var item in rfid)
+            {
+                production.RfidConfig.Add(item.transponder.ToString(), item.item.ToString());
+            }
+
+            Console.WriteLine($"Path to Wax3 Config: {wax3Path}");
+            production.Wax3Config = new Dictionary<int, string>();
+            var wax3Json = File.ReadAllText(wax3Path);
+            dynamic wax3 = JsonConvert.DeserializeObject(wax3Json);
+            foreach (var item in wax3)
+            {
+                production.Wax3Config.Add(int.Parse(item.deviceId.ToString()), item.item.ToString());
+            }
+            
+            Console.WriteLine("Creating Production...");
+            var productions = database.GetCollection<Production>("Productions");
+            productions.InsertOne(production);
+            Console.WriteLine("Finished Creating Production.");
+        }
+    }
+}
