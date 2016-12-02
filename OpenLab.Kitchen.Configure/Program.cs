@@ -17,11 +17,11 @@ namespace OpenLab.Kitchen.Configure
     {
         public static void Main(string[] args)
         {
-            InsertProductionDataset(args[0], DateTime.Parse(args[1]), args[2], args[3], args[4], args[5]);
+            InsertProductionDataset(args[0], DateTime.Parse(args[1]), args[2], args[3], args[4], args[5], args[6]);
             Console.ReadLine();
         }
 
-        private static async void InsertProductionDataset(string productionName, DateTime productionDate, string webMediaPrefix, string smappeePath, string rfidPath, string wax3Path)
+        private static async void InsertProductionDataset(string productionName, DateTime productionDate, string webMediaPrefix, string smappeePath, string rfidPath, string wax3Path, string areaPath)
         {
             Console.WriteLine("Creating Production Dataset...");
 
@@ -82,7 +82,7 @@ namespace OpenLab.Kitchen.Configure
                         }
                         catch (WebException e)
                         {
-                            Console.WriteLine($"Failed to Retrieve Manifest: {name} - {url}");
+                            Console.WriteLine($"Failed to Retrieve Manifest: {name} - {url} -- {e}");
                             return null;
                         }
                     }).ToList())).Where(m => m != null)
@@ -127,9 +127,47 @@ namespace OpenLab.Kitchen.Configure
             {
                 production.Wax3Config.Add(int.Parse(item.deviceId.ToString()), item.item.ToString());
             }
+
+            Console.WriteLine($"Path to Area Config: {areaPath}");
+            var areas = new List<Area>();
+            var areaJson = File.ReadAllText(areaPath);
+            dynamic area = JsonConvert.DeserializeObject(areaJson);
+            foreach (var item in area)
+            {
+                var newArea = new Area
+                {
+                    GTRegionStart = item.gtRegionStart,
+                    GTRegionStop = item.gtRegionStop
+                };
+
+                var presentationPads = new List<string>();
+                foreach (var pres in item.presentationPads)
+                {
+                    presentationPads.Add(pres.ToString());
+                }
+
+                var locations = new List<string>();
+                foreach (var location in item.locations)
+                {
+                    locations.Add(location.ToString());
+                }
+
+                var rfidPads = new List<string>();
+                foreach (var pad in item.rfidPads)
+                {
+                    rfidPads.Add(pad.ToString());
+                }
+
+                newArea.PresentationPads = presentationPads;
+                newArea.Locations = locations;
+                newArea.RfidPads = rfidPads;
+
+                areas.Add(newArea);
+            }
+            production.AreaConfig = areas;
             
             Console.WriteLine("Creating Production...");
-            var productions = database.GetCollection<Production>("Productions");
+            var productions = database.GetCollection<Production>("Production");
             productions.InsertOne(production);
             Console.WriteLine("Finished Creating Production.");
         }

@@ -18,7 +18,7 @@ namespace OpenLab.Kitchen.CV.Position
         const string WindowName = "Feed";
         const string CameraName = "4";
         static readonly Size Resolution = new Size(500, 281);
-        static readonly Rectangle ROI = new Rectangle(0, 191, 500, 90);
+        static readonly Rectangle ROI = new Rectangle(0, 191, 485, 90);
 
         static void Main(string[] args)
         {
@@ -112,17 +112,21 @@ namespace OpenLab.Kitchen.CV.Position
                         CvInvoke.Rectangle(resize, ROI, new MCvScalar(255), 2);
                         CvInvoke.Imshow(WindowName, resize);
 
-                        gtLocations.Add(new GTLocation
+                        var location = new GTLocation
                         {
-                            Timestamp = media.StartTime.AddSeconds(frameNumber / fps),
+                            Timestamp = media.StartTime.AddSeconds(frameNumber/fps),
                             Position = new Rect
                             {
-                                X = (float) rect.X / frame.Width,
-                                Y = (float) rect.Y / frame.Height,
-                                Width = (float) rect.Width / frame.Width,
-                                Height = (float) rect.Height / frame.Height
+                                X = (float) rect.X/frame.Width,
+                                Y = (float) rect.Y/frame.Height,
+                                Width = (float) rect.Width/frame.Width,
+                                Height = (float) rect.Height/frame.Height
                             }
-                        });
+                        };
+
+                        location.Estimated = location.Position.X + location.Position.Width/2;
+
+                        gtLocations.Add(location);
                     }
                 }
                 catch (Exception e)
@@ -138,6 +142,7 @@ namespace OpenLab.Kitchen.CV.Position
                 CvInvoke.WaitKey(100);
             }
 
+            camera.Stop();
             camera.Dispose();
 
             return gtLocations;

@@ -6,15 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 using OpenLab.Kitchen.Service.Interfaces;
 using OpenLab.Kitchen.Service.Models;
 
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace OpenLab.Kitchen.Viewer.Controllers
 {
     public class ProductionController : Controller
     {
-        private readonly IReadOnlyRepository<Production> _productionRepository;
+        private readonly IReadWriteRepository<Production> _productionRepository;
 
-        public ProductionController(IReadOnlyRepository<Production> productionRepository)
+        public ProductionController(IReadWriteRepository<Production> productionRepository)
         {
             _productionRepository = productionRepository;
         }
@@ -31,6 +29,7 @@ namespace OpenLab.Kitchen.Viewer.Controllers
             return View(_productionRepository.GetById(id));
         }
 
+        // GET: /<controller>/player/{id}
         public IActionResult Player(Guid productionId, int take)
         {
             ViewBag.Take = take;

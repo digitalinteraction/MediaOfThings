@@ -7,13 +7,7 @@ namespace OpenLab.Kitchen.Service.Models
         public DateTime Timestamp { get; set; }
 
         public Rect Position { get; set; }
-    }
 
-    public struct Rect
-    {
-        public float X;
-        public float Y;
-        public float Width;
-        public float Height;
+        public double Estimated { get; set; }
     }
 }
