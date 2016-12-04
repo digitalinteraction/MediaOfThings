@@ -7,7 +7,7 @@ namespace OpenLab.Kitchen.Recogniser.Library
 {
     public class RfidRecogniser : Recogniser<RfidData, RfidState>
     {
-        private const double TRANSPONDERTIMEOUT = 5000;
+        private const double TransponderTimeout = 5000;
 
         public RfidRecogniser(DateTime startTime) : base(startTime) {}
 
@@ -88,12 +88,12 @@ namespace OpenLab.Kitchen.Recogniser.Library
                 foreach (var transponder in newState.Transponders.Where(t => t.Active))
                 {
                     var millisecondsSinceLast = (Clock - transponder.LastSeen).TotalMilliseconds;
-                    if (millisecondsSinceLast > TRANSPONDERTIMEOUT)
+                    if (millisecondsSinceLast > TransponderTimeout)
                     {
                         transponder.Active = false;
                         changed = true;
 
-                        var timeoutTime = transponder.LastSeen.AddMilliseconds(TRANSPONDERTIMEOUT);
+                        var timeoutTime = transponder.LastSeen.AddMilliseconds(TransponderTimeout);
                         if (lastestUpdate < timeoutTime)
                         {
                             lastestUpdate = timeoutTime;

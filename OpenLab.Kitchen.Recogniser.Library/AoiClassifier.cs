@@ -9,9 +9,11 @@ namespace OpenLab.Kitchen.Recogniser.Library
 {
     public class AoiClassifier : IRecogniser<Wax3State, AoiState>, IRecogniser<RfidState, AoiState>, IRecogniser<ApplianceEvent, AoiState>
     {
+        private const double PresentationTimeout = 2000;
         public struct Significance
         {
             public const double Rfid = 0.2;
+            public const double PresentationRfid = 1;
             public const double Wax3 = 0.001;
             public const double Appliance = 1;
             public const double Timeout = 0.01;
@@ -43,7 +45,9 @@ namespace OpenLab.Kitchen.Recogniser.Library
                 var newState = new AoiState
                 {
                     AreaId = area,
-                    Value = oldState.Value += Significance.Wax3
+                    Value = oldState.Value += Significance.Wax3,
+                    IsPresentation = oldState.IsPresentation,
+                    PresentationStarted = oldState.PresentationStarted
                 };
 
                 _aoiStates[area] = newState;
@@ -62,8 +66,19 @@ namespace OpenLab.Kitchen.Recogniser.Library
             foreach (var area in areas)
             {
                 var oldState = _aoiStates[area.Id];
-                var newState = new AoiState { AreaId = area.Id };
+                var newState = new AoiState
+                {
+                    AreaId = area.Id,
+                    IsPresentation = oldState.IsPresentation,
+                    PresentationStarted = oldState.PresentationStarted
+                };
                 newState.Value = oldState.Value + Significance.Rfid;
+
+                if (area.PresentationPads.Contains(data.DeviceId))
+                {
+                    newState.IsPresentation = true;
+                    newState.PresentationStarted = data.Timestamp;
+                }
 
                 _aoiStates[area.Id] = newState;
                 StateChanged(this, newState);
@@ -109,9 +124,23 @@ namespace OpenLab.Kitchen.Recogniser.Library
             foreach (var area in _aoiStates.Keys)
             {
                 var oldState = _aoiStates[area];
-                var newState = new AoiState { AreaId = area };
+                var newState = new AoiState
+                {
+                    AreaId = area,
+                    IsPresentation = oldState.IsPresentation,
+                    PresentationStarted = oldState.PresentationStarted
+                };
 
                 newState.Value = oldState.Value -= Significance.Timeout;
+
+                if (newState.IsPresentation)
+                {
+                    if ((newState.PresentationStarted - newClock).TotalMilliseconds > PresentationTimeout)
+                    {
+                        newState.IsPresentation = false;
+                    }
+                }
+
                 _aoiStates[area] = newState;
                 StateChanged(this, newState);
             }

@@ -7,7 +7,7 @@ namespace OpenLab.Kitchen.Recogniser.Library
 {
     public class Wax3Recogniser : Recogniser<Wax3Data, Wax3State>
     {
-        private const double ALIVETHRESHOLD = 5000;
+        private const double AliveThreshold = 5000;
 
         public Wax3Recogniser(DateTime startTime) : base(startTime) {}
 
@@ -63,15 +63,15 @@ namespace OpenLab.Kitchen.Recogniser.Library
             foreach (var key in States.Keys.ToArray().Where(k => States[k].Active))
             {
                 var millisecondsSinceLast = (Clock - States[key].LastAlive).TotalMilliseconds;
-                if (millisecondsSinceLast > ALIVETHRESHOLD)
+                if (millisecondsSinceLast > AliveThreshold)
                 {
                     var newState = new Wax3State
                     {
-                        Timestamp = States[key].LastAlive.AddMilliseconds(ALIVETHRESHOLD),
+                        Timestamp = States[key].LastAlive.AddMilliseconds(AliveThreshold),
                         DeviceId = States[key].DeviceId,
                         Active = false,
-                        LastAlive = States[key].LastAlive.AddMilliseconds(ALIVETHRESHOLD),
-                        TimeAlive = States[key].TimeAlive + ALIVETHRESHOLD,
+                        LastAlive = States[key].LastAlive.AddMilliseconds(AliveThreshold),
+                        TimeAlive = States[key].TimeAlive + AliveThreshold,
                     };
 
                     States[key] = newState;

@@ -8,6 +8,10 @@ namespace OpenLab.Kitchen.Service.Models
 
         public double Value { get; set; }
 
+        public bool IsPresentation { get; set; }
+
+        public DateTime PresentationStarted { get; set; }
+
         public override string IdString()
         {
             return AreaId.ToString();
