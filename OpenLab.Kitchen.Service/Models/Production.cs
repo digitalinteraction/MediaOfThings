@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using OpenLab.Kitchen.Service.Values;
 
 namespace OpenLab.Kitchen.Service.Models
@@ -13,7 +10,7 @@ namespace OpenLab.Kitchen.Service.Models
 
         public IEnumerable<Take> Takes { get; set; }
 
-        public Dictionary<string,string> RfidConfig { get; set; }
+        public Dictionary<string, string> RfidConfig { get; set; }
 
         public Dictionary<int, string> SmappeeConfig { get; set; }
 
@@ -38,8 +35,17 @@ namespace OpenLab.Kitchen.Service.Models
         public Uri Url { get; set; }
     }
 
+    public class Appliance
+    {
+        public int Id { get; set; }
+
+        public string AssociatedTransponder { get; set; }
+    }
+
     public class Area
     {
+        public Guid Id { get; set; }
+
         public IDictionary<string, Rect> CameraViewports { get; set; }
 
         public IEnumerable<string> Locations { get; set; }

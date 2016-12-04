@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Text;
 using Newtonsoft.Json;
 using OpenLab.Kitchen.Service.Interfaces;
@@ -11,14 +10,14 @@ namespace OpenLab.Kitchen.StreamingRepository
     {
         private readonly RabbitMqConnection _mqConnection;
 
-        public RabbitMqStreamer(string connectionString, string exchange, string routingKey)
+        public RabbitMqStreamer(string connectionString, string exchange)
         {
-            _mqConnection = new RabbitMqConnection(connectionString, exchange, routingKey);
+            _mqConnection = new RabbitMqConnection(connectionString, exchange, typeof(T).Name);
         }
 
         public void Send(T model)
         {
-            _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.DeviceIdString());
+            _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.IdString());
         }
 
         public void Subscribe(Action<T> handler)

@@ -1,4 +1,5 @@
 ﻿using System;
+using OpenLab.Kitchen.Service.Values;
 
 namespace OpenLab.Kitchen.Service.Models
 {

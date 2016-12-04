@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -45,7 +44,7 @@ namespace OpenLab.Kitchen.Receiver.Wax9
         {
             this.InitializeComponent();
 
-            _wax9Streamer = new RabbitMqStreamer<Wax9Data>("amqp://streamer@192.168.1.102", "kitchen", "wax9");
+            _wax9Streamer = new RabbitMqStreamer<Wax9Data>("amqp://streamer@192.168.1.102", "kitchen");
 
             ConnectedDevices = new ObservableCollection<string>();
 

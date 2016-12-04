@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Numerics;
-using OpenLab.Kitchen.Service.Models;
 using System.Linq;
+using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.Recogniser.Library
 {
@@ -18,7 +18,7 @@ namespace OpenLab.Kitchen.Recogniser.Library
             var vector = new Vector3(data.AccX, data.AccY, data.AccZ);
 
             Wax3State oldState;
-            States.TryGetValue(data.DeviceIdString(), out oldState);
+            States.TryGetValue(data.IdString(), out oldState);
             var newState = new Wax3State
             {
                 Timestamp = data.Timestamp,
@@ -32,7 +32,7 @@ namespace OpenLab.Kitchen.Recogniser.Library
                 newState.TimeAlive = 0;
                 newState.Noise = vector.Length();
 
-                States.Add(data.DeviceIdString(), newState);
+                States.Add(data.IdString(), newState);
             }
             else
             {
@@ -50,7 +50,7 @@ namespace OpenLab.Kitchen.Recogniser.Library
 
                 newState.Noise = (oldState.Noise + vector.Length()) / 2f;
 
-                States[data.DeviceIdString()] = newState;
+                States[data.IdString()] = newState;
             }
 
             OnStateChanged(this, newState);

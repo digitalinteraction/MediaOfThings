@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace OpenLab.Kitchen.Service.Models
+﻿namespace OpenLab.Kitchen.Service.Models
 {
     public class Wax3Data : DataModel
     {
@@ -16,7 +10,7 @@ namespace OpenLab.Kitchen.Service.Models
 
         public float AccZ { get; set; }
 
-        public override string DeviceIdString()
+        public override string IdString()
         {
             return DeviceId.ToString();
         }

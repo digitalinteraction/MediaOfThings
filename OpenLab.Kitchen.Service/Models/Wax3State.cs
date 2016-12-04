@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.Service.Models
 {
@@ -17,7 +14,7 @@ namespace OpenLab.Kitchen.Service.Models
 
         public float Noise { get; set; }
 
-        public override string DeviceIdString()
+        public override string IdString()
         {
             return DeviceId.ToString();
         }

@@ -11,9 +11,9 @@ namespace OpenLab.Kitchen.Repository
     {
         private readonly MongoConnection<T> _mongoConnection;
 
-        public MongoRepository(string connectionString, string collectionName)
+        public MongoRepository(string connectionString)
         {
-            _mongoConnection = new MongoConnection<T>(connectionString, collectionName);
+            _mongoConnection = new MongoConnection<T>(connectionString, typeof(T).Name);
         }
 
         public IQueryable<T> GetAll()

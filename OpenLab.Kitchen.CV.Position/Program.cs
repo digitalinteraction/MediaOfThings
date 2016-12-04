@@ -9,6 +9,7 @@ using Emgu.CV.Util;
 using OpenLab.Kitchen.Repository;
 using OpenLab.Kitchen.Service.Interfaces;
 using OpenLab.Kitchen.Service.Models;
+using OpenLab.Kitchen.Service.Values;
 
 namespace OpenLab.Kitchen.CV.Position
 {

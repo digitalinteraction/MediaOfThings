@@ -1,23 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Devices.Bluetooth;
 using Windows.Devices.Bluetooth.Advertisement;
 using Windows.Devices.Bluetooth.GenericAttributeProfile;
 using Windows.Devices.Enumeration;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Core;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using OpenLab.Kitchen.Service.Interfaces;
 using OpenLab.Kitchen.Service.Models;
 using OpenLab.Kitchen.StreamingRepository;
@@ -46,7 +36,7 @@ namespace OpenLab.Kitchen.Receiver.Bluetooth
         {
             this.InitializeComponent();
 
-            _scalesStreamer = new RabbitMqStreamer<ScalesData>("amqp://streamer@192.68.1.102", "kitchen", "scales");
+            _scalesStreamer = new RabbitMqStreamer<ScalesData>("amqp://streamer@192.68.1.102", "kitchen");
 
             ScalesWatcher = new BluetoothLEAdvertisementWatcher { ScanningMode = BluetoothLEScanningMode.Active };
             ScalesWatcher.Received += ScaleFound;

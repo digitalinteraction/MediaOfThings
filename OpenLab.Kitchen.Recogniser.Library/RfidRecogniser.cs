@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using System.Security.Cryptography;
 using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.Recogniser.Library
@@ -17,7 +16,7 @@ namespace OpenLab.Kitchen.Recogniser.Library
             base.Update(data);
 
             RfidState oldState;
-            States.TryGetValue(data.DeviceIdString(), out oldState);
+            States.TryGetValue(data.IdString(), out oldState);
             var newState = new RfidState
             {
                 Timestamp = data.Timestamp,
@@ -38,7 +37,7 @@ namespace OpenLab.Kitchen.Recogniser.Library
                     });
                 }
 
-                States.Add(data.DeviceIdString(), newState);
+                States.Add(data.IdString(), newState);
             }
             else
             {
@@ -65,9 +64,8 @@ namespace OpenLab.Kitchen.Recogniser.Library
                     }
                 }
 
-                States[data.DeviceIdString()] = newState;
+                States[data.IdString()] = newState;
             }
-
             OnStateChanged(this, newState);
         }
 

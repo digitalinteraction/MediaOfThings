@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using OpenLab.Kitchen.Recogniser.Library.Interfaces;
 using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.Recogniser.Library
 {
-    public class ReplayManager<T, S> : IReplayManager<S> where T : DataModel
+    public class ReplayManager<T, S> : IReplayManager<S> where T : DataModel where S : DataModel
     {
         private readonly IRecogniser<T, S> _recogniser;
         private readonly IEnumerable<T> _dataset;

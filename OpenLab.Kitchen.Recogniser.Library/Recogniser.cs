@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
-using System.Text;
 using OpenLab.Kitchen.Recogniser.Library.Interfaces;
+using OpenLab.Kitchen.Recogniser.Library.Values;
 using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.Recogniser.Library

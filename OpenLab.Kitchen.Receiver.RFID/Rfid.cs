@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Timers;
 using OBID;
 using OpenLab.Kitchen.Service.Interfaces;
@@ -19,7 +17,7 @@ namespace OpenLab.Kitchen.Receiver.Rfid
 
         public Rfid()
         {
-            _rfidSendRepository = new RabbitMqStreamer<RfidData>("amqp://streamer@192.168.1.102", "kitchen", "rfid");
+            _rfidSendRepository = new RabbitMqStreamer<RfidData>("amqp://streamer@192.168.1.102", "kitchen");
             Devices = new Dictionary<int, FedmIscReader>();
         }
 

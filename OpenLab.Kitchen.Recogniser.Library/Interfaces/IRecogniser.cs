@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using OpenLab.Kitchen.Recogniser.Library.Values;
 using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.Recogniser.Library.Interfaces
 {
-    public delegate void StateChangedEventHandler<S>(object sender, S state);
-
-    public interface IRecogniser<T, S> where T : DataModel
+    public interface IRecogniser<T, S> where T : DataModel where S : DataModel
     {
         event StateChangedEventHandler<S> StateChanged;
         void Update(T data);
