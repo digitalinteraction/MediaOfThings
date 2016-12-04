@@ -13,7 +13,9 @@ namespace OpenLab.Kitchen.Recogniser.Library
 
         public AoiClassifier(DateTime startTime, IEnumerable<Area> areas)
         {
-            
+            Clock = startTime;
+
+            _aoiStates = new Dictionary<Area, double>(areas.ToArray().Select);
         }
     }
 }
