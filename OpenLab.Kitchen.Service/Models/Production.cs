@@ -12,7 +12,7 @@ namespace OpenLab.Kitchen.Service.Models
 
         public Dictionary<string, string> RfidConfig { get; set; }
 
-        public Dictionary<int, string> SmappeeConfig { get; set; }
+        public IEnumerable<Appliance> SmappeeConfig { get; set; }
 
         public Dictionary<int, string> Wax3Config { get; set; }
 
@@ -38,6 +38,8 @@ namespace OpenLab.Kitchen.Service.Models
     public class Appliance
     {
         public int Id { get; set; }
+
+        public string Name { get; set; }
 
         public string AssociatedTransponder { get; set; }
     }

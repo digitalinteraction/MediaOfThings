@@ -44,7 +44,6 @@ namespace OpenLab.Kitchen.Repository
                 var stringStringSerial = new DictionaryInterfaceImplementerSerializer<Dictionary<string, string>>(DictionaryRepresentation.ArrayOfArrays);
                 var intStringSerial = new DictionaryInterfaceImplementerSerializer<Dictionary<int, string>>(DictionaryRepresentation.ArrayOfArrays);
                 cm.GetMemberMap(c => c.RfidConfig).SetSerializer(stringStringSerial);
-                cm.GetMemberMap(c => c.SmappeeConfig).SetSerializer(intStringSerial);
                 cm.GetMemberMap(c => c.Wax3Config).SetSerializer(intStringSerial);
             });
         }

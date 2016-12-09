@@ -9,14 +9,16 @@ namespace OpenLab.Kitchen.Recogniser.Library
 {
     public class AoiClassifier : IRecogniser<Wax3State, AoiState>, IRecogniser<RfidState, AoiState>, IRecogniser<ApplianceEvent, AoiState>
     {
+        private const double MaxConfidence = 2.0;
         private const double PresentationTimeout = 2000;
         public struct Significance
         {
             public const double Rfid = 0.2;
             public const double PresentationRfid = 1;
             public const double Wax3 = 0.001;
-            public const double Appliance = 1;
-            public const double Timeout = 0.01;
+            public const double ApplianceStart = 1;
+            public const double ApplianceStop = -1;
+            public const double Decay = -0.01;
         }
 
         private DateTime Clock { get; set; }
@@ -26,10 +28,8 @@ namespace OpenLab.Kitchen.Recogniser.Library
 
         public event StateChangedEventHandler<AoiState> StateChanged;
 
-        public AoiClassifier(DateTime startTime, Production production)
+        public AoiClassifier(Production production)
         {
-            Clock = startTime;
-
             _production = production;
             _aoiStates = production.AreaConfig.ToDictionary(a => a.Id, a => new AoiState { AreaId = a.Id, Value =  0.0 });
             _padStates = new Dictionary<string, IEnumerable<TransponderState>>();
@@ -39,13 +39,14 @@ namespace OpenLab.Kitchen.Recogniser.Library
         {
             if (!data.Active) return;
 
-            foreach (var area in _aoiStates.Keys)
+            foreach (var area in _aoiStates.Keys.ToArray())
             {
                 var oldState = _aoiStates[area];
                 var newState = new AoiState
                 {
+                    Timestamp = data.Timestamp,
                     AreaId = area,
-                    Value = oldState.Value += Significance.Wax3,
+                    Value = UpdateConfidence(oldState.Value, Significance.Wax3),
                     IsPresentation = oldState.IsPresentation,
                     PresentationStarted = oldState.PresentationStarted
                 };
@@ -68,11 +69,12 @@ namespace OpenLab.Kitchen.Recogniser.Library
                 var oldState = _aoiStates[area.Id];
                 var newState = new AoiState
                 {
+                    Timestamp = data.Timestamp,
                     AreaId = area.Id,
                     IsPresentation = oldState.IsPresentation,
                     PresentationStarted = oldState.PresentationStarted
                 };
-                newState.Value = oldState.Value + Significance.Rfid;
+                newState.Value = UpdateConfidence(oldState.Value, Significance.Rfid);
 
                 if (area.PresentationPads.Contains(data.DeviceId))
                 {
@@ -87,51 +89,57 @@ namespace OpenLab.Kitchen.Recogniser.Library
 
         public void Update(ApplianceEvent data)
         {
-            var at = _production.SmappeeConfig[data.ApplianceId]; //.AssociatedTransponder;
-            /*if (!string.IsNullOrEmpty(at))
+            var app = _production.SmappeeConfig.SingleOrDefault(a => a.Id == data.ApplianceId);
+
+            if (app == default(Appliance) || string.IsNullOrEmpty(app.AssociatedTransponder)) return;
+
+            var pad = _padStates.SingleOrDefault(p => p.Value.Any(t => t.Id == app.AssociatedTransponder && t.Active)).Key;
+            if (!string.IsNullOrEmpty(pad))
             {
-                var pad = _padStates.SingleOrDefault(p => p.Value.Any(t => t.Id == at)).Key;
-                if (!string.IsNullOrEmpty(pad))
+                var areas = GetAssociatedAreas(pad);
+
+                foreach (var area in areas)
                 {
-                    var areas = GetAssociatedAreas(pad);
-
-                    foreach (var area in areas)
+                    var oldState = _aoiStates[area.Id];
+                    var newState = new AoiState
                     {
-                        var oldState = _aoiStates[area.Id];
-                        var newState = new AoiState { AreaId = area.Id };
+                        Timestamp = data.Timestamp,
+                        AreaId = area.Id
+                    };
 
-                        if (data.WattChange > 0)
-                        {
-                            newState.Value = oldState.Value + Significance.Appliance;
-                        }
-                        else
-                        {
-                            newState.Value = oldState.Value - Significance.Appliance;
-                            if (newState.Value < 0) newState.Value = 0;
-                        }
-
-                        _aoiStates[area.Id] = newState;
-                        StateChanged(this, newState);
+                    if (data.WattChange > 0)
+                    {
+                        newState.Value = UpdateConfidence(oldState.Value, Significance.ApplianceStart);
                     }
+                    else
+                    {
+                        newState.Value = UpdateConfidence(oldState.Value, Significance.ApplianceStop);
+                        if (newState.Value < 0) newState.Value = 0;
+                    }
+
+                    _aoiStates[area.Id] = newState;
+                    StateChanged(this, newState);
                 }
-            }*/
+            }
         }
 
         public void UpdateClock(DateTime newClock)
         {
+            var lastClock = Clock != default(DateTime) ? Clock : newClock;
             Clock = newClock;
 
-            foreach (var area in _aoiStates.Keys)
+            foreach (var area in _aoiStates.Keys.ToArray())
             {
                 var oldState = _aoiStates[area];
                 var newState = new AoiState
                 {
+                    Timestamp = Clock,
                     AreaId = area,
                     IsPresentation = oldState.IsPresentation,
                     PresentationStarted = oldState.PresentationStarted
                 };
 
-                newState.Value = oldState.Value -= Significance.Timeout;
+                newState.Value = UpdateConfidence(oldState.Value, Significance.Decay * (Clock - lastClock).TotalSeconds);
 
                 if (newState.IsPresentation)
                 {
@@ -144,6 +152,12 @@ namespace OpenLab.Kitchen.Recogniser.Library
                 _aoiStates[area] = newState;
                 StateChanged(this, newState);
             }
+        }
+
+        private double UpdateConfidence(double current, double increment)
+        {
+            var newValue = current + increment;
+            return newValue < 0 ? 0.0 : newValue > MaxConfidence ? MaxConfidence : newValue;
         }
 
         private IEnumerable<Area> GetAssociatedAreas(string padId)

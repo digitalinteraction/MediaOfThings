@@ -7,9 +7,9 @@ namespace OpenLab.Kitchen.Viewer.Controllers
 {
     public class ProductionController : Controller
     {
-        private readonly IReadWriteRepository<Production> _productionRepository;
+        private readonly IReadOnlyRepository<Production> _productionRepository;
 
-        public ProductionController(IReadWriteRepository<Production> productionRepository)
+        public ProductionController(IReadOnlyRepository<Production> productionRepository)
         {
             _productionRepository = productionRepository;
         }

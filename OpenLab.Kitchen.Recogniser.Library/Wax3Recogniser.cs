@@ -9,7 +9,7 @@ namespace OpenLab.Kitchen.Recogniser.Library
     {
         private const double AliveThreshold = 5000;
 
-        public Wax3Recogniser(DateTime startTime) : base(startTime) {}
+        public Wax3Recogniser() : base() {}
 
         public override void Update(Wax3Data data)
         {
@@ -38,7 +38,7 @@ namespace OpenLab.Kitchen.Recogniser.Library
             {
                 // Update Time Alive if considered to be continous
                 var millisecondsSinceLast = (oldState.LastAlive - data.Timestamp).TotalMilliseconds;
-                if (millisecondsSinceLast < ALIVETHRESHOLD)
+                if (millisecondsSinceLast < AliveThreshold)
                 {
                     newState.TimeAlive = oldState.TimeAlive + millisecondsSinceLast;
                 }

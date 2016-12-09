@@ -17,11 +17,18 @@ namespace OpenLab.Kitchen.WebApi.Controllers
             _waterFlowRepository = waterFlowRepository;
         }
 
-        // GET api/waterflow?starttime=1000?endtime=2000
-        [HttpGet("{starttime:datetime}/{endtime:datetime}")]
-        public IEnumerable<WaterFlow> Get(DateTime starttime, DateTime endTime)
+        // GET api/waterflow
+        [HttpGet]
+        public IEnumerable<WaterFlow> Get()
         {
-            return _waterFlowRepository.GetAll().Where(w => w.Timestamp >= starttime && w.Timestamp <= endTime);
+            return _waterFlowRepository.GetAll();
+        }
+
+        // GET api/waterflow?start={start}&end={end}
+        [HttpGet]
+        public IEnumerable<WaterFlow> Get([FromQuery]DateTime start, [FromQuery]DateTime end)
+        {
+            return Get().Where(w => w.Timestamp >= start && w.Timestamp < end);
         }
 
         // GET api/waterflow/5

@@ -23,8 +23,8 @@ namespace OpenLab.Kitchen.CV.Position
 
         static void Main(string[] args)
         {
-            IReadOnlyRepository<Production> productionRepository = new MongoRepository<Production>("mongodb://192.168.1.101/kitchen", "Production");
-            IReadWriteRepository<GTLocation> locationRepository = new MongoRepository<GTLocation>("mongodb://192.168.1.101/kitchen", "GTLocation");
+            IReadOnlyRepository<Production> productionRepository = new MongoRepository<Production>("mongodb://192.168.1.101/kitchen");
+            IReadWriteRepository<GTLocation> locationRepository = new MongoRepository<GTLocation>("mongodb://192.168.1.101/kitchen");
 
             Console.WriteLine("Retrieving Productions...");
             var productions = productionRepository.GetAll();

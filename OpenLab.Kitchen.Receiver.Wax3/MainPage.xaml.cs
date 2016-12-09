@@ -30,7 +30,7 @@ namespace OpenLab.Kitchen.Receiver.Wax3
             Devices = new ObservableCollection<string>();
             
             ConnectToSerialPort();
-            _waxSendRepository = new RabbitMqStreamer<Wax3Data>("amqp://streamer@192.168.1.102", "kitchen", "wax3");
+            _waxSendRepository = new RabbitMqStreamer<Wax3Data>("amqp://streamer@192.168.1.102", "kitchen");
             MQConnected.IsChecked = true;
 
             DevicesConnected.ItemsSource = Devices;

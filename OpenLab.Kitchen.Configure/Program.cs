@@ -55,9 +55,8 @@ namespace OpenLab.Kitchen.Configure
                         }
 
                         var url = new Uri(mpd);
-                        url = new Uri(cameras[name],
-                            webMediaPrefix.TrimEnd('/') + "/" +
-                            string.Join("", url.Segments.Take(url.Segments.Length - 1))
+                        url = new Uri(cameras[name].AbsoluteUri + '/' + webMediaPrefix + "/" +
+                                string.Join("", url.Segments.Take(url.Segments.Length - 1))
                                 .TrimStart(Path.AltDirectorySeparatorChar));
 
                         var request = WebRequest.Create(url + "playback.mpd");
@@ -102,14 +101,19 @@ namespace OpenLab.Kitchen.Configure
             production.Takes = takes;
 
             Console.WriteLine($"Path to Smappee Appliance Config: {smappeePath}");
-            production.SmappeeConfig = new Dictionary<int, string>();
+            var smappeeConfig = new List<Appliance>();
             var applianceJson = File.ReadAllText(smappeePath);
             dynamic appliances = JsonConvert.DeserializeObject(applianceJson);
             foreach (var item in appliances.appliances)
             {
-                production.SmappeeConfig.Add(int.Parse(item.id.ToString()), item.name.ToString());
+                smappeeConfig.Add(new Appliance
+                {
+                    Id = int.Parse(item.id.ToString()),
+                    Name = item.name.ToString()
+                });
             }
-
+            production.SmappeeConfig = smappeeConfig;
+            
             Console.WriteLine($"Path to Rfid Config: {rfidPath}");
             production.RfidConfig = new Dictionary<string, string>();
             var rfidJson = File.ReadAllText(rfidPath);
@@ -136,6 +140,7 @@ namespace OpenLab.Kitchen.Configure
             {
                 var newArea = new Area
                 {
+                    Id = Guid.NewGuid(),
                     GTRegionStart = item.gtRegionStart,
                     GTRegionStop = item.gtRegionStop
                 };

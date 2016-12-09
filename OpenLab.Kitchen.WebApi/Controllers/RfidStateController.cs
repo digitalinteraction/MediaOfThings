@@ -4,8 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using OpenLab.Kitchen.Service.Interfaces;
 using OpenLab.Kitchen.Service.Models;
 
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace OpenLab.Kitchen.WebApi.Controllers
 {
     [Route("api/[controller]")]

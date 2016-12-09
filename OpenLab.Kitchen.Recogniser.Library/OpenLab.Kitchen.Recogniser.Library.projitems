@@ -10,7 +10,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AoiClassifier.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ClassifierReplayManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AoiReplayManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IReplayManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IStreamManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRecogniser.cs" />
@@ -18,6 +18,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)ReplayManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)RfidRecogniser.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)StreamManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\AoiValidator.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Validation\ValidationResult.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Values\EventHandlers.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Wax3Recogniser.cs" />
   </ItemGroup>

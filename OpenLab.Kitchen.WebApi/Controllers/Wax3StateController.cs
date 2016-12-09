@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using OpenLab.Kitchen.Service.Interfaces;
 using OpenLab.Kitchen.Service.Models;
-
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+using System.Linq;
 
 namespace OpenLab.Kitchen.WebApi.Controllers
 {
@@ -23,6 +22,13 @@ namespace OpenLab.Kitchen.WebApi.Controllers
         public IEnumerable<Wax3State> Get()
         {
             return _wax3StateRepository.GetAll();
+        }
+
+        // GET api/wax3state?start={start}&end={end}
+        [HttpGet]
+        public IEnumerable<Wax3State> Get(DateTime start, DateTime end)
+        {
+            return Get().Where(w => w.Timestamp >= start && w.Timestamp < end);
         }
 
         // GET api/wax3state/5

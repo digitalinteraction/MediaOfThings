@@ -4,16 +4,14 @@ using Microsoft.AspNetCore.Mvc;
 using OpenLab.Kitchen.Service.Interfaces;
 using OpenLab.Kitchen.Service.Models;
 
-// For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace OpenLab.Kitchen.WebApi.Controllers
 {
     [Route("api/[controller]")]
     public class ProductionController : Controller
     {
-        private readonly IReadOnlyRepository<Production> _productionRepository;
+        private readonly IReadWriteRepository<Production> _productionRepository;
 
-        public ProductionController(IReadOnlyRepository<Production> productionRepository)
+        public ProductionController(IReadWriteRepository<Production> productionRepository)
         {
             _productionRepository = productionRepository;
         }
@@ -30,6 +28,27 @@ namespace OpenLab.Kitchen.WebApi.Controllers
         public Production Get(Guid id)
         {
             return _productionRepository.GetById(id);
+        }
+
+        // POST api/production
+        [HttpPost]
+        public void Post([FromBody]Production value)
+        {
+            _productionRepository.Insert(value);
+        }
+
+        // PUT api/production/5
+        [HttpPut("{id}")]
+        public void Put([FromBody]Production value)
+        {
+            _productionRepository.Update(value);
+        }
+
+        // DELETE api/production/5
+        [HttpDelete("{id}")]
+        public void Delete(Guid id)
+        {
+            _productionRepository.Delete(_productionRepository.GetById(id));
         }
     }
 }

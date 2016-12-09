@@ -17,11 +17,11 @@ namespace OpenLab.Kitchen.WebApi.Controllers
             _wax9Repository = wax9Repository;
         }
 
-        // GET api/wax9?starttime=1000?endtime=2000
-        [HttpGet("{starttime:datetime}/{endtime:datetime}")]
-        public IEnumerable<Wax9Data> Get(DateTime starttime, DateTime endTime)
+        // GET api/wax9
+        [HttpGet]
+        public IEnumerable<Wax9Data> Get()
         {
-            return _wax9Repository.GetAll().Where(w => w.Timestamp >= starttime && w.Timestamp <= endTime);
+            return _wax9Repository.GetAll();
         }
 
         // GET api/wax9/5

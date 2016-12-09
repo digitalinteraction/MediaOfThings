@@ -13,9 +13,8 @@ namespace OpenLab.Kitchen.Recogniser.Library
 
         public event StateChangedEventHandler<S> StateChanged;
 
-        public Recogniser(DateTime startTime)
+        public Recogniser()
         {
-            Clock = startTime;
             States = new Dictionary<string, S>();
         }
 

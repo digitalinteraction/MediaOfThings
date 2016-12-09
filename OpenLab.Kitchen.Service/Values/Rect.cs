@@ -1,10 +1,10 @@
 ﻿namespace OpenLab.Kitchen.Service.Values
 {
-    public struct Rect
+    public class Rect
     {
-        public double X;
-        public double Y;
-        public double Width;
-        public double Height;
+        public double X { get; set; }
+        public double Y { get; set; }
+        public double Width { get; set; }
+        public double Height { get; set; }
     }
 }
