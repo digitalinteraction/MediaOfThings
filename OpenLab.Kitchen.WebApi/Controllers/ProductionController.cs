@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using OpenLab.Kitchen.Service.Interfaces;
 using OpenLab.Kitchen.Service.Models;
@@ -18,7 +18,7 @@ namespace OpenLab.Kitchen.WebApi.Controllers
 
         // GET: api/production
         [HttpGet]
-        public IEnumerable<Production> Get()
+        public IQueryable<Production> Get()
         {
             return _productionRepository.GetAll();
         }

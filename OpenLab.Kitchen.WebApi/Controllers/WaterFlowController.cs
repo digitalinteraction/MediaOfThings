@@ -19,16 +19,16 @@ namespace OpenLab.Kitchen.WebApi.Controllers
 
         // GET api/waterflow
         [HttpGet]
-        public IEnumerable<WaterFlow> Get()
+        public IQueryable<WaterFlow> Get()
         {
             return _waterFlowRepository.GetAll();
         }
 
         // GET api/waterflow?start={start}&end={end}
-        [HttpGet]
-        public IEnumerable<WaterFlow> Get([FromQuery]DateTime start, [FromQuery]DateTime end)
+        [HttpGet("timerange")]
+        public IQueryable<WaterFlow> Get(DateTime start, DateTime end)
         {
-            return Get().Where(w => w.Timestamp >= start && w.Timestamp < end);
+            return Get().Where(w => w.Timestamp >= start.ToUniversalTime() && w.Timestamp < end.ToUniversalTime());
         }
 
         // GET api/waterflow/5

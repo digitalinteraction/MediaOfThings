@@ -128,8 +128,8 @@ namespace OpenLab.Kitchen.Recogniser
             IReadWriteRepository<AoiState> aoiStateRepository = new MongoRepository<AoiState>(MongoDBConnectionString);
 
             Console.WriteLine("Reading Replay Dataset...");
-            var wax3Data = wax3Repository.GetAll().ToList().Where(d => d.Timestamp.Date == production.Takes.First().Media.First().StartTime.Date).OrderBy(d => d.Timestamp);
-            var rfidData = rfidRepository.GetAll().ToList().Where(d => d.Timestamp.Date == production.Takes.First().Media.First().StartTime.Date).OrderBy(d => d.Timestamp);
+            var wax3Data = wax3Repository.GetAll().ToList().Where(d => d.Timestamp.Date == production.Takes.First().Media.First().StartTime.Date).OrderBy(d => d.Timestamp).AsQueryable();
+            var rfidData = rfidRepository.GetAll().ToList().Where(d => d.Timestamp.Date == production.Takes.First().Media.First().StartTime.Date).OrderBy(d => d.Timestamp).AsQueryable();
 
             if (!wax3Data.Any() || !rfidData.Any())
             {
@@ -149,8 +149,8 @@ namespace OpenLab.Kitchen.Recogniser
             wax3ReplayManager.Process();
             rfidReplayManager.Process();
 
-            var wax3States = wax3ReplayManager.GetStates();
-            var rfidStates = rfidReplayManager.GetStates();
+            var wax3States = wax3ReplayManager.GetStates().AsQueryable();
+            var rfidStates = rfidReplayManager.GetStates().AsQueryable();
 
             Console.WriteLine("    Inserting States into MongoDB...");
             wax3StateRepository.InsertMany(wax3States);
@@ -181,8 +181,8 @@ namespace OpenLab.Kitchen.Recogniser
 
             Console.WriteLine("Starting Aoi Validator...");
             var aoiValidator = new AoiValidator(production,
-                aoiRepository.GetAll().ToArray().Where(d => d.Timestamp.Date == production.Takes.First().Media.First().StartTime.Date),
-                gtLocationRepository.GetAll().ToArray().Where(d => d.Timestamp.Date == production.Takes.First().Media.First().StartTime.Date));
+                aoiRepository.GetAll().ToArray().Where(d => d.Timestamp.Date == production.Takes.First().Media.First().StartTime.Date).AsQueryable(),
+                gtLocationRepository.GetAll().ToArray().Where(d => d.Timestamp.Date == production.Takes.First().Media.First().StartTime.Date).AsQueryable());
 
             Console.WriteLine("    Running Area Validation...");
             var areaResult = aoiValidator.ValidateAllAreas(1.0);

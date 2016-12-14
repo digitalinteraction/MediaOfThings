@@ -19,9 +19,16 @@ namespace OpenLab.Kitchen.WebApi.Controllers
 
         // GET api/rfid
         [HttpGet]
-        public IEnumerable<RfidData> Get()
+        public IQueryable<RfidData> Get()
         {
             return _rfidRepository.GetAll();
+        }
+
+        // GET api/rfid/timerange?start={start}&end={end}
+        [HttpGet("timerange")]
+        public IQueryable<RfidData> Get(DateTime start, DateTime end)
+        {
+            return Get().Where(w => w.Timestamp >= start.ToUniversalTime() && w.Timestamp < end.ToUniversalTime());
         }
 
         // GET api/rfid/5

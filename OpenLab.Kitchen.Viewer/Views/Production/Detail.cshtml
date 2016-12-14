@@ -83,14 +83,16 @@
                         <tr>
                             <th>Item</th>
                             <th>Smappee Id</th>
+                            <th>Transponder</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach (var smap in Model.SmappeeConfig)
                         {
                             <tr>
-                                <td>@Html.DisplayFor(modelItem => smap.Value)</td>
-                                <td>@Html.DisplayFor(modelItem => smap.Key)</td>
+                                <td>@Html.DisplayFor(modelItem => smap.Name)</td>
+                                <td>@Html.DisplayFor(modelItem => smap.Id)</td>
+                                <td>@Html.DisplayFor(modelItem => smap.AssociatedTransponder)</td>
                             </tr>
                         }
                         </tbody>

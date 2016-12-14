@@ -8,11 +8,11 @@ namespace OpenLab.Kitchen.Recogniser.Library
     public class ReplayManager<T, S> : IReplayManager<S> where T : DataModel where S : DataModel
     {
         private readonly IRecogniser<T, S> _recogniser;
-        private readonly IEnumerable<T> _dataset;
+        private readonly IQueryable<T> _dataset;
 
         public ICollection<S> States { get; }
 
-        public ReplayManager(IRecogniser<T, S> recogniser, IEnumerable<T> dataset)
+        public ReplayManager(IRecogniser<T, S> recogniser, IQueryable<T> dataset)
         {
             _recogniser = recogniser;
             _dataset = dataset;

@@ -11,10 +11,10 @@ namespace OpenLab.Kitchen.Recogniser.Library.Validation
         private const double GTTimeout = 5000;
 
         private readonly Production _production;
-        private readonly IEnumerable<AoiState> _aois;
-        private readonly IEnumerable<GTLocation> _groundTruth;
+        private readonly IQueryable<AoiState> _aois;
+        private readonly IQueryable<GTLocation> _groundTruth;
 
-        public AoiValidator(Production production, IEnumerable<AoiState> aois, IEnumerable<GTLocation> groundTruth)
+        public AoiValidator(Production production, IQueryable<AoiState> aois, IQueryable<GTLocation> groundTruth)
         {
             _production = production;
             _aois = aois.OrderBy(a => a.Timestamp);

@@ -53,11 +53,11 @@ namespace OpenLab.Kitchen.Repository
             return _database;
         }
 
-        public IEnumerable<string>  GetCollectionNames()
+        public IQueryable<string>  GetCollectionNames()
         {
             var collections = _database.ListCollectionsAsync();
             collections.Wait();
-            return collections.Result.Current.Select(c => c["name"].AsString);
+            return collections.Result.Current.Select(c => c["name"].AsString).AsQueryable();
         }
 
         public IMongoCollection<T> GetCollection()

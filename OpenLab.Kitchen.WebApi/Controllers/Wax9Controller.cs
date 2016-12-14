@@ -19,9 +19,16 @@ namespace OpenLab.Kitchen.WebApi.Controllers
 
         // GET api/wax9
         [HttpGet]
-        public IEnumerable<Wax9Data> Get()
+        public IQueryable<Wax9Data> Get()
         {
             return _wax9Repository.GetAll();
+        }
+
+        // GET api/wax9/timerange?start={start}&end={end}
+        [HttpGet("timerange")]
+        public IQueryable<Wax9Data> Get(DateTime start, DateTime end)
+        {
+            return Get().Where(w => w.Timestamp >= start.ToUniversalTime() && w.Timestamp < end.ToUniversalTime());
         }
 
         // GET api/wax9/5

@@ -20,9 +20,16 @@ namespace OpenLab.Kitchen.WebApi.Controllers
 
         // GET: api/aoistate
         [HttpGet]
-        public IEnumerable<AoiState> Get()
+        public IQueryable<AoiState> Get()
         {
             return _aoiStateRepository.GetAll();
+        }
+
+        // GET api/aoistate/timerange?start={start}&end={end}
+        [HttpGet("timerange")]
+        public IQueryable<AoiState> Get(DateTime start, DateTime end)
+        {
+            return Get().Where(w => w.Timestamp >= start.ToUniversalTime() && w.Timestamp < end.ToUniversalTime());
         }
 
         // GET api/aoistate/5

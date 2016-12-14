@@ -9,13 +9,13 @@ namespace OpenLab.Kitchen.Recogniser.Library
     public class AoiReplayManager : IReplayManager<AoiState>
     {
         private readonly AoiClassifier _classifier;
-        private readonly IEnumerable<Wax3State> _wax3StateDataset;
-        private readonly IEnumerable<RfidState> _rfidStateDataset;
-        private readonly IEnumerable<ApplianceEvent> _appEventDataset;
+        private readonly IQueryable<Wax3State> _wax3StateDataset;
+        private readonly IQueryable<RfidState> _rfidStateDataset;
+        private readonly IQueryable<ApplianceEvent> _appEventDataset;
 
         public ICollection<AoiState> States { get; }
 
-        public AoiReplayManager(AoiClassifier classifier, IEnumerable<Wax3State> wax3StateDataset, IEnumerable<RfidState> rfidStateDataset, IEnumerable<ApplianceEvent> appEventDataset)
+        public AoiReplayManager(AoiClassifier classifier, IQueryable<Wax3State> wax3StateDataset, IQueryable<RfidState> rfidStateDataset, IQueryable<ApplianceEvent> appEventDataset)
         {
             _classifier = classifier;
 
