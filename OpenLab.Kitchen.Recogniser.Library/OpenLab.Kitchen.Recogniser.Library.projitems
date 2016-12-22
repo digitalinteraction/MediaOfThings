@@ -11,6 +11,7 @@
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)AoiClassifier.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)AoiReplayManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)AutoDirector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IReplayManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IStreamManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRecogniser.cs" />

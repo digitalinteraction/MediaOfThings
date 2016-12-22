@@ -5,6 +5,10 @@
 
 <div>
     <h4>@Html.DisplayFor(model => model.Name)</h4>
+    <div class="btn-group">
+        <a class="btn btn-default" asp-action="CamSet" asp-route-id="@Model.Id">Camera Setup</a>
+        <a class="btn btn-default" asp-action="Review" asp-route-id="@Model.Id">Review</a>
+    </div>
     <hr/>
     <div class="row">
         <div class="col-md-6">
@@ -12,7 +16,7 @@
             <table class="table table-striped">
                 <thead>
                 <tr>
-                    <th>Name</th><th></th>
+                    <th>Name</th><th></th><th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -21,7 +25,8 @@
                     {
                         <tr>
                             <td>@Html.DisplayFor(modelItem => takes[i].Name)</td>
-                            <td><a asp-action="Player" asp-route-productionId="@Model.Id" asp-route-take="@i">Open Player</a></td>
+                            <td><a asp-action="Player" asp-route-id="@Model.Id" asp-route-take="@i">Open Player</a></td>
+                            <td><a asp-action="Review" asp-route-id="@Model.Id" asp-route-take="@i">Review</a></td>
                         </tr>
                     }
                 </tbody>

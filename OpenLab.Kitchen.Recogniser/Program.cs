@@ -137,7 +137,7 @@ namespace OpenLab.Kitchen.Recogniser
                 return;
             } 
 
-            Console.WriteLine("    Starting Activity Recognisers...");
+            Console.WriteLine("Starting Activity Recognisers...");
             IRecogniser<Wax3Data, Wax3State> wax3Recogniser = new Wax3Recogniser();
             IRecogniser<RfidData, RfidState> rfidRecogniser = new RfidRecogniser();
 
@@ -180,9 +180,7 @@ namespace OpenLab.Kitchen.Recogniser
             IReadOnlyRepository<GTLocation> gtLocationRepository = new MongoRepository<GTLocation>(MongoDBConnectionString);
 
             Console.WriteLine("Starting Aoi Validator...");
-            var aoiValidator = new AoiValidator(production,
-                aoiRepository.GetAll().ToArray().Where(d => d.Timestamp.Date == production.Takes.First().Media.First().StartTime.Date).AsQueryable(),
-                gtLocationRepository.GetAll().ToArray().Where(d => d.Timestamp.Date == production.Takes.First().Media.First().StartTime.Date).AsQueryable());
+            var aoiValidator = new AoiValidator(production, aoiRepository.GetAll().ToList().AsQueryable(), gtLocationRepository.GetAll().ToList().AsQueryable());
 
             Console.WriteLine("    Running Area Validation...");
             var areaResult = aoiValidator.ValidateAllAreas(1.0);
@@ -200,10 +198,10 @@ namespace OpenLab.Kitchen.Recogniser
             var groupResult = aoiValidator.ValidateGroups(1.0);
 
             Console.WriteLine("        Group Validation Matrix:");
-            for (var i = 0; i < groupResult.CM.Length; i++)
+            for (var i = 0; i < groupResult.CM.GetLength(0); i++)
             {
                 Console.Write("      ");
-                for (var j = 0; j < groupResult.CM.Length; j++)
+                for (var j = 0; j < groupResult.CM.GetLength(1); j++)
                 {
                     Console.Write($"  {groupResult.CM[i,j]}");
                 }

@@ -31,7 +31,7 @@ namespace OpenLab.Kitchen.Recogniser.Library.Validation
             var timings = new double[4];
 
             var lastTime = _groundTruth.First().Timestamp;
-            var aois = _aois.Where(a => a.Id == area).ToArray();
+            var aois = _aois.Where(a => a.AreaId == area).ToArray();
             var index = 0;
 
             foreach (var gt in _groundTruth)
@@ -88,6 +88,10 @@ namespace OpenLab.Kitchen.Recogniser.Library.Validation
         {
             var areas = _production.AreaConfig.ToArray();
             var matrix = InitialiseCM(areas.Length, 0);
+            var aoiState = areas.ToDictionary(a => a.Id, a => new AoiState { Value = 0});
+
+            var aois = _aois.ToArray();
+            var index = 0;
 
             var lastTime = _groundTruth.First().Timestamp;
 
@@ -104,14 +108,18 @@ namespace OpenLab.Kitchen.Recogniser.Library.Validation
 
                 totalTime += period.TotalMilliseconds;
 
-                var maxAoi =
-                    _aois.Where(s => s.Timestamp < gt.Timestamp)
-                        .GroupBy(s => s.AreaId)
-                        .Select(g => g.OrderBy(s => s.Timestamp).FirstOrDefault())
-                        .Where(s => s != default(AoiState))
-                        .OrderBy(s => s.Value).FirstOrDefault();
+                while (index < aois.Length && aois[index].Timestamp < gt.Timestamp)
+                {
+                    var current = aois[index];
+                    aoiState[current.AreaId] = current;
+                    index++;
+                }
 
-                if (maxAoi == null) continue;
+                if (index >= aois.Length) break;
+
+                var maxAoi = aoiState.Values.OrderByDescending(a => a.Value).FirstOrDefault();
+
+                if (maxAoi == default(AoiState)) continue;
 
                 if (maxAoi.Value < confidenceThreshold)
                 {
@@ -154,9 +162,9 @@ namespace OpenLab.Kitchen.Recogniser.Library.Validation
 
         private double[,] ConvertCMToRatios(double[,] matrix, double totalTime)
         {
-            for (var i = 0; i < matrix.Length; i++)
+            for (var i = 0; i < matrix.GetLength(0); i++)
             {
-                for (var j = 0; j < matrix.Length; j++)
+                for (var j = 0; j < matrix.GetLength(1); j++)
                 {
                     matrix[i,j] /= totalTime;
                 }

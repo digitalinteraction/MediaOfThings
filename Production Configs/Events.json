@@ -1,0 +1,532 @@
+[
+  {
+    "activePower": -189,
+    "applianceId": 5,
+    "timestamp": 1460036053106
+  },
+  {
+    "activePower": 143,
+    "applianceId": 6,
+    "timestamp": 1460036014142
+  },
+  {
+    "activePower": -128,
+    "applianceId": 6,
+    "timestamp": 1460015910500
+  },
+  {
+    "activePower": 130,
+    "applianceId": 6,
+    "timestamp": 1460015894267
+  },
+  {
+    "activePower": -129,
+    "applianceId": 6,
+    "timestamp": 1460015882945
+  },
+  {
+    "activePower": 133,
+    "applianceId": 6,
+    "timestamp": 1460015867211
+  },
+  {
+    "activePower": -188,
+    "applianceId": 5,
+    "timestamp": 1460015827677
+  },
+  {
+    "activePower": 184,
+    "applianceId": 5,
+    "timestamp": 1460015813401
+  },
+  {
+    "activePower": -183,
+    "applianceId": 5,
+    "timestamp": 1460015802718
+  },
+  {
+    "activePower": 184,
+    "applianceId": 5,
+    "timestamp": 1460015788103
+  },
+  {
+    "activePower": -129,
+    "applianceId": 6,
+    "timestamp": 1460015770351
+  },
+  {
+    "activePower": 128,
+    "applianceId": 6,
+    "timestamp": 1460015756555
+  },
+  {
+    "activePower": -132,
+    "applianceId": 6,
+    "timestamp": 1460015745933
+  },
+  {
+    "activePower": -241,
+    "applianceId": 7,
+    "timestamp": 1459954934448
+  },
+  {
+    "activePower": 241,
+    "applianceId": 7,
+    "timestamp": 1459954924994
+  },
+  {
+    "activePower": -332,
+    "applianceId": 4,
+    "timestamp": 1459954895411
+  },
+  {
+    "activePower": 242,
+    "applianceId": 7,
+    "timestamp": 1459954879865
+  },
+  {
+    "activePower": 224,
+    "applianceId": 4,
+    "timestamp": 1459954624758
+  },
+  {
+    "activePower": 321,
+    "applianceId": 4,
+    "timestamp": 1459953778140
+  },
+  {
+    "activePower": -375,
+    "applianceId": 4,
+    "timestamp": 1459951853695
+  },
+  {
+    "activePower": -234,
+    "applianceId": 7,
+    "timestamp": 1459951787505
+  },
+  {
+    "activePower": 238,
+    "applianceId": 7,
+    "timestamp": 1459951763683
+  },
+  {
+    "activePower": -228,
+    "applianceId": 4,
+    "timestamp": 1459951649009
+  },
+  {
+    "activePower": 215,
+    "applianceId": 4,
+    "timestamp": 1459951613916
+  },
+  {
+    "activePower": -220,
+    "applianceId": 4,
+    "timestamp": 1459951595170
+  },
+  {
+    "activePower": 223,
+    "applianceId": 4,
+    "timestamp": 1459951585417
+  },
+  {
+    "activePower": 224,
+    "applianceId": 4,
+    "timestamp": 1459868120468
+  },
+  {
+    "activePower": -383,
+    "applianceId": 4,
+    "timestamp": 1459868083100
+  },
+  {
+    "activePower": 380,
+    "applianceId": 4,
+    "timestamp": 1459868068291
+  },
+  {
+    "activePower": -384,
+    "applianceId": 4,
+    "timestamp": 1459868058688
+  },
+  {
+    "activePower": 375,
+    "applianceId": 4,
+    "timestamp": 1459868045215
+  },
+  {
+    "activePower": -346,
+    "applianceId": 4,
+    "timestamp": 1459867995350
+  },
+  {
+    "activePower": 347,
+    "applianceId": 4,
+    "timestamp": 1459867981059
+  },
+  {
+    "activePower": -347,
+    "applianceId": 4,
+    "timestamp": 1459867970798
+  },
+  {
+    "activePower": 351,
+    "applianceId": 4,
+    "timestamp": 1459867956785
+  },
+  {
+    "activePower": -346,
+    "applianceId": 4,
+    "timestamp": 1459867942055
+  },
+  {
+    "activePower": 347,
+    "applianceId": 4,
+    "timestamp": 1459867925347
+  },
+  {
+    "activePower": -249,
+    "applianceId": 7,
+    "timestamp": 1459867880792
+  },
+  {
+    "activePower": 250,
+    "applianceId": 7,
+    "timestamp": 1459867865961
+  },
+  {
+    "activePower": 223,
+    "applianceId": 4,
+    "timestamp": 1459867728331
+  },
+  {
+    "activePower": -250,
+    "applianceId": 7,
+    "timestamp": 1459867717072
+  },
+  {
+    "activePower": 242,
+    "applianceId": 7,
+    "timestamp": 1459867701963
+  },
+  {
+    "activePower": -219,
+    "applianceId": 4,
+    "timestamp": 1459867632658
+  },
+  {
+    "activePower": 215,
+    "applianceId": 4,
+    "timestamp": 1459867620043
+  },
+  {
+    "activePower": -226,
+    "applianceId": 4,
+    "timestamp": 1459867607223
+  },
+  {
+    "activePower": 226,
+    "applianceId": 4,
+    "timestamp": 1459867595072
+  },
+  {
+    "activePower": -247,
+    "applianceId": 7,
+    "timestamp": 1459867518820
+  },
+  {
+    "activePower": 244,
+    "applianceId": 7,
+    "timestamp": 1459867507802
+  },
+  {
+    "activePower": -247,
+    "applianceId": 7,
+    "timestamp": 1459867252877
+  },
+  {
+    "activePower": 241,
+    "applianceId": 7,
+    "timestamp": 1459867246370
+  },
+  {
+    "activePower": -223,
+    "applianceId": 4,
+    "timestamp": 1459867142693
+  },
+  {
+    "activePower": 222,
+    "applianceId": 4,
+    "timestamp": 1459866966520
+  },
+  {
+    "activePower": -387,
+    "applianceId": 4,
+    "timestamp": 1459866871151
+  },
+  {
+    "activePower": 34,
+    "applianceId": 3,
+    "timestamp": 1459866841512
+  },
+  {
+    "activePower": -34,
+    "applianceId": 3,
+    "timestamp": 1459851382632
+  },
+  {
+    "activePower": -33,
+    "applianceId": 3,
+    "timestamp": 1459758301205
+  },
+  {
+    "activePower": -33,
+    "applianceId": 3,
+    "timestamp": 1459758142940
+  },
+  {
+    "activePower": 33,
+    "applianceId": 3,
+    "timestamp": 1459758123162
+  },
+  {
+    "activePower": -33,
+    "applianceId": 3,
+    "timestamp": 1459721754903
+  },
+  {
+    "activePower": 34,
+    "applianceId": 3,
+    "timestamp": 1459721743374
+  },
+  {
+    "activePower": -33,
+    "applianceId": 3,
+    "timestamp": 1459721723475
+  },
+  {
+    "activePower": 33,
+    "applianceId": 3,
+    "timestamp": 1459721708650
+  },
+  {
+    "activePower": -33,
+    "applianceId": 3,
+    "timestamp": 1459721696682
+  },
+  {
+    "activePower": 33,
+    "applianceId": 3,
+    "timestamp": 1459721682077
+  },
+  {
+    "activePower": -2799,
+    "applianceId": 2,
+    "timestamp": 1459708354859
+  },
+  {
+    "activePower": 2816,
+    "applianceId": 2,
+    "timestamp": 1459708300888
+  },
+  {
+    "activePower": -2812,
+    "applianceId": 2,
+    "timestamp": 1459708235888
+  },
+  {
+    "activePower": 2817,
+    "applianceId": 2,
+    "timestamp": 1459708225618
+  },
+  {
+    "activePower": -2803,
+    "applianceId": 2,
+    "timestamp": 1459708197504
+  },
+  {
+    "activePower": 2811,
+    "applianceId": 2,
+    "timestamp": 1459708182298
+  },
+  {
+    "activePower": -2804,
+    "applianceId": 2,
+    "timestamp": 1459708171129
+  },
+  {
+    "activePower": 2814,
+    "applianceId": 2,
+    "timestamp": 1459708155424
+  },
+  {
+    "activePower": -33,
+    "applianceId": 3,
+    "timestamp": 1459696518940
+  },
+  {
+    "activePower": 33,
+    "applianceId": 3,
+    "timestamp": 1459696510968
+  },
+  {
+    "activePower": -33,
+    "applianceId": 3,
+    "timestamp": 1459695193721
+  },
+  {
+    "activePower": 33,
+    "applianceId": 3,
+    "timestamp": 1459695185948
+  },
+  {
+    "activePower": -34,
+    "applianceId": 3,
+    "timestamp": 1459695009330
+  },
+  {
+    "activePower": 33,
+    "applianceId": 3,
+    "timestamp": 1459695002037
+  },
+  {
+    "activePower": -33,
+    "applianceId": 3,
+    "timestamp": 1459694059738
+  },
+  {
+    "activePower": 34,
+    "applianceId": 3,
+    "timestamp": 1459694050906
+  },
+  {
+    "activePower": -33,
+    "applianceId": 3,
+    "timestamp": 1459694029625
+  },
+  {
+    "activePower": 33,
+    "applianceId": 3,
+    "timestamp": 1459694020894
+  },
+  {
+    "activePower": -33,
+    "applianceId": 3,
+    "timestamp": 1459693196720
+  },
+  {
+    "activePower": 33,
+    "applianceId": 3,
+    "timestamp": 1459693187849
+  },
+  {
+    "activePower": -31,
+    "applianceId": 3,
+    "timestamp": 1459690157947
+  },
+  {
+    "activePower": 36,
+    "applianceId": 3,
+    "timestamp": 1459690151373
+  },
+  {
+    "activePower": -33,
+    "applianceId": 3,
+    "timestamp": 1459686694268
+  },
+  {
+    "activePower": 33,
+    "applianceId": 3,
+    "timestamp": 1459686686576
+  },
+  {
+    "activePower": 32,
+    "applianceId": 3,
+    "timestamp": 1459686475459
+  },
+  {
+    "activePower": -34,
+    "applianceId": 3,
+    "timestamp": 1459686264847
+  },
+  {
+    "activePower": -34,
+    "applianceId": 3,
+    "timestamp": 1459686219610
+  },
+  {
+    "activePower": -33,
+    "applianceId": 3,
+    "timestamp": 1459686032095
+  },
+  {
+    "activePower": 34,
+    "applianceId": 3,
+    "timestamp": 1459685037865
+  },
+  {
+    "activePower": -35,
+    "applianceId": 3,
+    "timestamp": 1459614445883
+  },
+  {
+    "activePower": 34,
+    "applianceId": 3,
+    "timestamp": 1459614434354
+  },
+  {
+    "activePower": -35,
+    "applianceId": 3,
+    "timestamp": 1459614288481
+  },
+  {
+    "activePower": 35,
+    "applianceId": 3,
+    "timestamp": 1459614280649
+  },
+  {
+    "activePower": -34,
+    "applianceId": 3,
+    "timestamp": 1459537075476
+  },
+  {
+    "activePower": 34,
+    "applianceId": 3,
+    "timestamp": 1459537065338
+  },
+  {
+    "activePower": -35,
+    "applianceId": 3,
+    "timestamp": 1459537024708
+  },
+  {
+    "activePower": 34,
+    "applianceId": 3,
+    "timestamp": 1459537014591
+  },
+  {
+    "activePower": -34,
+    "applianceId": 3,
+    "timestamp": 1459537000035
+  },
+  {
+    "activePower": 34,
+    "applianceId": 3,
+    "timestamp": 1459536971443
+  },
+  {
+    "activePower": 34,
+    "applianceId": 3,
+    "timestamp": 1459536271046
+  },
+  {
+    "activePower": -34,
+    "applianceId": 3,
+    "timestamp": 1459532650869
+  },
+  {
+    "activePower": 35,
+    "applianceId": 3,
+    "timestamp": 1459532581395
+  }
+]

@@ -1,0 +1,43 @@
+﻿@model OpenLab.Kitchen.Service.Models.Production
+@{
+    ViewData["Title"] = $"Camera Setup: {Model.Name}";
+    var cams = Model.Takes.SelectMany(t => t.Media.GroupBy(m => m.Name)).ToDictionary(m => m.Key, m => m.First().Url);
+}
+
+<div>
+    <select id="camselect" class="form-control">
+        @foreach (var cam in cams)
+        {
+            <option value="@(cam.Value + "playback.mpd")">@cam.Key</option>
+        }
+    </select>
+    <div class="row">
+        <div id="player" class="col-md-12">
+        </div>
+    </div>
+</div>
+
+<script src="//cdn.dashjs.org/latest/dash.all.min.js"></script>
+<script>
+    $(function() {
+        $('#camselect').on('change', function(target) {
+            var player = $('player');
+            player.innerHTML = '';
+            var video = document.createElement("video");
+            player.appendChild(video);
+            var url = target.value;
+            var player = dashjs.MediaPlayer().create();
+            player.initialize(video, url, true);
+
+            $.ajax(@("http://192.168.1.101/api/production/" + Model.Id))
+                .done(function (response) {
+                    var data = JSON.parse(response);
+                    for (var area in data.areaConfig) {
+                        if (area.cameraViewports) {
+                            
+                        }
+                    }
+                });
+        });
+    });
+</script>

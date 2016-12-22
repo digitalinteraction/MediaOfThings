@@ -27,11 +27,24 @@ namespace OpenLab.Kitchen.Viewer.Controllers
         }
 
         // GET: /<controller>/player/{id}
-        public IActionResult Player(Guid productionId, int take)
+        public IActionResult Player(Guid id, int take)
         {
             ViewBag.Take = take;
+            return View(_productionRepository.GetById(id));
+        }
 
-            return View(_productionRepository.GetById(productionId));
+        // GET: /<controller>/camset/{id}
+        public IActionResult CamSet(Guid id, int take)
+        {
+            ViewBag.Take = take;
+            return View(_productionRepository.GetById(id));
+        }
+
+        // GET: /<controller>/review/{id}
+        public IActionResult Review(Guid id, int take)
+        {
+            ViewBag.Take = take;
+            return View(_productionRepository.GetById(id));
         }
     }
 }

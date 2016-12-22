@@ -30,13 +30,13 @@
     <h3>Wax3 Sensors</h3>
     @foreach (var wax3 in Model.Wax3Config)
     {
-        <div class="col-md-4 col-sm-6">
+        <div class="col-md-3">
             <h4>@Html.DisplayFor(modelItem => wax3.Value)</h4>
             <textarea id="@("wax3-" + wax3.Key)" class="wax3"></textarea>
             <!--<canvas id="@("wax3-" + wax3.Key)" class="chart wax3"></canvas>-->
         </div>
     }
-    <div class="col-md-4 col-sm-6">
+    <div class="col-md-3">
         <h4>Unknown</h4>
         <textarea id="wax3-unknown" class="wax3"></textarea>
     </div>
@@ -46,12 +46,12 @@
     <h3>RFID Transponders</h3>
     @foreach (var rfid in Model.RfidConfig)
     {
-        <div class="col-sm-2">
+        <div class="col-md-3">
             <h4>@Html.DisplayFor(modelItem => rfid.Value)</h4>
             <div id="@("rfid-" + rfid.Key)" class="rfid rfid-off"></div>
         </div>
     }
-    <div class="col-sm-2">
+    <div class="col-md-3">
         <h4>Unknown</h4>
         <textarea id="rfid-unknown" class="rfid"></textarea>
     </div>
@@ -61,17 +61,17 @@
     <h3>Appliance Usage</h3>
     @foreach (var app in Model.SmappeeConfig)
     {
-        <div class="col-md-4 col-sm-6">
+        <div class="col-md-3">
             <h4>@Html.DisplayFor(modelItem => app.Name)</h4>
             <canvas id="@("app-" + app.Id)" class="chart app"></canvas>
         </div>
     }
-    <div class="col-md-4 col-sm-6">
+    <div class="col-md-3">
         <h4>Unknown</h4>
         <textarea id="app-unknown" class="app"></textarea>
     </div>
 </div>
 
-<script src="http://cdn.dashjs.org/latest/dash.all.min.js"></script>
-<script src="http://webtiming.github.io/timingsrc/lib/timingsrc.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>
+<script src="//cdn.dashjs.org/latest/dash.all.min.js"></script>
+<script src="//webtiming.github.io/timingsrc/lib/timingsrc.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>

@@ -1,0 +1,13 @@
+{
+  "appName": "MyFirstApp",
+  "serviceLocations": [
+    {
+      "serviceLocationId": 15177,
+      "name": "Home"
+    },
+    {
+      "serviceLocationId": 15178,
+      "name": "Home"
+    }
+  ]
+}
