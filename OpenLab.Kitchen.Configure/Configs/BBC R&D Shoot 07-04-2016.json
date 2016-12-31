@@ -1,0 +1,280 @@
+{
+	"name": "BBC R&D Shoot: Bella Wright - Day 1",
+	"startDateTime": "2016-04-07T00:00:00.000Z",
+	"endDateTime": "2016-04-07T23:00:00.000Z",
+	"areaConfig": [{
+			"id": "3d2130e0-ebe4-4d15-8a57-c9295b59e9e7",
+			"name": "Left Preparation",
+			"presentationPads": ["1"],
+			"gtRegionStart": 0,
+			"gtRegionStop": 0.3,
+			"locations": ["A1", "A2", "A3", "B1", "B2", "B3"],
+			"rfidPads": ["2", "3"]
+		}, {
+			"id": "eb5bff1f-3fcc-4ef9-a659-fd7334d436e6",
+			"name": "Hob",
+			"presentationPads": [],
+			"gtRegionStart": 0.3,
+			"gtRegionStop": 0.7,
+			"locations": ["A4", "A5", "A6", "A7", "B4", "B5", "B6", "B7"],
+			"rfidPads": []
+		}, {
+			"id": "ca8ed3d0-45a1-4303-910f-30624a1746db",
+			"name": "Right Preparation",
+			"presentationPads": ["4"],
+			"gtRegionStart": 0.7,
+			"gtRegionStop": 1.0,
+			"locations": ["A8", "A9", "A10", "A11", "B8", "B9", "B10", "B11"],
+			"rfidPads": ["5", "6"]
+		}
+	],
+	"cameraConfig": [{
+			"name": "Off Centre",
+			"primerLocation": "http://192.168.1.103:3000",
+			"replayLocation": "http://192.168.1.103/cam1/bbc_apr16",
+			"safeShot": {
+				"x": 0.18,
+				"y": 0.33,
+				"width": 0.48,
+				"height": 0.48
+			},
+			"faceUpShots": {
+				"3d2130e0-ebe4-4d15-8a57-c9295b59e9e7": {
+					"x": 0.46,
+					"y": 0.4,
+					"width": 0.16,
+					"height": 0.16
+				},
+				"eb5bff1f-3fcc-4ef9-a659-fd7334d436e6": {
+					"x": 0.34,
+					"y": 0.42,
+					"width": 0.19,
+					"height": 0.19
+				},
+				"ca8ed3d0-45a1-4303-910f-30624a1746db": {
+					"x": 0.26,
+					"y": 0.4,
+					"width": 0.19,
+					"height": 0.19
+				}
+			},
+			"detailShots": {
+				"3d2130e0-ebe4-4d15-8a57-c9295b59e9e7": {
+					"x": 0.5,
+					"y": 0.52,
+					"width": 0.15,
+					"height": 0.15
+				},
+				"eb5bff1f-3fcc-4ef9-a659-fd7334d436e6": {
+					"x": 0.41,
+					"y": 0.53,
+					"width": 0.16,
+					"height": 0.16
+				},
+				"ca8ed3d0-45a1-4303-910f-30624a1746db": {
+					"x": 0.31,
+					"y": 0.56,
+					"width": 0.16,
+					"height": 0.16
+				}
+			}
+		}, {
+			"name": "Front",
+			"primerLocation": "http://192.168.1.103:3001",
+			"replayLocation": "http://192.168.1.103/cam2/bbc_apr16",
+			"safeShot": {
+				"x": 0.16,
+				"y": 0.09,
+				"width": 0.68,
+				"height": 0.68
+			},
+			"faceUpShots": {
+				"3d2130e0-ebe4-4d15-8a57-c9295b59e9e7": {
+					"x": 0.58,
+					"y": 0.29,
+					"width": 0.16,
+					"height": 0.16
+				},
+				"eb5bff1f-3fcc-4ef9-a659-fd7334d436e6": {
+					"x": 0.43,
+					"y": 0.25,
+					"width": 0.19,
+					"height": 0.19
+				},
+				"ca8ed3d0-45a1-4303-910f-30624a1746db": {
+					"x": 0.28,
+					"y": 0.23,
+					"width": 0.2,
+					"height": 0.2
+				}
+			},
+			"detailShots": {
+				"3d2130e0-ebe4-4d15-8a57-c9295b59e9e7": {
+					"x": 0.6,
+					"y": 0.41,
+					"width": 0.16,
+					"height": 0.16
+				},
+				"eb5bff1f-3fcc-4ef9-a659-fd7334d436e6": {
+					"x": 0.43,
+					"y": 0.38,
+					"width": 0.19,
+					"height": 0.19
+				},
+				"ca8ed3d0-45a1-4303-910f-30624a1746db": {
+					"x": 0.28,
+					"y": 0.39,
+					"width": 0.18,
+					"height": 0.18
+				}
+			}
+		}
+	],
+	"wax3Config": [
+	{
+		"deviceId": 21,
+		"name": "Zester"
+	},
+	{
+		"deviceId": 9,
+		"name": "Slotted Spoon"
+	},
+	{
+		"deviceId": 19,
+		"name": "Fish Slice"
+	},
+	{
+		"deviceId": 15,
+		"name": "Spatula"
+	},
+	{
+		"deviceId": 17,
+		"name": "Small Frying Pan"
+	},
+	{
+		"deviceId": 23,
+		"name": "Peeler"
+	},
+	{
+		"deviceId": 22,
+		"name": "19cm Pot"
+	},
+	{
+		"deviceId": 1,
+		"name": "Slotted Spoon"
+	},
+	{
+		"deviceId": 20,
+		"name": "Small Pot"
+	},
+	{
+		"deviceId": 13,
+		"name": "Knife"
+	},
+	{
+		"deviceId": 11,
+		"name": "Spagetti Spoon"
+	},
+	{
+		"deviceId": 10,
+		"name": "Spatula"
+	},
+	{
+		"deviceId": 16,
+		"name": "Whisk"
+	},
+	{
+		"deviceId": 14,
+		"name": "21cm Pot"
+	},
+	{
+		"deviceId": 7,
+		"name": "Ladel"
+	}
+],
+	"rfidConfig": [{
+			"name": "Oil",
+			"transponder": "E007C44813C9467A"
+		}, {
+			"name": "Chives Pot",
+			"transponder": "E007C0E054C67D52"
+		}, {
+			"name": "Lemons Bowl",
+			"transponder": "E007C44813C9467B"
+		}, {
+			"name": "Small Chopping Board",
+			"transponder": "E007C44813C9476D"
+		}, {
+			"name": "Plate",
+			"transponder": "E007C0E054C67D43"
+		}, {
+			"name": "Bowl",
+			"transponder": "E007C0E054C67D62"
+		}, {
+			"name": "Small Tumbler",
+			"transponder": "E00700002C8F3A2A"
+		}, {
+			"name": "Ingredient Pot",
+			"transponder": "E007C44813C946AD"
+		}, {
+			"name": "Small Tumbler",
+			"transponder": "E00700002C8F3A28"
+		}, {
+			"name": "Plate",
+			"transponder": "E007C0E054C67D32"
+		}, {
+			"name": "Bowl",
+			"transponder": "E007C0E054C67D74"
+		}, {
+			"name": "Syrup Jug",
+			"transponder": "E007C44813C9466B"
+		}, {
+			"name": "Bowl",
+			"transponder": "E007C0E054C67D42"
+		}, {
+			"name": "Blender",
+			"transponder": "E007C0E054C67D83"
+		}, {
+			"name": "Ingredient Pot",
+			"transponder": "E007C44813C947A4"
+		}, {
+			"name": "Bowl",
+			"transponder": "E007C0E054C67D73"
+		}, {
+			"name": "Ingredient Pot",
+			"transponder": "E007C44813C9476E"
+		}, {
+			"name": "Ingredient Pot",
+			"transponder": "E007C44813C946AE"
+		}, {
+			"name": "Palm Oil",
+			"transponder": "E007C44813C9469A"
+		}, {
+			"name": "Flour Pot",
+			"transponder": "E007C0E054C67D94"
+		}
+	],
+	"applianceConfig": [{
+			"deviceId": 1,
+			"name": "Water Pump"
+		}, {
+			"deviceId": 2,
+			"name": "Kettle"
+		}, {
+			"deviceId": 4,
+			"name": "Blender"
+		}, {
+			"deviceId": 7,
+			"name": ""
+		}, {
+			"deviceId": 5,
+			"name": "Food Processor 2"
+		}, {
+			"deviceId": 6,
+			"name": "Food Processor 1"
+		}, {
+			"deviceId": 3,
+			"name": "Water Pump"
+		}
+	]
+}

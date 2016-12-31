@@ -16,4 +16,14 @@ namespace OpenLab.Kitchen.Service.Models
             return GetHashCode() == obj.GetHashCode();
         }
     }
+
+    public abstract class TimeModel : Model
+    {
+        public DateTime Timestamp { get; set; }
+    }
+
+    public abstract class DataModel : TimeModel
+    {
+        public abstract string IdString();
+    }
 }

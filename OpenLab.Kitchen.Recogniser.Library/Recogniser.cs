@@ -6,7 +6,7 @@ using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.Recogniser.Library
 {
-    public abstract class Recogniser<T, S> : IRecogniser<T, S> where T : DataModel where S : DataModel
+    public abstract class Recogniser<T, S> : IRecogniser<T, S> where T : TimeModel where S : TimeModel
     {
         protected DateTime Clock { get; set; }
         protected IDictionary<string, S> States { get; }

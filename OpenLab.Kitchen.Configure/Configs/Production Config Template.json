@@ -1,0 +1,58 @@
+{
+	"name": "PRODUCTION_NAME",
+	"startDateTime": "START_DATE",
+	"endDateTime": "END_DATE",
+	"areaConfig": [{
+			"id": "ID",
+			"name": "AREA_NAME",
+			"presentationPads": ["PAD_IDS"],
+			"gtRegionStart": 0,
+			"gtRegionStop": 1,
+			"locations": ["LOCATION_IDS"],
+			"rfidPads": ["PAD_IDS"]
+		}
+	],
+	"cameraConfig": [{
+			"name": "Off Centre",
+			"primerLocation": "PRIMER_URL",
+			"replayLocation": "FOOTAGE_URL",
+			"safeShot": {
+				"x": 0,
+				"y": 0,
+				"width": 1,
+				"height": 1
+			},
+			"faceUpShots": {
+				"AREA_ID": {
+					"x": 0,
+					"y": 0,
+					"width": 1,
+					"height": 1
+				}
+			},
+			"detailShots": {
+				"AREA_ID": {
+					"x": 0,
+					"y": 0,
+					"width": 1,
+					"height": 1
+				}
+			}
+		}
+	],
+	"wax3Config": [{
+			"deviceId": 0,
+			"item": "ITEM_NAME"
+		}
+	],
+	"rfidConfig": [{
+			"transponder": "TRANSPONDER_ID",
+			"item": "ITEM_NAME"
+		}
+	],
+	"applianceConfig": [{
+			"deviceId": 0,
+			"name": "APPLIANCE_NAME"
+		}
+	]
+}

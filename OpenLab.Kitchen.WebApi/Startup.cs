@@ -26,14 +26,17 @@ namespace OpenLab.Kitchen.WebApi
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddTransient<IReadWriteRepository<Production>>(s => new MongoRepository<Production>(Configuration.GetConnectionString("MongoConnection")));
-            services.AddTransient<IReadOnlyRepository<Wax3Data>>(s => new MongoRepository<Wax3Data>(Configuration.GetConnectionString("MongoConnection")));
-            services.AddTransient<IReadOnlyRepository<Wax9Data>>(s => new MongoRepository<Wax9Data>(Configuration.GetConnectionString("MongoConnection")));
-            services.AddTransient<IReadOnlyRepository<WaterFlow>>(s => new MongoRepository<WaterFlow>(Configuration.GetConnectionString("MongoConnection")));
-            services.AddTransient<IReadOnlyRepository<RfidData>>(s => new MongoRepository<RfidData>(Configuration.GetConnectionString("MongoConnection")));
-            services.AddTransient<IReadOnlyRepository<Wax3State>>(s => new MongoRepository<Wax3State>(Configuration.GetConnectionString("MongoConnection")));
-            services.AddTransient<IReadOnlyRepository<RfidState>>(s => new MongoRepository<RfidState>(Configuration.GetConnectionString("MongoConnection")));
-            services.AddTransient<IReadOnlyRepository<AoiState>>(s => new MongoRepository<AoiState>(Configuration.GetConnectionString("MongoConnection")));
+            var mongoConnectionString = Configuration.GetConnectionString("MongoConnection");
+
+            services.AddTransient<IReadWriteRepository<Production>>(s => new MongoRepository<Production>(mongoConnectionString));
+            services.AddTransient<IReadOnlyRepository<Wax3Data>>(s => new MongoRepository<Wax3Data>(mongoConnectionString));
+            services.AddTransient<IReadOnlyRepository<Wax9Data>>(s => new MongoRepository<Wax9Data>(mongoConnectionString));
+            services.AddTransient<IReadOnlyRepository<WaterFlow>>(s => new MongoRepository<WaterFlow>(mongoConnectionString));
+            services.AddTransient<IReadOnlyRepository<RfidData>>(s => new MongoRepository<RfidData>(mongoConnectionString));
+            services.AddTransient<IReadOnlyRepository<Wax3State>>(s => new MongoRepository<Wax3State>(mongoConnectionString));
+            services.AddTransient<IReadOnlyRepository<RfidState>>(s => new MongoRepository<RfidState>(mongoConnectionString));
+            services.AddTransient<IReadOnlyRepository<AoiState>>(s => new MongoRepository<AoiState>(mongoConnectionString));
+            services.AddTransient<IReadOnlyRepository<ShotDecision>>(s => new MongoRepository<ShotDecision>(mongoConnectionString));
 
             // Add framework services.
             services.AddCors();

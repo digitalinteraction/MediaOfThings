@@ -9,8 +9,6 @@ namespace OpenLab.Kitchen.Recogniser.Library
     {
         private const double AliveThreshold = 5000;
 
-        public Wax3Recogniser() : base() {}
-
         public override void Update(Wax3Data data)
         {
             base.Update(data);

@@ -71,13 +71,18 @@ namespace OpenLab.Kitchen.Recogniser
             IRecieveRepository<RfidState> rfidStateReciever = new RabbitMqStreamer<RfidState>(RabbitConnectionString, Exchange);
             IRecieveRepository<ApplianceEvent> appEventReciever = new RabbitMqStreamer<ApplianceEvent>(RabbitConnectionString, Exchange);
             ISendRepository<AoiState> aoiStateSender = new RabbitMqStreamer<AoiState>(RabbitConnectionString, Exchange);
+            IRecieveRepository<AoiState> aoiStateReciever = new RabbitMqStreamer<AoiState>(RabbitConnectionString, Exchange);
+            ISendRepository<ShotDecision> shotDecisionSender = new RabbitMqStreamer<ShotDecision>(RabbitConnectionString, Exchange);
 
             Console.WriteLine("Starting Activity Recognisers...");
             IRecogniser<Wax3Data, Wax3State> wax3Recogniser = new Wax3Recogniser();
             IRecogniser<RfidData, RfidState> rfidRecogniser = new RfidRecogniser();
 
             Console.WriteLine("Starting Area of Interest Classifier...");
-            var aoiClassifier = new AoiClassifier(production); // TODO: Needs Production Config to run in Live...
+            var aoiClassifier = new AoiClassifier(production);
+
+            Console.WriteLine("Starting Auto-Director...");
+            var autoDirector = new AutoDirector(production);
 
             Console.WriteLine("Starting Stream Managers...");
             IStreamManager wax3StreamManager = new StreamManager<Wax3Data, Wax3State>(wax3Reciever, wax3StateSender, wax3Recogniser);
@@ -85,6 +90,7 @@ namespace OpenLab.Kitchen.Recogniser
             IStreamManager aoiWax3StreamManager = new StreamManager<Wax3State, AoiState>(wax3StateReciever, aoiStateSender, aoiClassifier);
             IStreamManager aoiRfidStreamManager = new StreamManager<RfidState, AoiState>(rfidStateReciever, aoiStateSender, aoiClassifier);
             IStreamManager aoiAppStreamManager = new StreamManager<ApplianceEvent, AoiState>(appEventReciever, aoiStateSender, aoiClassifier);
+            IStreamManager shotStreamManager = new StreamManager<AoiState, ShotDecision>(aoiStateReciever, shotDecisionSender, autoDirector);
 
             wax3StreamManager.Start();
             rfidStreamManager.Start();
@@ -97,11 +103,16 @@ namespace OpenLab.Kitchen.Recogniser
 
             Console.WriteLine("Area of Interest Classifier runnning.");
 
+            shotStreamManager.Start();
+
+            Console.WriteLine("Auto-Director running.");
+
             var timer = new Timer((state) =>
             {
                 wax3Recogniser.UpdateClock(DateTime.Now);
                 rfidRecogniser.UpdateClock(DateTime.Now);
                 aoiClassifier.UpdateClock(DateTime.Now);
+                autoDirector.UpdateClock(DateTime.Now);
             }, null, TickPeriod, Timeout.Infinite);
 
             Console.WriteLine("Type \"exit\" to terminate process:");
@@ -115,6 +126,7 @@ namespace OpenLab.Kitchen.Recogniser
             aoiWax3StreamManager.Stop();
             aoiRfidStreamManager.Stop();
             aoiAppStreamManager.Stop();
+            autoDirector.Stop();
         }
 
         private static void Replay(Production production)
@@ -126,6 +138,7 @@ namespace OpenLab.Kitchen.Recogniser
             IReadWriteRepository<RfidState> rfidStateRepository = new MongoRepository<RfidState>(MongoDBConnectionString);
             IReadOnlyRepository<ApplianceEvent> appEventRepository = new MongoRepository<ApplianceEvent>(MongoDBConnectionString);
             IReadWriteRepository<AoiState> aoiStateRepository = new MongoRepository<AoiState>(MongoDBConnectionString);
+            IReadWriteRepository<ShotDecision> shotDecisionRepository = new MongoRepository<ShotDecision>(MongoDBConnectionString);
 
             Console.WriteLine("Reading Replay Dataset...");
             var wax3Data = wax3Repository.GetAll().ToList().Where(d => d.Timestamp.Date == production.Takes.First().Media.First().StartTime.Date).OrderBy(d => d.Timestamp).AsQueryable();
@@ -164,11 +177,24 @@ namespace OpenLab.Kitchen.Recogniser
             
             Console.WriteLine("    Processing Datasets...");
             aoiReplayManager.Process();
-
-            var aoiStates = aoiReplayManager.GetStates();
+            var aoiStates = aoiReplayManager.GetStates().AsQueryable();
 
             Console.WriteLine("    Inserting States into MongoDB...");
             aoiStateRepository.InsertMany(aoiStates);
+
+            Console.WriteLine("Starting Auto-Director...");
+            var autoDirector = new AutoDirector(production);
+
+            Console.WriteLine("    Starting Replay Managers...");
+            IReplayManager<ShotDecision> shotDecisionReplayManager = new ReplayManager<AoiState, ShotDecision>(autoDirector, aoiStates);
+
+            Console.WriteLine("    Processing Datasets...");
+            shotDecisionReplayManager.Process();
+            var shotDecisions = shotDecisionReplayManager.GetStates();
+
+            Console.WriteLine("    Inserting Shot Decisions into MongoDB...");
+            
+            shotDecisionRepository.InsertMany(shotDecisions);
 
             Console.WriteLine("Complete.");
         }

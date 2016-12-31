@@ -10,6 +10,8 @@ namespace OpenLab.Kitchen.Service.Models
 
         public IEnumerable<Take> Takes { get; set; }
 
+        public IEnumerable<Camera> Cameras { get; set; }
+
         public Dictionary<string, string> RfidConfig { get; set; }
 
         public IEnumerable<Appliance> SmappeeConfig { get; set; }
@@ -26,9 +28,20 @@ namespace OpenLab.Kitchen.Service.Models
         public IEnumerable<Media> Media { get; set; }
     }
 
-    public class Media
+    public class Camera : Model
     {
         public string Name { get; set; }
+
+        public Rect SafeShot { get; set; }
+
+        public IDictionary<Guid, Rect> FaceUpShots { get; set; }
+
+        public IDictionary<Guid, Rect> DetailShots { get; set; }
+    }
+
+    public class Media
+    {
+        public Guid CameraId { get; set; }
 
         public DateTime StartTime { get; set; }
 
@@ -44,12 +57,8 @@ namespace OpenLab.Kitchen.Service.Models
         public string AssociatedTransponder { get; set; }
     }
 
-    public class Area
+    public class Area : Model
     {
-        public Guid Id { get; set; }
-
-        public IDictionary<string, Rect> CameraViewports { get; set; }
-
         public IEnumerable<string> Locations { get; set; }
 
         public IEnumerable<string> RfidPads { get; set; }

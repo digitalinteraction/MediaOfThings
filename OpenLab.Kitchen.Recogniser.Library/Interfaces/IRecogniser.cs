@@ -4,7 +4,7 @@ using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.Recogniser.Library.Interfaces
 {
-    public interface IRecogniser<T, S> where T : DataModel where S : DataModel
+    public interface IRecogniser<T, S> where T : TimeModel where S : TimeModel
     {
         event StateChangedEventHandler<S> StateChanged;
         void Update(T data);

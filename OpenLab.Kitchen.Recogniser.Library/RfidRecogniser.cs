@@ -9,8 +9,6 @@ namespace OpenLab.Kitchen.Recogniser.Library
     {
         private const double TransponderTimeout = 5000;
 
-        public RfidRecogniser() : base() {}
-
         public override void Update(RfidData data)
         {
             base.Update(data);

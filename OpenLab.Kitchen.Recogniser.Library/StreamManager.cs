@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading;
-using OpenLab.Kitchen.Recogniser.Library.Interfaces;
+﻿using OpenLab.Kitchen.Recogniser.Library.Interfaces;
 using OpenLab.Kitchen.Service.Interfaces;
 using OpenLab.Kitchen.Service.Models;
 

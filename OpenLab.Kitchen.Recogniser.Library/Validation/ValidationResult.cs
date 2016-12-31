@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace OpenLab.Kitchen.Recogniser.Library.Validation
+﻿namespace OpenLab.Kitchen.Recogniser.Library.Validation
 {
     public struct ValidationResult
     {

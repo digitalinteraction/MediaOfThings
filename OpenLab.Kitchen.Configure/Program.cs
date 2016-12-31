@@ -17,11 +17,13 @@ namespace OpenLab.Kitchen.Configure
     {
         public static void Main(string[] args)
         {
-            InsertProductionDataset(args[0], DateTime.Parse(args[1]), args[2], args[3], args[4], args[5], args[6]);
+            Console.WriteLine("Reading Production Config...");
+            dynamic productionConfig = JsonConvert.DeserializeObject(File.ReadAllText(args[0]));
+            InsertProductionDataset(productionConfig);
             Console.ReadLine();
         }
 
-        private static async void InsertProductionDataset(string productionName, DateTime productionDate, string webMediaPrefix, string smappeePath, string rfidPath, string wax3Path, string areaPath)
+        private static async void InsertProductionDataset(dynamic config)
         {
             Console.WriteLine("Creating Production Dataset...");
 
@@ -30,11 +32,10 @@ namespace OpenLab.Kitchen.Configure
             var database = mongoClient.GetDatabase("kitchen");
             var primerDatabase = mongoClient.GetDatabase("prismdb");
             database.RunCommandAsync((Command<BsonDocument>)"{ping:1}").Wait();
+            
+            var production = new Production { Name = config.name.ToString() };
+            Console.WriteLine($"Production name: {production.Name}");
 
-            Console.WriteLine($"Production name: {productionName}");
-            var production = new Production { Name = productionName };
-
-            Console.WriteLine($"Web Media Prefix: {webMediaPrefix}");
             var takes = new List<Take>();
             var sessions = primerDatabase.GetCollection<BsonDocument>("sessions").AsQueryable();
             var cameras = new Dictionary<string, Uri>();
