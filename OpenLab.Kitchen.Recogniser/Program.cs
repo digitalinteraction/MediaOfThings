@@ -126,7 +126,7 @@ namespace OpenLab.Kitchen.Recogniser
             aoiWax3StreamManager.Stop();
             aoiRfidStreamManager.Stop();
             aoiAppStreamManager.Stop();
-            autoDirector.Stop();
+            shotStreamManager.Stop();
         }
 
         private static void Replay(Production production)

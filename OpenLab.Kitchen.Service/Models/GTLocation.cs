@@ -1,14 +1,18 @@
 ﻿using System;
+using OpenLab.Kitchen.Service.Interfaces;
 using OpenLab.Kitchen.Service.Values;
 
 namespace OpenLab.Kitchen.Service.Models
 {
-    public class GTLocation : Model
+    public class GTLocation : TimeModel, IStreamingModel
     {
-        public DateTime Timestamp { get; set; }
-
         public Rect Position { get; set; }
 
         public double Estimated { get; set; }
+
+        public string RoutingKey()
+        {
+            return "0"; // TODO: Should be routed based on person id...
+        }
     }
 }

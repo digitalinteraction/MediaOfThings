@@ -34,9 +34,9 @@ namespace OpenLab.Kitchen.Service.Models
 
         public Rect SafeShot { get; set; }
 
-        public IDictionary<Guid, Rect> FaceUpShots { get; set; }
+        public Dictionary<Guid, Rect> FaceUpShots { get; set; }
 
-        public IDictionary<Guid, Rect> DetailShots { get; set; }
+        public Dictionary<Guid, Rect> DetailShots { get; set; }
     }
 
     public class Media

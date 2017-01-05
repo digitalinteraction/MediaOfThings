@@ -1,17 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
+using OpenLab.Kitchen.Service.Interfaces;
 
 namespace OpenLab.Kitchen.Service.Models
 {
-    public class RfidState : DataModel
+    public class RfidState : TimeModel, IStreamingModel, IDataModel
     {
         public string DeviceId { get; set; }
 
         public ICollection<TransponderState> Transponders { get; set; }
 
-        public override string IdString()
+        public string IdString()
         {
             return DeviceId;
+        }
+
+        public string RoutingKey()
+        {
+            return IdString();
         }
     }
 

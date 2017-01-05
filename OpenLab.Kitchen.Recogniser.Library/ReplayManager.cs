@@ -5,7 +5,7 @@ using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.Recogniser.Library
 {
-    public class ReplayManager<T, S> : IReplayManager<S> where T : DataModel where S : DataModel
+    public class ReplayManager<T, S> : IReplayManager<S> where T : TimeModel where S : TimeModel
     {
         private readonly IRecogniser<T, S> _recogniser;
         private readonly IQueryable<T> _dataset;

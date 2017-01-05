@@ -6,7 +6,7 @@ using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.StreamingRepository
 {
-    public class RabbitMqStreamer<T> : ISendRepository<T>, IRecieveRepository<T> where T : DataModel
+    public class RabbitMqStreamer<T> : ISendRepository<T>, IRecieveRepository<T> where T : Model, IStreamingModel
     {
         private readonly RabbitMqConnection _mqConnection;
 
@@ -17,7 +17,7 @@ namespace OpenLab.Kitchen.StreamingRepository
 
         public void Send(T model)
         {
-            _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.IdString());
+            _mqConnection.SendMessage(JsonConvert.SerializeObject(model), model.RoutingKey());
         }
 
         public void Subscribe(Action<T> handler)

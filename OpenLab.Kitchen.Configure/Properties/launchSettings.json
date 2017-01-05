@@ -2,7 +2,7 @@
   "profiles": {
     "OpenLab.Kitchen.Configure": {
       "commandName": "Project",
-      "commandLineArgs": "\"../../Configs/BBC R&D Shoot 06-04-2016.json\""
+      "commandLineArgs": "\"Configs/BBC R&D Shoot 06-04-2016.json\""
     }
   }
 }

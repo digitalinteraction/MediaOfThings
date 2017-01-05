@@ -4,7 +4,7 @@ using OpenLab.Kitchen.Service.Models;
 
 namespace OpenLab.Kitchen.Recogniser.Library
 {
-    public class StreamManager<T, S> : IStreamManager where T : DataModel where S : DataModel
+    public class StreamManager<T, S> : IStreamManager where T : TimeModel, IStreamingModel where S : TimeModel, IStreamingModel
     {
         private readonly IRecieveRepository<T> _recieveRepository;
         private readonly ISendRepository<S> _sendRepository;

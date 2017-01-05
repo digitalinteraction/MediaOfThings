@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using MongoDB.Bson.Serialization;
 using MongoDB.Bson.Serialization.Options;
 using MongoDB.Bson.Serialization.Serializers;
 using MongoDB.Driver;
 using OpenLab.Kitchen.Service.Models;
+using OpenLab.Kitchen.Service.Values;
 
 namespace OpenLab.Kitchen.Repository
 {
@@ -38,11 +40,19 @@ namespace OpenLab.Kitchen.Repository
             BsonClassMap.RegisterClassMap<ScalesData>();
             BsonClassMap.RegisterClassMap<WaterFlow>();
             BsonClassMap.RegisterClassMap<Media>();
+            BsonClassMap.RegisterClassMap<Camera>(cm =>
+            {
+                cm.AutoMap();
+                var guidFrameSerial = new DictionaryInterfaceImplementerSerializer<Dictionary<Guid, Rect>>(DictionaryRepresentation.ArrayOfArrays);
+                cm.GetMemberMap(c => c.DetailShots).SetSerializer(guidFrameSerial);
+                cm.GetMemberMap(c => c.FaceUpShots).SetSerializer(guidFrameSerial);
+            });
             BsonClassMap.RegisterClassMap<Production>(cm =>
             {
                 cm.AutoMap();
                 var stringStringSerial = new DictionaryInterfaceImplementerSerializer<Dictionary<string, string>>(DictionaryRepresentation.ArrayOfArrays);
                 var intStringSerial = new DictionaryInterfaceImplementerSerializer<Dictionary<int, string>>(DictionaryRepresentation.ArrayOfArrays);
+                
                 cm.GetMemberMap(c => c.RfidConfig).SetSerializer(stringStringSerial);
                 cm.GetMemberMap(c => c.Wax3Config).SetSerializer(intStringSerial);
             });

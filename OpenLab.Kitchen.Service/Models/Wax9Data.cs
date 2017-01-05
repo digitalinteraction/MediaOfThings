@@ -1,6 +1,8 @@
-﻿namespace OpenLab.Kitchen.Service.Models
+﻿using OpenLab.Kitchen.Service.Interfaces;
+
+namespace OpenLab.Kitchen.Service.Models
 {
-    public class Wax9Data : DataModel
+    public class Wax9Data : TimeModel, IStreamingModel, IDataModel
     {
         public string DeviceId { get; set; }
 
@@ -24,9 +26,14 @@
 
         public float MagZ { get; set; }
 
-        public override string IdString()
+        public string IdString()
         {
             return DeviceId;
+        }
+
+        public string RoutingKey()
+        {
+            return IdString();
         }
     }
 }

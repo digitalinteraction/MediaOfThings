@@ -11,6 +11,8 @@ namespace OpenLab.Kitchen.Recogniser.Library
     {
         private const double MaxConfidence = 2.0;
         private const double PresentationTimeout = 2000;
+        private const double InteractionTimeout = 2000;
+
         public struct Significance
         {
             public const double Rfid = 0.2;
@@ -47,7 +49,7 @@ namespace OpenLab.Kitchen.Recogniser.Library
                     Timestamp = data.Timestamp,
                     AreaId = area,
                     Value = UpdateConfidence(oldState.Value, Significance.Wax3),
-                    IsPresentation = oldState.IsPresentation,
+                    Presentation = oldState.Presentation,
                     PresentationStarted = oldState.PresentationStarted
                 };
 
@@ -71,14 +73,16 @@ namespace OpenLab.Kitchen.Recogniser.Library
                 {
                     Timestamp = data.Timestamp,
                     AreaId = area.Id,
-                    IsPresentation = oldState.IsPresentation,
+                    Interaction = oldState.Interaction,
+                    InteractionStarted = oldState.InteractionStarted,
+                    Presentation = oldState.Presentation,
                     PresentationStarted = oldState.PresentationStarted
                 };
                 newState.Value = UpdateConfidence(oldState.Value, Significance.Rfid);
 
                 if (area.PresentationPads.Contains(data.DeviceId))
                 {
-                    newState.IsPresentation = true;
+                    newState.Presentation = true;
                     newState.PresentationStarted = data.Timestamp;
                 }
 
@@ -135,17 +139,25 @@ namespace OpenLab.Kitchen.Recogniser.Library
                 {
                     Timestamp = Clock,
                     AreaId = area,
-                    IsPresentation = oldState.IsPresentation,
+                    Presentation = oldState.Presentation,
                     PresentationStarted = oldState.PresentationStarted
                 };
 
                 newState.Value = UpdateConfidence(oldState.Value, Significance.Decay * (Clock - lastClock).TotalSeconds);
 
-                if (newState.IsPresentation)
+                if (newState.Presentation)
                 {
-                    if ((newState.PresentationStarted - newClock).TotalMilliseconds > PresentationTimeout)
+                    if ((newState.PresentationStarted - Clock).TotalMilliseconds > PresentationTimeout)
                     {
-                        newState.IsPresentation = false;
+                        newState.Presentation = false;
+                    }
+                }
+
+                if (newState.Interaction)
+                {
+                    if ((newState.InteractionStarted - Clock).TotalMilliseconds > InteractionTimeout)
+                    {
+                        newState.Interaction = false;
                     }
                 }
 

@@ -9,7 +9,7 @@
 			"gtRegionStart": 0,
 			"gtRegionStop": 0.3,
 			"locations": ["A1", "A2", "A3", "B1", "B2", "B3"],
-			"rfidPads": ["2", "3"]
+			"rfidPads": ["340198488"]
 		}, {
 			"id": "eb5bff1f-3fcc-4ef9-a659-fd7334d436e6",
 			"name": "Hob",
@@ -25,12 +25,13 @@
 			"gtRegionStart": 0.7,
 			"gtRegionStop": 1.0,
 			"locations": ["A8", "A9", "A10", "A11", "B8", "B9", "B10", "B11"],
-			"rfidPads": ["5", "6"]
+			"rfidPads": ["339756489"]
 		}
 	],
 	"cameraConfig": [{
+			"id": "a67645a4-7f4a-434a-b244-ea44b4f04ae1",
 			"name": "Off Centre",
-			"primerLocation": "http://192.168.1.103:3000",
+			"primerLocation": "http://192.168.1.103:8080",
 			"replayLocation": "http://192.168.1.103/cam1/bbc_apr16",
 			"safeShot": {
 				"x": 0.18,
@@ -79,8 +80,9 @@
 				}
 			}
 		}, {
+			"id": "1e344db2-599f-4d7c-8ff7-fc351951b121",
 			"name": "Front",
-			"primerLocation": "http://192.168.1.103:3001",
+			"primerLocation": "http://192.168.1.103:8081",
 			"replayLocation": "http://192.168.1.103/cam2/bbc_apr16",
 			"safeShot": {
 				"x": 0.16,
@@ -130,133 +132,72 @@
 			}
 		}
 	],
-	"wax3Config": [{
-			"deviceId": 21,
-			"name": "Large Spoon"
-		}, {
-			"deviceId": 9,
-			"name": "Slotted Spoon"
-		}, {
-			"deviceId": 19,
-			"name": "Fish Slice"
-		}, {
-			"deviceId": 15,
-			"name": "Fish Slice"
-		}, {
-			"deviceId": 17,
-			"name": "Frying Pan"
-		}, {
-			"deviceId": 23,
-			"name": "Zester"
-		}, {
-			"deviceId": 22,
-			"name": "19cm Pot"
-		}, {
-			"deviceId": 1,
-			"name": "Whisk"
-		}, {
-			"deviceId": 20,
-			"name": "Small Frying Pan"
-		}, {
-			"deviceId": 13,
-			"name": "Knife"
-		}, {
-			"deviceId": 11,
-			"name": "Peeler"
-		}, {
-			"deviceId": 10,
-			"name": "Spagetti Spoon"
-		}, {
-			"deviceId": 16,
-			"name": "Ladel"
-		}, {
-			"deviceId": 14,
-			"name": "21cm Pot"
-		}
-	],
-	"rfidConfig": [{
-			"name": "Oil",
-			"transponder": "E007C44813C9467A"
-		}, {
-			"name": "Chives Pot",
-			"transponder": "E007C0E054C67D52"
-		}, {
-			"name": "Lemons Bowl",
-			"transponder": "E007C44813C9467B"
-		}, {
-			"name": "Small Chopping Board",
-			"transponder": "E007C44813C9476D"
-		}, {
-			"name": "Plate",
-			"transponder": "E007C0E054C67D43"
-		}, {
-			"name": "Bowl",
-			"transponder": "E007C0E054C67D62"
-		}, {
-			"name": "Small Tumbler",
-			"transponder": "E00700002C8F3A2A"
-		}, {
-			"name": "Ingredient Pot",
-			"transponder": "E007C44813C946AD"
-		}, {
-			"name": "Small Tumbler",
-			"transponder": "E00700002C8F3A28"
-		}, {
-			"name": "Plate",
-			"transponder": "E007C0E054C67D32"
-		}, {
-			"name": "Bowl",
-			"transponder": "E007C0E054C67D74"
-		}, {
-			"name": "Syrup Jug",
-			"transponder": "E007C44813C9466B"
-		}, {
-			"name": "Bowl",
-			"transponder": "E007C0E054C67D42"
-		}, {
-			"name": "Blender",
-			"transponder": "E007C0E054C67D83"
-		}, {
-			"name": "Ingredient Pot",
-			"transponder": "E007C44813C947A4"
-		}, {
-			"name": "Bowl",
-			"transponder": "E007C0E054C67D73"
-		}, {
-			"name": "Ingredient Pot",
-			"transponder": "E007C44813C9476E"
-		}, {
-			"name": "Ingredient Pot",
-			"transponder": "E007C44813C946AE"
-		}, {
-			"name": "Palm Oil",
-			"transponder": "E007C44813C9469A"
-		}, {
-			"name": "Flour Pot",
-			"transponder": "E007C0E054C67D94"
-		}
-	],
+	"wax3Config": {
+		"21": "Large Spoon",
+		"9": "Slotted Spoon",
+		"19": "Fish Slice",
+		"15": "Fish Slice",
+		"17": "Frying Pan",
+		"23": "Zester",
+		"22": "19cm Pot",
+		"1": "Whisk",
+		"20": "Small Frying Pan",
+		"13": "Knife",
+		"11": "Peeler",
+		"10": "Spagetti Spoon",
+		"16": "Ladel",
+		"14": "21cm Pot"
+	},
+	"rfidConfig": {
+		"E007C44813C9467A": "Oil",
+		"E007C0E054C67D52": "Chives Pot",
+		"E007C44813C9467B": "Lemons Bowl",
+		"E007C44813C9476D": "Small Chopping Board",
+		"E007C0E054C67D43": "Plate",
+		"E007C0E054C67D62": "Bowl",
+		"E00700002C8F3A2A": "Small Tumbler",
+		"E007C44813C946AD": "Ingredient Pot",
+		"E00700002C8F3A28": "Small Tumbler",
+		"E007C0E054C67D32": "Plate",
+		"E007C0E054C67D74": "Bowl",
+		"E007C44813C9466B": "Syrup Jug",
+		"E007C0E054C67D42": "Bowl",
+		"E007C0E054C67D83": "Blender",
+		"E007C44813C947A4": "Ingredient Pot",
+		"E007C0E054C67D73": "Bowl",
+		"E007C44813C9476E": "Ingredient Pot",
+		"E007C44813C946AE": "Ingredient Pot",
+		"E007C44813C9469A": "Palm Oil",
+		"E007C0E054C67D94": "Flour Pot"
+	},
 	"applianceConfig": [{
 			"deviceId": 1,
-			"name": "Water Pump"
+			"name": "Water Pump",
+			"associatedTransponder": ""
 		}, {
 			"deviceId": 2,
-			"name": "Kettle"
+			"name": "Kettle",
+			"associatedTransponder": ""
 		}, {
 			"deviceId": 4,
-			"name": "Blender"
+			"name": "Blender",
+			"associatedTransponder": ""
 		}, {
 			"deviceId": 7,
-			"name": ""
+			"name": "",
+			"associatedTransponder": ""
 		}, {
 			"deviceId": 5,
-			"name": "Food Processor 2"
+			"name": "Food Processor 2",
+			"associatedTransponder": ""
 		}, {
 			"deviceId": 6,
-			"name": "Food Processor 1"
+			"name": "Food Processor 1",
+			"associatedTransponder": ""
 		}, {
 			"deviceId": 3,
-			"name": "Water Pump"
+			"name": "Water Pump",
+			"associatedTransponder": ""
 		}
 	]
 }

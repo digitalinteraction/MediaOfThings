@@ -2,7 +2,7 @@
 
 namespace OpenLab.Kitchen.Service.Interfaces
 {
-    public interface ISendRepository<T> where T : Model
+    public interface ISendRepository<T> where T : Model, IStreamingModel
     {
         void Send(T model);
     }

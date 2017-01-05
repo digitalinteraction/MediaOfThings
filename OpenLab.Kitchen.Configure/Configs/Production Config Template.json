@@ -40,19 +40,16 @@
 			}
 		}
 	],
-	"wax3Config": [{
-			"deviceId": 0,
-			"item": "ITEM_NAME"
-		}
-	],
-	"rfidConfig": [{
-			"transponder": "TRANSPONDER_ID",
-			"item": "ITEM_NAME"
-		}
-	],
+	"wax3Config": {
+		"0": "ITEM_NAME"
+	},
+	"rfidConfig": {
+		"TRANSPONDER_ID": "ITEM_NAME"
+	},
 	"applianceConfig": [{
 			"deviceId": 0,
-			"name": "APPLIANCE_NAME"
+			"name": "APPLIANCE_NAME",
+			"associatedTransponder": "TRANSPONDER_ID"
 		}
 	]
 }

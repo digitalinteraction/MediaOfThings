@@ -21,9 +21,4 @@ namespace OpenLab.Kitchen.Service.Models
     {
         public DateTime Timestamp { get; set; }
     }
-
-    public abstract class DataModel : TimeModel
-    {
-        public abstract string IdString();
-    }
 }

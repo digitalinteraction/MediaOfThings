@@ -9,6 +9,7 @@
     <Import_RootNamespace>OpenLab.Kitchen.Service</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IReadOnlyRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IReadWriteRepository.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Interfaces\IRecieveRepository.cs" />

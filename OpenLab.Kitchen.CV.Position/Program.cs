@@ -16,13 +16,13 @@ namespace OpenLab.Kitchen.CV.Position
     class Program
     {
         const double MinArea = 1000;
-        const string WindowName = "Feed";
-        const string CameraName = "4";
         static readonly Size Resolution = new Size(500, 281);
         static readonly Rectangle ROI = new Rectangle(0, 191, 485, 90);
 
         static void Main(string[] args)
         {
+            var cameraId = new Guid(args[0]);
+
             IReadOnlyRepository<Production> productionRepository = new MongoRepository<Production>("mongodb://192.168.1.101/kitchen");
             IReadWriteRepository<GTLocation> locationRepository = new MongoRepository<GTLocation>("mongodb://192.168.1.101/kitchen");
 
@@ -46,7 +46,7 @@ namespace OpenLab.Kitchen.CV.Position
                     Console.WriteLine($"    Processing Take: {take.Name}");
                     try
                     {
-                        locationRepository.InsertMany(ProcessTake(take, referenceBlur));
+                        locationRepository.InsertMany(ProcessTake(cameraId, take, referenceBlur));
                         Console.WriteLine($"\nFinished Processing: {take.Name}");
                     }
                     catch (Exception e)
@@ -60,13 +60,13 @@ namespace OpenLab.Kitchen.CV.Position
             Console.ReadLine();
         }
 
-        private static IEnumerable<GTLocation> ProcessTake(Take take, Mat reference)
+        private static IEnumerable<GTLocation> ProcessTake(Guid cameraId, Take take, Mat reference)
         {
-            var media = take.Media.Single(m => m.Name == CameraName);
+            var media = take.Media.Single(m => m.CameraId == cameraId);
             var camera = new Capture(media.Url.AbsoluteUri + "full_720p.mp4");
             var gtLocations = new List<GTLocation>();
 
-            CvInvoke.NamedWindow(WindowName);
+            CvInvoke.NamedWindow("Feed");
             CvInvoke.NamedWindow("Reference");
             CvInvoke.NamedWindow("Delta");
 
@@ -111,7 +111,7 @@ namespace OpenLab.Kitchen.CV.Position
                         var rect = CvInvoke.BoundingRectangle(conts[i]);
                         CvInvoke.Rectangle(resize, rect, new MCvScalar(0, 255), 2);
                         CvInvoke.Rectangle(resize, ROI, new MCvScalar(255), 2);
-                        CvInvoke.Imshow(WindowName, resize);
+                        CvInvoke.Imshow("Reference", resize);
 
                         var location = new GTLocation
                         {

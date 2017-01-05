@@ -1,8 +1,9 @@
 ﻿using System;
+using OpenLab.Kitchen.Service.Interfaces;
 
 namespace OpenLab.Kitchen.Service.Models
 {
-    public class Wax3State : DataModel
+    public class Wax3State : TimeModel, IStreamingModel, IDataModel
     {
         public int DeviceId { get; set; }
 
@@ -14,9 +15,14 @@ namespace OpenLab.Kitchen.Service.Models
 
         public float Noise { get; set; }
 
-        public override string IdString()
+        public string IdString()
         {
             return DeviceId.ToString();
+        }
+
+        public string RoutingKey()
+        {
+            return IdString();
         }
     }
 }
