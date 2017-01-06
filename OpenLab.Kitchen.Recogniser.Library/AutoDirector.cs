@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Collections.Generic;
 using OpenLab.Kitchen.Service.Models;
+using OpenLab.Kitchen.Service.Values;
 
 namespace OpenLab.Kitchen.Recogniser.Library
 {
@@ -9,6 +10,7 @@ namespace OpenLab.Kitchen.Recogniser.Library
     {
         private const double NewShotThreshold = 5000;
         private const double SafeShotTimeout = 10000;
+        private const double AoiThreshold = 1.0;
 
         private readonly Production _production;
         private readonly IDictionary<Guid, AoiState> _aoiStates;
@@ -25,6 +27,8 @@ namespace OpenLab.Kitchen.Recogniser.Library
         {
             base.Update(aoi);
 
+            if (aoi.Value < AoiThreshold) return;
+
             foreach (var c in _cameras.Keys.ToArray())
             {
                 var cameraConfig = _production.Cameras.Single(cam => cam.Id == c);
@@ -35,15 +39,15 @@ namespace OpenLab.Kitchen.Recogniser.Library
                 {
                     if (aoi.Presentation)
                     {
-                        newShot.Frame = cameraConfig.DetailShots[aoi.AreaId];
+                        newShot.Frame = GetFrame(cameraConfig.DetailShots, aoi.AreaId, cameraConfig.SafeShot);
                     }
                     else if (aoi.Interaction)
                     {
-                        newShot.Frame = cameraConfig.DetailShots[aoi.AreaId];
+                        newShot.Frame = GetFrame(cameraConfig.DetailShots, aoi.AreaId, cameraConfig.SafeShot);
                     }
                     else
                     {
-                        newShot.Frame = cameraConfig.FaceUpShots[aoi.AreaId];
+                        newShot.Frame = GetFrame(cameraConfig.FaceUpShots, aoi.AreaId, cameraConfig.SafeShot);
                     }
 
                     OnStateChanged(this, newShot);
@@ -68,6 +72,13 @@ namespace OpenLab.Kitchen.Recogniser.Library
                     OnStateChanged(this, newShot);
                 }
             }
+        }
+
+        private Rect GetFrame(IDictionary<Guid, Rect> dic, Guid areaId, Rect safeShot)
+        {
+            Rect frame;
+            dic.TryGetValue(areaId, out frame);
+            return frame ?? safeShot;
         }
     }
 }

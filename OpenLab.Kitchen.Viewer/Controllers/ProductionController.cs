@@ -39,12 +39,5 @@ namespace OpenLab.Kitchen.Viewer.Controllers
             ViewBag.Take = take;
             return View(_productionRepository.GetById(id));
         }
-
-        // GET: /<controller>/review/{id}
-        public IActionResult Review(Guid id, int take)
-        {
-            ViewBag.Take = take;
-            return View(_productionRepository.GetById(id));
-        }
     }
 }

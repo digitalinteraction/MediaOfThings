@@ -59,6 +59,8 @@ namespace OpenLab.Kitchen.Service.Models
 
     public class Area : Model
     {
+        public string Name { get; set; }
+
         public IEnumerable<string> Locations { get; set; }
 
         public IEnumerable<string> RfidPads { get; set; }

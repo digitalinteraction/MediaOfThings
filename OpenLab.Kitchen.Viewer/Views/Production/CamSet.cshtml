@@ -1,43 +1,58 @@
 ﻿@model OpenLab.Kitchen.Service.Models.Production
 @{
-    ViewData["Title"] = $"Camera Setup: {Model.Name}";
-    var cams = Model.Takes.SelectMany(t => t.Media.GroupBy(m => m.Name)).ToDictionary(m => m.Key, m => m.First().Url);
+    var take = Model.Takes.ToArray()[ViewBag.Take];
+    var cam = Model.Cameras.Single(c => c.Id == ViewBag.Cam);
+    var media = take.Media.Single(m => m.CameraId == cam.Id);
+    ViewData["Title"] = $"Camera Setup: {cam.Name}";
 }
 
 <div>
-    <select id="camselect" class="form-control">
-        @foreach (var cam in cams)
-        {
-            <option value="@(cam.Value + "playback.mpd")">@cam.Key</option>
-        }
-    </select>
     <div class="row">
-        <div id="player" class="col-md-12">
+        <div id="player" class="col-md-6">
+            <h4>@Html.DisplayFor(modelItem => cam.Name)</h4>
+            <video data-dashjs-player src="@(media.Url + "/playback.mpd")"></video>
+            <div class="cam-areas">
+                
+            </div>
+        </div>
+        <div class="col-md-6">
+            <form method="post" asp-action="CamSet">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Frame Name</th><th>X</th><th>Y</th><th>Width</th><th>Height</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Safe Shot</td>
+                            <td>@Html.EditorFor(modelItem => cam.SafeShot.X)</td>
+                            <td>@Html.EditorFor(modelItem => cam.SafeShot.Y)</td>
+                            <td>@Html.EditorFor(modelItem => cam.SafeShot.Width)</td>
+                            <td>@Html.EditorFor(modelItem => cam.SafeShot.Height)</td>
+                        </tr>
+                        @foreach (var area in Model.AreaConfig)
+                        {
+                            <tr>
+                                <td>Detail Shot: @area.Name</td>
+                                <td>@Html.EditorFor(modelItem => cam.DetailShots[area.Id].X)</td>
+                                <td>@Html.EditorFor(modelItem => cam.DetailShots[area.Id].Y)</td>
+                                <td>@Html.EditorFor(modelItem => cam.DetailShots[area.Id].Width)</td>
+                                <td>@Html.EditorFor(modelItem => cam.DetailShots[area.Id].Height)</td>
+                            </tr>
+                            <tr>
+                                <td>Face-Up Shot: @area.Name</td>
+                                <td>@Html.EditorFor(modelItem => cam.FaceUpShots[area.Id].X)</td>
+                                <td>@Html.EditorFor(modelItem => cam.FaceUpShots[area.Id].Y)</td>
+                                <td>@Html.EditorFor(modelItem => cam.FaceUpShots[area.Id].Width)</td>
+                                <td>@Html.EditorFor(modelItem => cam.FaceUpShots[area.Id].Height)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </form>
         </div>
     </div>
 </div>
 
-<script src="//cdn.dashjs.org/latest/dash.all.min.js"></script>
-<script>
-    $(function() {
-        $('#camselect').on('change', function(target) {
-            var player = $('player');
-            player.innerHTML = '';
-            var video = document.createElement("video");
-            player.appendChild(video);
-            var url = target.value;
-            var player = dashjs.MediaPlayer().create();
-            player.initialize(video, url, true);
-
-            $.ajax(@("http://192.168.1.101/api/production/" + Model.Id))
-                .done(function (response) {
-                    var data = JSON.parse(response);
-                    for (var area in data.areaConfig) {
-                        if (area.cameraViewports) {
-                            
-                        }
-                    }
-                });
-        });
-    });
-</script>
+<script src="//cdn.dashjs.org/v2.3.0/dash.all.min.js"></script>

@@ -1,5 +1,6 @@
 ﻿@model OpenLab.Kitchen.Service.Models.Production
 @{
+    var cams = Model.Cameras.ToArray();
     var take = Model.Takes.ToArray()[ViewBag.Take];
     ViewData["Title"] = take.Name;
 }
@@ -16,12 +17,13 @@
 <input id="referencetime" type="hidden" value="@take.Media.First().StartTime.ToString("yyyy'-'MM'-'dd'T'HH':'mm':'ss'.'fff'Z'")" />
 
 <div class="row">
-    <h3>Media</h3>
-    @foreach (var video in take.Media)
+    <h3>Cameras</h3>
+    @foreach (var cam in cams)
     {
         <div class="col-md-4 col-sm-6">
-            <h4>@Html.DisplayFor(modelItem => video.Name)</h4>
-            <video data-dashjs-player src="@(video.Url + "/playback.mpd")"></video>
+            <h4>@Html.DisplayFor(modelItem => cam.Name)</h4>
+            <video data-dashjs-player src="@(take.Media.Single(m => m.CameraId == cam.Id).Url + "/playback.mpd")"></video>
+            <div id="camframes-@cam.Id" class="camframes"></div>
         </div>
     }
 </div>
@@ -72,6 +74,6 @@
     </div>
 </div>
 
-<script src="//cdn.dashjs.org/latest/dash.all.min.js"></script>
+<script src="//cdn.dashjs.org/v2.3.0/dash.all.min.js"></script>
 <script src="//webtiming.github.io/timingsrc/lib/timingsrc.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.bundle.min.js"></script>

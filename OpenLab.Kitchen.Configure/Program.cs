@@ -167,6 +167,7 @@ namespace OpenLab.Kitchen.Configure
             production.AreaConfig = config.AreaConfig.Select(a => new Area
             {
                 Id = a.Id,
+                Name = a.Name,
                 GTRegionStart = a.GtRegionStart,
                 GTRegionStop = a.GtRegionStop,
                 PresentationPads = a.PresentationPads,

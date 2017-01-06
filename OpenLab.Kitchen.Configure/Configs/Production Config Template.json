@@ -13,6 +13,7 @@
 		}
 	],
 	"cameraConfig": [{
+			"id": "ID",
 			"name": "Off Centre",
 			"primerLocation": "PRIMER_URL",
 			"replayLocation": "FOOTAGE_URL",
