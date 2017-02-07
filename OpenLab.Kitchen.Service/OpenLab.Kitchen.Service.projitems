@@ -28,5 +28,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Wax3State.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Wax9Data.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Values\Rect.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Values\Vector.cs" />
   </ItemGroup>
 </Project>

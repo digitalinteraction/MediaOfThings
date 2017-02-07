@@ -1,5 +1,6 @@
 ﻿using System;
 using OpenLab.Kitchen.Service.Interfaces;
+using OpenLab.Kitchen.Service.Values;
 
 namespace OpenLab.Kitchen.Service.Models
 {
@@ -12,6 +13,16 @@ namespace OpenLab.Kitchen.Service.Models
         public float AccY { get; set; }
 
         public float AccZ { get; set; }
+
+        public Vector3 NormalisedAccVector()
+        {
+            return new Vector3
+            {
+                X = AccX / 256.0,
+                Y = AccY / 256.0,
+                Z = AccZ / 256.0
+            };
+        }
 
         public string IdString()
         {
